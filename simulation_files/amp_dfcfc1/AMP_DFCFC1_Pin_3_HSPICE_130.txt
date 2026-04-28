@@ -1,0 +1,30 @@
+.subckt Leung_DFCFC1_Pin_3 gnda vdda vinn vinp vout Ib
+XM12 vout net050 vdda vdda sky130_fd_pr__pfet_01v8 l=L_M12 w='W_M12*1' m=M_M12             
+XM7 net049 Ib vdda vdda sky130_fd_pr__pfet_01v8 l=L_M0 w='W_M0*1' m=M_M0         
+XM11 net043 net050 vdda vdda sky130_fd_pr__pfet_01v8 l=L_M11 w='W_M11*1' m=M_M11              
+XM6 net050 voutn vdda vdda sky130_fd_pr__pfet_01v8 l=L_M0 w='W_M0*1' m=M_M0          
+XM5 voutn voutn vdda vdda sky130_fd_pr__pfet_01v8 l=L_M0 w='W_M0*1' m=M_M0           
+XM10 net063 vinp net31 net31 sky130_fd_pr__pfet_01v8 l=L_M9 w='W_M9*1' m=M_M9                 
+XM9 dm_2 vinn net31 net31 sky130_fd_pr__pfet_01v8 l=L_M9 w='W_M9*1' m=M_M9                    
+XM4 net31 Ib vdda vdda sky130_fd_pr__pfet_01v8 l=L_M0 w='W_M0*1' m='2*M_M0'      
+XM3 vb3 Ib vdda vdda sky130_fd_pr__pfet_01v8 l=L_M0 w='W_M0*1' m=M_M0            
+XM2 dm_1 Ib vdda vdda sky130_fd_pr__pfet_01v8 l=L_M0 w='W_M0*1' m=M_M0           
+XM8 net1 Ib vdda vdda sky130_fd_pr__pfet_01v8 l=L_M0 w='W_M0*1' m=M_M0           
+XM1 vb4 Ib vdda vdda sky130_fd_pr__pfet_01v8 l=L_M0 w='W_M0*1' m=M_M0            
+XM0 Ib Ib vdda vdda sky130_fd_pr__pfet_01v8 l=L_M0 w='W_M0*1' m=M_M0         
+XM25 vout net049 gnda gnda sky130_fd_pr__nfet_01v8 l=L_M25 w='W_M25*1' m=M_M25                
+XM23 net049 net043 gnda gnda sky130_fd_pr__nfet_01v8 l=L_M22 w='W_M22*1' m=M_M22        
+XM22 net043 net043 gnda gnda sky130_fd_pr__nfet_01v8 l=L_M22 w='W_M22*1' m=M_M22        
+XM20 dm_2 vb4 gnda gnda sky130_fd_pr__nfet_01v8 l=L_M18 w='W_M18*1' m='M_M18*8'      
+XM16 voutn vb3 dm_2 gnda sky130_fd_pr__nfet_01v8 l=L_M17 w='W_M17*1' m='M_M17*4'     
+XM21 net063 vb4 gnda gnda sky130_fd_pr__nfet_01v8 l=L_M18 w='W_M18*1' m='M_M18*8'    
+XM17 net050 vb3 net063 gnda sky130_fd_pr__nfet_01v8 l=L_M17 w='W_M17*1' m='M_M17*4'  
+XM18 net54 vb4 gnda gnda sky130_fd_pr__nfet_01v8 l=L_M18 w='W_M18*1' m='M_M18*4'     
+XM24 net1 net049 gnda gnda sky130_fd_pr__nfet_01v8 l=L_M24 w='W_M24*1' m=M_M24                
+XM15 vb3 vb3 gnda gnda sky130_fd_pr__nfet_01v8 l=L_M18 w='W_M18*1' m=M_M18           
+XM13 vb4 vb3 net54 gnda sky130_fd_pr__nfet_01v8 l=L_M18 w='W_M18*1' m='M_M18*4'      
+XM19 net56 vb4 gnda gnda sky130_fd_pr__nfet_01v8 l=L_M18 w='W_M18*1' m='M_M18*4'     
+XM14 dm_1 vb3 net56 gnda sky130_fd_pr__nfet_01v8 l=L_M18 w='W_M18*1' m='M_M18*4'     
+XC0 net050 vout sky130_fd_pr__cap_mim_m3_1 W=30 L=30 MF=M_C0 m=M_C0
+XC1 net049 net1 sky130_fd_pr__cap_mim_m3_1 W=30 L=30 MF=M_C1 m=M_C1
+.ends Leung_DFCFC1_Pin_3

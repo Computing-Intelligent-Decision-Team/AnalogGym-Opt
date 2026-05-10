@@ -3,7 +3,7 @@ import json
 import os
 import numpy as np
 import matplotlib
-# 强制使用非交互式后端，避免弹窗阻塞
+
 try:
     if matplotlib.get_backend().lower() not in ('agg', 'pdf', 'svg'):
         matplotlib.use('Agg')
@@ -396,7 +396,7 @@ def _save_vae_multi_objective_plot(agent, outfile, title='VAE Multi-Objective Pr
         if pred_std_array is not None and pred_std_array.shape[1] > idx:
             lower = pred_array[:, idx] - pred_std_array[:, idx]
             upper = pred_array[:, idx] + pred_std_array[:, idx]
-            ax.fill_between(x_axis, lower, upper, color='tab:red', alpha=0.18, label='Pred ±1 std')
+            ax.fill_between(x_axis, lower, upper, color='tab:red', alpha=0.18, label='Prediction std')
         ax.set_title(label)
         ax.set_ylabel('Value')
         ax.grid(True, alpha=0.3)
@@ -427,7 +427,7 @@ def _save_vae_per_objective_plots(agent, out_dir, prefix='vae_objective', dpi=15
         if pred_std_array is not None and pred_std_array.shape[1] > idx:
             lower = pred_array[:, idx] - pred_std_array[:, idx]
             upper = pred_array[:, idx] + pred_std_array[:, idx]
-            ax.fill_between(x_axis, lower, upper, color='tab:red', alpha=0.18, label='Pred ±1 std')
+            ax.fill_between(x_axis, lower, upper, color='tab:red', alpha=0.18, label='Prediction std')
         ax.set_title(f'{label}: Actual vs VAE Predicted')
         ax.set_xlabel('Inference Samples')
         ax.set_ylabel('Value')
@@ -612,7 +612,7 @@ def log_step(agent, step, episodes, loss, grad_norm_value, mean_reward, std_rewa
                 block_lines.append(f"sim_time_sec: {sim_t}")
             if real_action is not None:
                 block_lines.append(f"real_action: {real_action}")
-            # 过滤掉不需要的键：raw_reward、extra_corner、pvt_context
+            
             metrics = get_reporting_metrics(perf)
             scores = get_reporting_scores(perf)
             if metrics:
@@ -723,7 +723,7 @@ def log_step(agent, step, episodes, loss, grad_norm_value, mean_reward, std_rewa
                     dpi=150,
                 )
 
-            # 移除 corner accuracy 绘图
+            
 
             # fig4 = plt.figure(figsize=(6, 4))
             # plt.plot(steps_axis, agent.reward_history, label='Mean Training Reward', color='tab:purple')
@@ -836,7 +836,6 @@ def log_step(agent, step, episodes, loss, grad_norm_value, mean_reward, std_rewa
             plt.plot(steps_axis, agent.reward_history, label='mean_training_reward', color='tab:purple')
             if len(agent.advantage_min_history) == len(steps_axis):
                 plt.fill_between(steps_axis, agent.advantage_min_history, agent.advantage_max_history, color='tab:purple', alpha=0.15, label='advantage_range')
-            plt.title('mean—advantage')
             plt.title('Mean Training Reward and Advantage Range')
             plt.xlabel('Step'); plt.ylabel('Value'); plt.legend(fontsize=8); plt.grid(alpha=0.3)
             figs['wandb/mean_advantage'] = f_mean_adv
@@ -922,7 +921,7 @@ def log_step(agent, step, episodes, loss, grad_norm_value, mean_reward, std_rewa
                 plt.title('VAE Losses'); plt.xlabel('VAE Steps'); plt.ylabel('Loss'); plt.legend(fontsize=8); plt.grid(alpha=0.3)
                 figs['wandb/vae_losses'] = f5
 
-            # 移除 wandb corner accuracy 绘图
+            
 
             agent._wandb_log({k: agent.wandb.Image(v) for k, v in figs.items()}, step=step)
             for fig in figs.values():
@@ -950,7 +949,7 @@ def log_step(agent, step, episodes, loss, grad_norm_value, mean_reward, std_rewa
                     scalars['vae/total_loss'] = float(vae_total_history[-1])
                 if len(vae_recon_history) > 0:
                     scalars['vae/recon_loss'] = float(vae_recon_history[-1])
-                # 移除 corner accuracy 标量记录
+                
             if worst_min_current is not None and np.isfinite(worst_min_current):
                 scalars['reward/worst_min'] = float(worst_min_current)
             verified_pvt_reward_history = list(getattr(agent, 'verified_pvt_reward_history', []) or [])
@@ -987,8 +986,8 @@ def log_step(agent, step, episodes, loss, grad_norm_value, mean_reward, std_rewa
                         extra_blocks.append(f"sim_time_sec: {sim_t2}")
                 except Exception:
                     pass
-                # 不在 extra corner 详情里重复写 real_action
-                # 过滤掉 extra_corner 内 performance 中的 pvt_context、extra_corner 自身（一般不会在 perf_extra）
+                
+                
                 metrics = get_reporting_metrics(perf_extra)
                 scores = get_reporting_scores(perf_extra)
                 if metrics:
@@ -1099,7 +1098,7 @@ def _legacy_write_kan_predictions(agent):
                 f.write("step\ttt_r\tpvt_r\tpre_r\n")
                 for (st, tr, ar, pr) in agent._kan_pred_records:
                     f.write(f"{st}\t{tr:.6f}\t{ar:.6f}\t{pr:.6f}\n")
-            print(f"✓ KAN predictions saved to {out_path}")
+            print(f"[OK] KAN predictions saved to: {out_path}")
 
             if agent.kan_actual_worst_history and agent.kan_pred_worst_history:
                 try:
@@ -1116,7 +1115,7 @@ def _legacy_write_kan_predictions(agent):
                     fig.tight_layout()
                     fig.savefig(plot_path, dpi=200)
                     plt.close(fig)
-                    print(f"✓ KAN actual-vs-predicted plot saved to {plot_path}")
+                    print(f"[OK] KAN prediction plot saved to: {plot_path}")
                 except Exception as exc:
                     print(f"[KAN plot] failed to save figure: {exc}")
     except Exception as _e:
@@ -1140,7 +1139,7 @@ def plot_progress(agent):
         pass
 
 
-# === 以下为原 pic.py 中的通用绘图工具，已并入本文件，便于统一维护 ===
+
 from typing import List
 
 
@@ -1228,7 +1227,7 @@ def plot_mean_reward_with_band(
 def plot_corner_selection_counts(counts: dict, outfile: str):
     ensure_dir(os.path.dirname(outfile) or '.')
     if not counts:
-        # 如果还没有数据，生成一个空图避免报错
+        
         plt.figure(figsize=(6, 4))
         plt.title('Corner Selection Counts (No Data Yet)')
         plt.savefig(outfile)

@@ -19,7 +19,7 @@ class PolicyNetRGCN(torch.nn.Module):
             super().__init__()    
             self.train_device = config['train_device']  
             self.action_dim = config['action_dim']
-            # 从config的graph字段获取图相关属性
+            
             graph = config['graph']
             self.num_node_features = graph['num_node_features']
             self.edge_index = torch.tensor(graph['edge_index'], dtype=torch.long).T
@@ -84,8 +84,8 @@ class ActorCriticRGCN:
             self.num_relations = graph['num_relations']           
     
             self.in_channels = self.num_node_features              
-            self.out_channels = self.action_dim    #RGCN是有多种边类型的图结构                
-            self.conv1 = RGCNConv(self.in_channels, 32, self.num_relations, #卷积层
+            self.out_channels = self.action_dim    
+            self.conv1 = RGCNConv(self.in_channels, 32, self.num_relations, 
                                   num_bases=32)                    
             self.conv2 = RGCNConv(32, 32, self.num_relations,
                                   num_bases=32)                    
@@ -95,7 +95,7 @@ class ActorCriticRGCN:
                                   num_bases=32)                    
             self.lin1 = LazyLinear(self.out_channels)             
     
-        def forward(self, state):  #GNN前向传播 
+        def forward(self, state):  
             if len(state.shape) == 2: # if it is not batched graph data (only one data)
                 state = state.reshape(1, state.shape[0], state.shape[1]) 
     
@@ -109,9 +109,9 @@ class ActorCriticRGCN:
                 x = F.relu(self.conv1(x, edge_index, edge_type))  
                 x = F.relu(self.conv2(x, edge_index, edge_type))  
                 x = F.relu(self.conv3(x, edge_index, edge_type))  
-                x = F.relu(self.conv4(x, edge_index, edge_type))  #在这里进行维度变换，增强非线性
-                x = self.lin1(torch.flatten(x))       #每个器件都通过映射展为一维向量，29*12变为24*1
-                x = torch.tanh(x).reshape(1, -1)     #输出归一化（强制归一化形，与当下其他数据无关） 
+                x = F.relu(self.conv4(x, edge_index, edge_type))  
+                x = self.lin1(torch.flatten(x))       
+                x = torch.tanh(x).reshape(1, -1)     
                 actions = torch.cat((actions, x), axis=0) 
     
             return actions      
@@ -160,7 +160,7 @@ class ActorCriticRGCN:
                 x = self.lin1(torch.flatten(x)).reshape(1, -1)
                 values = torch.cat((values, x), axis=0)    
             return values
-        #计算一个batch数据所有的Q值
+        
 class ActorCriticGCN:
     class Actor(torch.nn.Module):
         def __init__(self, config: dict):

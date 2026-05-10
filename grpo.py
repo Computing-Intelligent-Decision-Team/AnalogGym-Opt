@@ -1,10 +1,4 @@
-"""
-用于模拟电路参数优化的 GRPO（组相对策略优化）算法实现（带有 NaN 防护的改进版本）。
-
-假设：
-- 环境奖励：“越接近 0 越好”。
-  （例如，-0.5 优于 -3.0，因此我们仍然最大化奖励。）
-"""
+"""GRPO agent and training utilities for analog circuit optimization."""
 
 import numpy as np
 import math
@@ -58,6 +52,27 @@ from reporting_metrics import (
     get_reporting_scores,
     iter_reporting_metric_items,
 )
+from vae_model import (
+    RL_OBJECTIVE_KEYS,
+    VAE_CONDITION_PERFORMANCE_KEYS,
+    VAE_OBJECTIVE_KEYS,
+    VAETrainingData,
+    WorstCornerVAE,
+    build_target_objectives,
+    build_vae_condition,
+    compute_phase_margin_violation,
+    objective_vector_to_dict,
+    prepare_vae_training_data,
+)
+
+
+@dataclass
+class Episode:
+    """Store one sampled or evaluated circuit design."""
+
+    circuit_spec: str = ""
+    state: np.ndarray = None
+    action: np.ndarray = None
     reward: float = 0.0
     performance: Dict = field(default_factory=dict)
     objective_rewards: Dict[str, float] = field(default_factory=dict)
@@ -394,7 +409,7 @@ class GRPOAgent:
         if self.use_vae:
             action_dim = env.action_dim
             perf_keys_count = len(VAE_CONDITION_PERFORMANCE_KEYS)
-            # 输入维度 = action维度 + 性能指标数量 + 1（reward）
+            
             objective_dim = len(self.vae_objective_keys)
             vae_input_dim = action_dim + perf_keys_count + objective_dim
             
@@ -2254,13 +2269,13 @@ class GRPOAgent:
             actions = actions.cpu().numpy()
             old_log_probs = old_log_probs.cpu().numpy()
             
-            # 调用环境的 parallel_step 方法处理批次动作
+            
             next_states, rewards, terminateds, truncateds, perf_infos = self.env.parallel_step(
                 actions, 
                 enable_pvt=self.run_all_corners
             )
 
-            # 处理返回结果
+            
             for i, result in enumerate(zip(next_states, rewards, terminateds, truncateds, perf_infos)):
                 next_state, reward, terminated, truncated, perf_info = result
                 reward = float(reward)
@@ -2694,7 +2709,7 @@ class GRPOAgent:
                 elif self._vae_offline_trained:
                     self._vae_predict_step(step, episodes)
 
-            # statistics（per-step）
+            
             rewards_step = np.array([ep.reward for ep in episodes], dtype=float)
             if not np.all(np.isfinite(rewards_step)):
                 bad_mask = ~np.isfinite(rewards_step)
@@ -2889,7 +2904,7 @@ class GRPOAgent:
                 self.objective_plot_history.setdefault(history_key, []).append(objective_mean)
             self.total_steps += 1
 
-            # detailed worst-raw log buffer（保持原样）
+            
             try:
                 block_lines: List[str] = []
                 block_lines.append(f"===== Step {step} (designs={len(episodes)}) =====")
@@ -2956,7 +2971,8 @@ class GRPOAgent:
             # step summary
             print(f"\n{'='*60}")
             print(f"Step {step} Summary:")
-            print(f"  Mean Training Reward: {mean_reward:.4f} ± {std_reward:.4f}")
+            print(f"  Mean Training Reward: {mean_reward:.4f} +/- {std_reward:.4f}")
+            print(f"  Mean Advantage: {mean_advantage:.4f} (min={adv_min:.4f}, max={adv_max:.4f})")
             gm = getattr(self, "_last_group_mean_rewards", {})
             if isinstance(gm, dict) and gm:
                 print("  Group mean training rewards (closer to 0 is better):")

@@ -1,7 +1,7 @@
-# 训练设备
+# Training device
 train_device: "cpu"
 
-# 仿真目录
+# Simulation template directory
 base_dir: ../simulation_files/amp_dfcfc2
 file_paths:
   ACDC_cir_path: "AMP_DFCFC2_ACDC.cir"
@@ -18,7 +18,7 @@ file_paths:
   tran_results_path: "AMP_DFCFC2_Tran"
   tran_dat_path: "AMP_DFCFC2_tran.dat"
 
-# 器件
+# Design variables
 device:
   M0: {range: {W: [0.5, 10], L: [0.5, 5], M: [1, 50]}, step: {W: 0.1, L: 0.1, M: 1}, init: {W: 1, L: 1, M: 4}, num: 8}
   M8: {range: {W: [0.5, 10], L: [0.5, 5], M: [1, 50]}, step: {W: 0.1, L: 0.1, M: 1}, init: {W: 1, L: 1, M: 4}, num: 2}
@@ -31,10 +31,10 @@ device:
   Ib: {range: {I: [1e-6, 30e-6]}, init: {I: 1e-5}, num: 1}
   C0: {range: {M: [1, 30]}, step: {M: 1}, init: {M: 10}, num: 1}
   C1: {range: {M: [1, 30]}, step: {M: 1}, init: {M: 10}, num: 1}
-#动作维度
+# Action dimension
 action_dim: 27
 
-# 性能
+# Performance targets
 performance:
   phase_margin: {target: 60} #unit:deg
   dcgain: {target: 130, objective: max, baseline: 90} #unit:dB
@@ -52,7 +52,7 @@ performance:
   GBW: {target: 4e6, objective: max, baseline: 4e6} #unit:Hz
   sr: {target: 1.25, objective: max, baseline: 1.2} #unit:V/us
 
-# 负载电容
+# Load capacitance
 post_target_bonus:
   enabled: true
   scale: 1.0
@@ -60,7 +60,7 @@ post_target_bonus:
   metrics: [FOML, FOMS, Active_Area]
 PARAM_CLOAD: 100  
 
-# 电路层次结构配置
+# Circuit hierarchy
 ckt_hierarchy:
   - [M0, x1.XM0, pfet_01v8, m]
   - [M1, x1.XM1, pfet_01v8, m]
@@ -91,7 +91,7 @@ ckt_hierarchy:
   - [Ib, "", Ib, i]
   - [C0, x1.XC0, cap_mim_m3_1, c]
   - [C1, x1.XC1, cap_mim_m3_1, c]
-# 电路图配置
+# Circuit graph
 graph:                                                                                                                      
 # node 0 : M0 , node 1 : M1 , node 2 : M2 , node 3 : M3 , node 4 : M4 , node 5 : M5
 # node 6 : M6 , node 7 : M7 , node 8 : M8 , node 9 : M9 , node 10 : M10 , node 11 : M11
@@ -162,7 +162,7 @@ graph:
     1, 1,                                                 # Ib
     1, 1,                                                 # C0
   ]
-  # 观测矩阵配置
+  # Observation matrix
   observation_matrix:
       M0: [0, 0, 0, 0, 0, "id", "gm", "gds", "vth", "vdsat", "vds", "vgs"]
       M1: [0, 0, 0, 0, 0, "id", "gm", "gds", "vth", "vdsat", "vds", "vgs"]

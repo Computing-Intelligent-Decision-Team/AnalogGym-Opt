@@ -1,3 +1,0 @@
-* SKY130 Spice File.
-.include "../all.spice"
-.include "rf.spice"

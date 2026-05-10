@@ -1,37 +1,79 @@
-# GRPO Analog Circuit Optimizer (Minimal Executable Version)
+# AnalogGym-Opt Demo
 
-This repository is dedicated to training intelligent agents for analog circuit parameter optimization. The core algorithm is based on **GRPO (Group Relative Policy Optimization)**.
+AnalogGym-Opt is a GRPO-based optimizer for analog circuit parameter search. This repository is the public demo package submitted with the TCAD paper review. It keeps the executable framework and one amplifier benchmark, `amp_dfcfc2`, so reviewers can run and inspect the method without the full benchmark/data release.
 
-## 📌 Project Highlights
-- **Minimal Executable Version**: This version strips away all redundant, debugging, and comparative scripts (such as DDPG baselines), keeping only the essential, standardized execution files.
-- **Chinese Comments**: Key source files and the main entry script contain Chinese comments for better readability.
-- **Test Case**: Includes the `dfcfc2` amplifier test case by default (config located at `circuit_configs/amp_dfcfc2.yaml`) for rapid execution and verification.
+## Demo Scope
 
-## 📂 Dataset Availability
-> [!IMPORTANT]
-> **The complete dataset will be officially released upon the paper's acceptance.**
-> The current version contains only the core simulation and algorithmic framework required to run the optimization, ensuring a lightweight and executable setup.
+- Included circuit: `amp_dfcfc2`
+- Included config: `circuit_configs/amp_dfcfc2.yaml`
+- Included simulation templates: `simulation_files/amp_dfcfc2/`
+- Included PDK dependency: one bundled Sky130 PDK copy under `simulation_files/sky130_pdk/`
+- Excluded before paper acceptance: full benchmark set, complete datasets, and generated training results
 
-## 🛠️ Prerequisites
-Ensure the following dependencies are installed (Python 3.8+ is recommended):
-- PyTorch
-- NumPy
-- Matplotlib
-- Tabulate
-- **Ngspice**: Must be installed and added to your system's PATH, as it is required for low-level circuit simulation.
+The complete dataset and additional cases will be released after paper acceptance.
 
-## 🚀 Quick Start
-Run the main script to start optimization training for the `dfcfc2` test case:
+## Prerequisites
+
+- Python 3.9 or newer
+- Ngspice available on `PATH`
+- PyTorch and PyTorch Geometric compatible with your Python/CUDA setup
+
+Install Python dependencies:
 
 ```bash
-python main_AMP_grpo.py
+pip install -r requirements.txt
 ```
 
-Optimization outcomes, the best discovered circuit parameters, and training metrics will be logged in the `training_saves/` directory.
+Check Ngspice:
 
-## 📄 Project Structure
-- `main_AMP_grpo.py`: Main entry point for starting the training process.
-- `grpo.py`: Core implementation of the Group Relative Policy Optimization (GRPO) algorithm.
-- `AmpEnv.py`: Circuit interaction environment handling Ngspice simulation and reward computation.
-- `models.py`: Neural network definitions for the Actor.
-- `circuit_configs/`: Directory containing circuit specifications and constraints (e.g., `amp_dfcfc2.yaml`).
+```bash
+ngspice -v
+```
+
+## Quick Start
+
+Run the default demo:
+
+```bash
+python main_AMP_grpo.py --circuit amp_dfcfc2 --steps 300 --mode tt-proxy
+```
+
+Run a short smoke test:
+
+```bash
+python main_AMP_grpo.py --circuit amp_dfcfc2 --steps 1 --mode tt-only
+```
+
+Available modes:
+
+- `tt-only`: TT-corner optimization only; useful for quick checks.
+- `tt-proxy`: TT inner-loop training with selective PVT proxy/verification; this is the default demo mode.
+- `full-pvt`: full PVT evaluation inside training; this is much more expensive.
+
+## Outputs
+
+Runtime outputs are disposable and are written to:
+
+- `simulation_output/`: generated Ngspice work directories and logs
+- `training_saves/`: checkpoints, plots, candidate summaries, and training histories
+
+These directories are ignored by Git and can be deleted between runs.
+
+## Repository Layout
+
+- `main_AMP_grpo.py`: command-line entry point
+- `grpo.py`: GRPO agent and training loop
+- `AmpEnv.py`: Ngspice-backed circuit environment
+- `models.py`: graph policy networks
+- `circuit_config_loader.py`: YAML config loader and path resolver
+- `circuit_configs/`: circuit definitions
+- `simulation_files/amp_dfcfc2/`: read-only demo circuit templates
+- `simulation_files/sky130_pdk/`: bundled Sky130 model files used by the demo
+
+## Notes
+
+The bundled Sky130 files are third-party process-design-kit assets required by the demo simulation decks. Keep their upstream license terms in mind when redistributing modified PDK content.
+
+## License
+
+This project code is released under the MIT License. See `LICENSE`.

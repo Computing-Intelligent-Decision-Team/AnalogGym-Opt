@@ -1,7 +1,0 @@
-interface:
-  display_name: "AnalogGym Opt Optimizer"
-  short_description: "Run AnalogGym-Opt with clear circuit and PVT controls."
-  default_prompt: "Use $analoggym-opt-optimizer to inspect a circuit config and run the AnalogGym-Opt optimizer with a clear PVT mode."
-
-policy:
-  allow_implicit_invocation: true

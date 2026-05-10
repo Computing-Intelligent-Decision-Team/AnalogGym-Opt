@@ -1,165 +1,51 @@
-# Byte-compiled / optimized / DLL files
+# Python caches
 __pycache__/
 *.py[cod]
 *$py.class
-
-# C extensions
-*.so
-
-# Distribution / packaging
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-share/python-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-MANIFEST
-
-# PyInstaller
-#  Usually these files are written by a python script from a template
-#  before PyInstaller builds the exe, so as to inject date/other infos into it.
-*.manifest
-*.spec
-
-# Installer logs
-pip-log.txt
-pip-delete-this-check.txt
-
-# Unit test / coverage reports
-htmlcov/
-.tox/
-.nox/
-.coverage
-.coverage.*
-.cache
-nosetests.xml
-coverage.xml
-*.cover
-*.py,cover
-.hypothesis/
 .pytest_cache/
-cover/
-
-# Translations
-*.mo
-*.pot
-
-# Django stuff:
-*.log
-local_settings.py
-db.sqlite3
-db.sqlite3-journal
-
-# Flask stuff:
-instance/
-.webassets-cache
-
-# Scrapy stuff:
-.scrapy
-
-# Sphinx documentation
-docs/_build/
-
-# PyBuilder
-.pybuilder/
-target/
-
-# Jupyter Notebook
-.ipynb_checkpoints
-
-# IPython
-profile_default/
-ipython_config.py
-
-# pyenv
-#   For a library or app, you might want to share your .python-version.
-#   See: https://github.com/pyenv/pyenv/issues/530
-#.python-version
-
-# pipenv
-#   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
-#   However, in case of collaboration, if having platform-specific dependencies or dependencies
-#   having no cross-platform support, pipenv may install dependencies that don't work, or not
-#   install all needed dependencies.
-#Pipfile.lock
-
-# poetry
-#   Similar to Pipenv, it is generally recommended to include poetry.lock in version control.
-#poetry.lock
-
-# pdm
-#   Similar to Pipenv and Poetry, it is generally recommended to include pdm.lock in version control.
-#pdm.lock
-#   pdm stores project-wide configurations in .pdm-python.json
-.pdm-python.json
-.pdm-build/
-
-# PEP 582 podman
-__pypackages__/
-
-# Celery stuff
-celerybeat-schedule
-celerybeat.pid
-
-# SageMath parsed files
-*.sage.py
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
 
 # Environments
 .env
-.venv
-env/
+.venv/
 venv/
+env/
 ENV/
-env.bak/
-venv.bak/
 
-# Spyder project settings
-.spyderproject
-.spyproject
+# Packaging
+build/
+dist/
+*.egg-info/
 
-# Rope project settings
-.ropeproject
-
-# mkdocs documentation
-/site
-
-# mypy
-.mypy_cache/
-.dmypy.json
-dmypy.json
-
-# Pyre type checker
-.pyre/
-
-# pytype static type analyzer
-.pytype/
-
-# Cython debug symbols
-cython_debug/
-
-# VS Code
+# IDE/local files
 .vscode/
-
-# Local History
+.idea/
 .history/
+*.swp
 
-# WandB
+# Logs and generated simulator files
+*.log
+ACDC.log
+Tran.log
+simulation_output/
+training_saves/
 wandb/
 
-# Project-specific generated outputs and saves
-training_saves/
-simulation_output/
+# Model/checkpoint artifacts
+*.pt
+*.pth
+*.ckpt
+*.pkl
+model/
+
+# Generated reports/plots
+*.png
+*.pdf
+*.csv
+
+# Keep required demo normalization data
 *.json
-!amp_op_mean_std.json
-!*dfcfc2*.json
+!simulation_files/amp_dfcfc2/AMP_DFCFC2_op_mean_std.json

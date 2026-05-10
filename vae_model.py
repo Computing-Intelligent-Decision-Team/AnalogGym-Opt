@@ -38,7 +38,7 @@ PM_UPPER_BOUND = 90.0
 
 
 # ============================================================
-# 0. 数据结构 & 标准化工具（保持不变）
+
 # ============================================================
 
 @dataclass
@@ -50,7 +50,7 @@ class VAETrainingData:
 
 
 class RunningStandardizer:
-    """在线均值/方差估计器, 用于输入和输出的归一化."""
+    """Online mean and variance estimator for tensor normalization."""
 
     def __init__(self, dim: int, device: str = "cpu", eps: float = 1e-6):
         self.dim = dim
@@ -243,30 +243,23 @@ def _extract_multi_objective_vector(
 
 
 # ============================================================
-# 1. 工具函数：高斯 log prob（来自你的脚本）
+
 # ============================================================
 
 def gaussian_log_prob(value: torch.Tensor,
                       mean: torch.Tensor,
                       logvar: torch.Tensor) -> torch.Tensor:
-    """
-    对角高斯 N(mean, diag(exp(logvar))) 的 log 概率（忽略常数项）。
-    value, mean, logvar: [..., D]
-    返回: [...], 在最后一维上求和。
-    """
+    """Return the diagonal-Gaussian log probability without the constant term."""
     var = logvar.exp()
     return -0.5 * (((value - mean) ** 2) / var + logvar).sum(dim=-1)
 
 
 # ============================================================
-# 2. Planar Normalizing Flow（来自你的脚本）
+
 # ============================================================
 
 class PlanarFlow(nn.Module):
-    """
-    z' = z + u_hat * tanh(w^T z + b)
-    u_hat 通过 reparameterization 保证 1 + u_hat^T psi(z) > 0，从而变换可逆。
-    """
+    """Planar normalizing-flow transform used by the conditional VAE."""
     def __init__(self, dim: int):
         super().__init__()
         self.dim = dim
@@ -282,13 +275,7 @@ class PlanarFlow(nn.Module):
         return u_hat  # [1, dim]
 
     def forward(self, z: torch.Tensor) -> Tuple[torch.Tensor, torch.Tensor]:
-        """
-        输入:
-            z: [N, dim]
-        输出:
-            z_new: [N, dim]
-            log_det: [N]  每个样本的 log|det J|
-        """
+        """Apply the flow and return the transformed latent plus log determinant."""
         u_hat = self._u_hat()             # [1, dim]
         linear = z @ self.w.t() + self.b  # [N,1]
         h = torch.tanh(linear)            # [N,1]
@@ -308,17 +295,11 @@ class PlanarFlow(nn.Module):
 
 
 # ============================================================
-# 3. Flow + 条件先验 + 异方差 + IWAE 的 CVAE（来自你的脚本）
+
 # ============================================================
 
 class FlowIWAEConditionalVAE(nn.Module):
-    """
-    强数学版 KOBO 风格 CVAE：
-      - 条件先验 p_psi(z|x)
-      - 后验 q_phi(z|x,y) = q0(z0|x,y) * flows
-      - 解码器 p_theta(y|x,z) 为异方差高斯
-      - 使用 IWAE 多样本下界
-    """
+    """Conditional VAE trained with an IWAE objective and planar flows."""
     def __init__(
         self,
         input_size: int,
@@ -386,13 +367,7 @@ class FlowIWAEConditionalVAE(nn.Module):
         y: torch.Tensor,
         n_samples: int,
     ) -> Tuple[torch.Tensor, torch.Tensor]:
-        """
-        从 q_phi(z|x,y) 采样 K 个 z，并返回 log q(z|x,y)。
-        x: [B,Dx], y: [B,Dy]
-        返回:
-            z_K: [K,B,Dz]
-            log_q: [K,B]
-        """
+        """Sample latent variables from q(z|x,y) and return log q."""
         B = x.size(0)
         Dz = self.latent_dim
         K = n_samples
@@ -408,18 +383,18 @@ class FlowIWAEConditionalVAE(nn.Module):
         # log q0(z0 | x,y)
         log_q0 = gaussian_log_prob(z0, mu_q_exp, logvar_q_exp)  # [K,B]
 
-        # 通过 flows
+        
         z = z0.reshape(K * B, Dz)                # [K*B,Dz]
         log_q = log_q0.reshape(K * B)            # [K*B]
         for flow in self.flows:
             z, log_det = flow(z)                 # log_det: [K*B]
-            log_q = log_q - log_det              # log q_K = log q0 - Σ log|detJ|
+            log_q = log_q - log_det              
 
         z_K = z.reshape(K, B, Dz)
         log_q = log_q.reshape(K, B)
         return z_K, log_q
 
-    # --- IWAE 下界 ---
+    
 
     def iwae_loss(
         self,
@@ -427,24 +402,21 @@ class FlowIWAEConditionalVAE(nn.Module):
         y: torch.Tensor,
         n_samples: int = 5,
     ) -> Tuple[torch.Tensor, Dict[str, float]]:
-        """
-        IWAE Loss: L = - E_{z^{1:K}~q} [ log (1/K Σ w_k) ],
-        w_k = p(y,z_k|x) / q(z_k|x,y)
-        """
+        """Compute the negative IWAE bound and diagnostic statistics."""
         B = x.size(0)
         K = n_samples
 
         # z ~ q(z|x,y)
         z_K, log_q = self.sample_z_and_logq(x, y, n_samples=K)  # [K,B,Dz], [K,B]
 
-        # 条件先验 p(z|x)
+        
         mu_p, logvar_p = self.prior(x)                   # [B,Dz]
         mu_p_exp = mu_p.unsqueeze(0).expand(K, -1, -1)   # [K,B,Dz]
         logvar_p_exp = logvar_p.unsqueeze(0).expand(K, -1, -1)
 
         log_p_z = gaussian_log_prob(z_K, mu_p_exp, logvar_p_exp)  # [K,B]
 
-        # 解码器 p(y|x,z)
+        
         x_exp = x.unsqueeze(0).expand(K, -1, -1)         # [K,B,Dx]
         y_exp = y.unsqueeze(0).expand(K, -1, -1)         # [K,B,Dy]
 
@@ -462,14 +434,14 @@ class FlowIWAEConditionalVAE(nn.Module):
         # importance weights
         log_w = log_p_yz - log_q                    # [K,B]
 
-        # 数值稳定的 logmeanexp
+        
         log_w_max, _ = torch.max(log_w, dim=0, keepdim=True)  # [1,B]
         log_mean_w = log_w_max.squeeze(0) + torch.log(
             torch.mean(torch.exp(log_w - log_w_max), dim=0)
         )  # [B]
 
-        elbo = torch.mean(log_mean_w)           # 标量
-        loss = -elbo                            # IWAE 要最大化下界，这里取负号
+        elbo = torch.mean(log_mean_w)           
+        loss = -elbo                            
 
         stats = {
             "loss": loss.item(),
@@ -482,12 +454,7 @@ class FlowIWAEConditionalVAE(nn.Module):
 
     @torch.no_grad()
     def predict(self, x: torch.Tensor, n_samples_z: int = 20) -> torch.Tensor:
-        """
-        用生成过程 p(z|x) + p(y|x,z) 做预测：
-          z ~ p(z|x)
-          y ~ p(y|x,z)
-        用 E_z[mu_y(x,z)] 近似 E[y|x]。
-        """
+        """Predict the expected output by sampling from p(z|x)."""
         self.eval()
         B = x.size(0)
         Dz = self.latent_dim
@@ -522,10 +489,10 @@ class WorstCornerVAE(nn.Module):
     def __init__(
         self,
         input_dim: int = 41,
-        output_dim: int = 1,   # 只预测 reward
-        width: Optional[Sequence[int]] = None,  # 保留参数以兼容，不再使用
-        grid: int = 3,                          # 保留参数
-        k: int = 5,                             # 保留参数
+        output_dim: int = 1,   
+        width: Optional[Sequence[int]] = None,  
+        grid: int = 3,                          
+        k: int = 5,                             
         seed: Optional[int] = 42,
         learning_rate: float = 1e-3,
         device: str = "cpu",
@@ -545,7 +512,7 @@ class WorstCornerVAE(nn.Module):
             torch.manual_seed(int(seed))
             np.random.seed(int(seed))
 
-        # Flow-IWAE-CVAE 主网络
+        
         self.net = FlowIWAEConditionalVAE(
             input_size=self.input_dim,
             output_size=self.output_dim,
@@ -560,7 +527,7 @@ class WorstCornerVAE(nn.Module):
         self.recon_corner_weight = float(recon_corner_weight)
         self.iwae_samples = int(iwae_samples)
 
-        # 使用在线标准化（类似脚本中的 StandardScaler）
+        
         self.std_c = RunningStandardizer(dim=self.input_dim, device=str(self.device))
         self.std_y = RunningStandardizer(dim=self.output_dim, device=str(self.device))
 
@@ -572,10 +539,7 @@ class WorstCornerVAE(nn.Module):
             self.objective_keys = tuple(f"objective_{idx}" for idx in range(self.output_dim))
 
     def forward(self, conditioned: torch.Tensor) -> torch.Tensor:
-        """
-        对齐原 forward 接口：输入已标准化的 condition，输出标准化空间的 y 预测均值。
-        一般训练 / 推理请走 update / predict_pvt_reward。
-        """
+        """Return a one-sample normalized prediction for compatibility."""
         if conditioned.ndim == 1:
             conditioned = conditioned.unsqueeze(0)
         return self.net.predict(conditioned, n_samples_z=1)
@@ -583,7 +547,7 @@ class WorstCornerVAE(nn.Module):
     def update(
         self,
         batch: Sequence[VAETrainingData],
-        beta: float = 1.0,  # 保留接口兼容
+        beta: float = 1.0,  
         update_stats: bool = True,
     ) -> Dict[str, float]:
         if not batch:
@@ -592,7 +556,7 @@ class WorstCornerVAE(nn.Module):
         self.train()
         c_raw, y_raw = _stack_training_data(batch, self.device)
 
-        # NaN 值处理：移除包含 NaN 的整条数据
+        
         valid_mask = torch.all(torch.isfinite(c_raw), dim=1) & torch.all(torch.isfinite(y_raw), dim=1)
         c_raw = c_raw[valid_mask]
         y_raw = y_raw[valid_mask]
@@ -601,7 +565,7 @@ class WorstCornerVAE(nn.Module):
             return {"total_loss": 0.0, "recon_loss": 0.0, "kl_loss": 0.0, "kl_weight": 0.0}
 
         if update_stats:
-            # beta 保留不使用，只为兼容
+            
             self.std_c.update(c_raw)
             self.std_y.update(y_raw)
 
@@ -619,8 +583,8 @@ class WorstCornerVAE(nn.Module):
         loss_value = float(loss.item())
         self.train_losses.append(loss_value)
 
-        # 为保持外部兼容，这里仍然返回 total_loss / recon_loss / kl_loss / kl_weight
-        # 其中 total_loss = -ELBO，recon_loss 简单对齐为 total_loss，KL 项保持 0
+        
+        
         return {
             "total_loss": loss_value,
             "recon_loss": loss_value,
@@ -640,7 +604,7 @@ class WorstCornerVAE(nn.Module):
 
         c_raw, y_raw = _stack_training_data(dataset, self.device)
 
-        # NaN 值处理
+        
         valid_mask = torch.all(torch.isfinite(c_raw), dim=1) & torch.all(torch.isfinite(y_raw), dim=1)
         c_raw = c_raw[valid_mask]
         y_raw = y_raw[valid_mask]
@@ -649,7 +613,7 @@ class WorstCornerVAE(nn.Module):
             print("[VAE] No valid samples after NaN filtering")
             return []
 
-        # 全量重新估计标准化统计量（类似 StandardScaler.fit）
+        
         self.std_c.reset()
         self.std_y.reset()
         self.std_c.update(c_raw)
@@ -691,7 +655,7 @@ class WorstCornerVAE(nn.Module):
 
             epoch_loss = total_loss / max(1, batches)
             epoch_losses.append(epoch_loss)
-            # 你如果需要，可以在这里 print 一下 epoch_loss 或 stats["elbo"]
+            
 
         return epoch_losses
 
@@ -701,11 +665,7 @@ class WorstCornerVAE(nn.Module):
         condition: np.ndarray,
         num_samples: int = 20,
     ) -> Tuple[float, float]:
-        """只预测 PVT worst reward，不再预测 corner。
-        
-        Returns:
-            Tuple[float, float]: (pred_reward_mean, pred_reward_std)
-        """
+        """Predict the PVT worst reward mean and standard deviation."""
         pred_mean, pred_std = self.predict_multi_objective(condition, num_samples=num_samples)
         return float(pred_mean[0]), float(pred_std[0])
 
@@ -775,7 +735,7 @@ class WorstCornerVAE(nn.Module):
 
 
 # ============================================================
-# 5. 数据准备函数（接口保持不变）
+
 # ============================================================
 
 def _legacy_prepare_vae_training_data(
@@ -784,7 +744,7 @@ def _legacy_prepare_vae_training_data(
     tt_reward: float,
     pvt_worst_reward: float,
     pvt_worst_performance: Optional[Dict] = None,
-    pvt_worst_corner_idx: int = None,  # 保留参数以兼容，但不再使用
+    pvt_worst_corner_idx: int = None,  
     num_corners: int = 20,
 ) -> Optional[VAETrainingData]:
     try:
@@ -831,11 +791,11 @@ def _legacy_prepare_vae_training_data(
             fallback_reward=float(pvt_worst_reward),
         )
         
-        # NaN 值处理：如果整条数据包含 NaN，则返回 None（类似 dropna 的效果）
+        
         if not (np.all(np.isfinite(condition)) and np.all(np.isfinite(target_y))):
             return None
         
-        # corner_label 设为 -1 表示不使用
+        
         return VAETrainingData(condition=condition, target_y=target_y, corner_label=-1)
     except Exception as exc:
         print(f"[VAE] prepare data failed: {exc}")

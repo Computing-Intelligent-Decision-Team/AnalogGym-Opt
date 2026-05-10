@@ -1,204 +1,143 @@
 import os
+from typing import Any, Dict, List
+
 import yaml
-from typing import Dict, Any, List
+
 
 class CircuitConfigLoader:
-    """电路配置加载器，用于读取和解析外部配置文件，包含权重提取功能"""
+    """Load circuit YAML files and resolve their simulation paths."""
 
     def __init__(self, config_dir: str = "circuit_configs", load_all: bool = False):
-        """初始化配置加载器
-        
-        Args:
-            config_dir: 配置文件目录
-            load_all: 是否在初始化时加载所有配置文件，默认为False（按需加载）
-        """
         self.config_dir = os.path.abspath(config_dir)
         self._circuit_configs: Dict[str, Dict[str, Any]] = {}
         self._available_circuits = None
-        
-        # 确保配置目录存在
+
         if not os.path.exists(self.config_dir):
             os.makedirs(self.config_dir)
             self._available_circuits = []
-        
-        # 只在需要时加载所有配置
+
         if load_all:
             self._load_all_configs()
         else:
-            # 只扫描可用电路名称，不加载具体配置
             self._scan_available_circuits()
 
     def _scan_available_circuits(self) -> None:
-        """扫描配置目录下的所有YAML文件，记录可用的电路名称"""
+        """Record available circuit names from YAML files."""
         self._available_circuits = []
         for filename in os.listdir(self.config_dir):
-            if filename.endswith(".yaml") or filename.endswith(".yml"):
-                circuit_name = os.path.splitext(filename)[0]
-                self._available_circuits.append(circuit_name)
-    
+            if filename.endswith((".yaml", ".yml")):
+                self._available_circuits.append(os.path.splitext(filename)[0])
+
     def _load_all_configs(self) -> None:
-        """加载配置目录下的所有配置文件"""
+        """Load all available circuit configs."""
         self._scan_available_circuits()
-        
-        # 遍历所有可用电路，加载配置
         for circuit_name in self._available_circuits:
             try:
                 self._load_single_config(circuit_name)
-            except Exception as e:
-                print(f"加载配置文件 {circuit_name}.yaml 失败: {str(e)}")
-    
+            except Exception as exc:
+                print(f"Failed to load {circuit_name}.yaml: {exc}")
+
     def _load_single_config(self, circuit_name: str) -> Dict[str, Any]:
-        """加载单个电路配置文件
-        
-        Args:
-            circuit_name: 电路名称
-            
-        Returns:
-            加载的配置字典
-            
-        Raises:
-            ValueError: 当电路配置不存在或格式错误时
-        """
-        # 检查配置是否已加载
+        """Load one circuit config by name."""
         if circuit_name in self._circuit_configs:
             return self._circuit_configs[circuit_name]
-        
-        # 确定配置文件路径（尝试.yaml和.yml扩展名）
+
         yaml_path = os.path.join(self.config_dir, f"{circuit_name}.yaml")
         yml_path = os.path.join(self.config_dir, f"{circuit_name}.yml")
-        
+
         if os.path.exists(yaml_path):
             config_path = yaml_path
         elif os.path.exists(yml_path):
             config_path = yml_path
         else:
-            # 如果缓存中有可用电路列表，检查电路名称是否有效
             if self._available_circuits is not None and circuit_name not in self._available_circuits:
-                raise ValueError(f"未知电路: {circuit_name}，可用电路: {self.get_available_circuits()}")
-            raise ValueError(f"配置文件不存在: {circuit_name}.yaml 或 {circuit_name}.yml")
-        
-        # 加载和处理配置文件
-        with open(config_path, 'r', encoding='utf-8') as f:
-            config = yaml.safe_load(f)
-        
-        # 验证配置完整性
-        self._validate_config(config, circuit_name)
-        
-        config['paths'] = self._prepare_paths(config)
+                raise ValueError(
+                    f"Unknown circuit '{circuit_name}'. Available circuits: {self.get_available_circuits()}"
+                )
+            raise ValueError(f"Circuit config not found: {circuit_name}.yaml or {circuit_name}.yml")
 
-        # 归一化性能约束中的权重
+        with open(config_path, "r", encoding="utf-8") as handle:
+            config = yaml.safe_load(handle)
+
+        self._validate_config(config, circuit_name)
+        config["paths"] = self._prepare_paths(config)
         self._normalize_performance_weights(config)
-        
-        # 保存配置（添加文件路径信息和电路名称）
-        config['config_path'] = config_path
-        config['name'] = circuit_name
-        config['category'] = circuit_name.split('_')[0] if '_' in circuit_name else 'default'
-        
-        # 存储到缓存中
+        config["config_path"] = config_path
+        config["name"] = circuit_name
+        config["category"] = circuit_name.split("_")[0] if "_" in circuit_name else "default"
+
         self._circuit_configs[circuit_name] = config
-        
         return config
 
     def _validate_config(self, config: Dict[str, Any], circuit_name: str) -> None:
-        """验证配置是否完整"""
-        required_fields = [
-            'base_dir', 'device',
-            'performance', 'file_paths'
-        ]
-        # 检查必填字段
-        for field in required_fields:
+        """Check required top-level fields."""
+        for field in ("base_dir", "device", "performance", "file_paths"):
             if field not in config:
-                raise ValueError(f"电路 {circuit_name} 配置缺少必要字段: {field}")
+                raise ValueError(f"Circuit '{circuit_name}' is missing required field: {field}")
 
     def get_available_circuits(self) -> List[str]:
-        """获取所有可用电路名称"""
+        """Return all available circuit names."""
         if self._available_circuits is None:
             self._scan_available_circuits()
         return self._available_circuits.copy()
 
     def _convert_str_numbers(self, obj):
-        """递归转换字符串数字为数值"""
+        """Recursively convert numeric strings to numbers."""
         if isinstance(obj, dict):
-            return {k: self._convert_str_numbers(v) for k, v in obj.items()}
-        elif isinstance(obj, list):
+            return {key: self._convert_str_numbers(value) for key, value in obj.items()}
+        if isinstance(obj, list):
             return [self._convert_str_numbers(item) for item in obj]
-        elif isinstance(obj, str):
-            # 尝试转 float，再转 int（如果整数）
+        if isinstance(obj, str):
             try:
-                num = float(obj)
-                return int(num) if num.is_integer() else num
+                value = float(obj)
+                return int(value) if value.is_integer() else value
             except ValueError:
                 return obj
-        else:
-            return obj
+        return obj
 
     def get_circuit_config(self, circuit_name: str) -> Dict[str, Any]:
-        """获取指定电路的配置，包含提取的权重信息、设计变量初始值和动作空间范围
-        
-        如果配置尚未加载，则按需加载
-        """
-        # 按需加载配置
+        """Return a loaded circuit config with numeric strings converted."""
         config = self._load_single_config(circuit_name)
-        
-        # 返回配置的副本并转换字符串数字
-        config_copy = config.copy()
-        return self._convert_str_numbers(config_copy)
-        
+        return self._convert_str_numbers(config.copy())
+
     def get_simulation_dir(self, circuit_name: str) -> str:
-        """获取仿真文件目录"""
+        """Return the configured simulation template directory."""
         config = self.get_circuit_config(circuit_name)
-        return config.get('base_dir', '')
+        return config.get("base_dir", "")
 
     def _prepare_paths(self, config):
-        """准备仿真所需的路径信息
-        
-        Args:
-            config: 电路配置字典
-            
-        Returns:
-            构建好的路径字典
-        """
-        # 获取项目根目录（基于脚本所在位置）
+        """Resolve file paths relative to the repository root and base_dir."""
         project_root = os.path.dirname(os.path.abspath(__file__))
-        # 获取基础目录和文件路径配置
-        base_dir = config.get('base_dir', '')
-        file_paths = config['file_paths']
-        # 构建完整路径
+        base_dir = config.get("base_dir", "")
+        file_paths = config["file_paths"]
         paths = {}
+
         for key, rel_path in file_paths.items():
             if base_dir:
-                if base_dir.startswith('../'):
-                    # 移除../前缀，获取相对路径部分
-                    base_dir_without_dotdot = base_dir[3:]
-                else:
-                    base_dir_without_dotdot = base_dir
-                combined_path = os.path.join(project_root, base_dir_without_dotdot, rel_path)
+                normalized_base = base_dir[3:] if base_dir.startswith("../") else base_dir
+                full_path = os.path.join(project_root, normalized_base, rel_path)
             else:
-                combined_path = os.path.join(project_root, rel_path)
-            # 规范化最终路径
-            paths[key] = os.path.normpath(combined_path)
-        
+                full_path = os.path.join(project_root, rel_path)
+            paths[key] = os.path.normpath(full_path)
+
         return paths
-        
+
     def _normalize_performance_weights(self, config: Dict[str, Any]) -> None:
-        """归一化性能约束中的权重，确保所有权重和为1"""
-        performance_constraints = config.get('performance', {})
-        
-        # 计算所有权重的总和
-        total_weight = 0
-        weighted_constraints = []
-        
-        for key, constraint in performance_constraints.items():
-            if 'weight' in constraint:
-                total_weight += constraint['weight']
-                weighted_constraints.append(key)
-        
-        # 如果总权重不为零且存在带权重的约束，则归一化
-        if total_weight > 0 and weighted_constraints:
-            for key in weighted_constraints:
-                performance_constraints[key]['weight'] = performance_constraints[key]['weight'] / total_weight
+        """Normalize explicit performance weights so they sum to one."""
+        performance = config.get("performance", {})
+        total_weight = sum(
+            float(value.get("weight", 0.0))
+            for value in performance.values()
+            if isinstance(value, dict) and "weight" in value
+        )
+
+        if total_weight > 0:
+            for value in performance.values():
+                if isinstance(value, dict) and "weight" in value:
+                    value["weight"] = float(value["weight"]) / total_weight
 
     def reload_configs(self) -> None:
-        """重新加载所有配置文件"""
+        """Clear the cache and rescan circuit configs."""
         self._circuit_configs.clear()
-        self._load_all_configs()
+        self._available_circuits = None
+        self._scan_available_circuits()

@@ -9,7 +9,7 @@ You can just run it once to generate the script for the DCOP analysis.
 """
 from circuit_config_loader import CircuitConfigLoader
 
-class DeviceParams(object): #仿真后提取器件参数的表达式代码
+class DeviceParams(object): 
     def __init__(self, ckt_hierarchy, warning_msg=False):
         self.ckt_hierarchy = ckt_hierarchy
         self.dev_names_mos = (

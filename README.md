@@ -1,6 +1,6 @@
 # AnalogGym-Opt Demo
 
-AnalogGym-Opt is a GRPO-based optimizer for analog circuit parameter search. This repository is the public demo package submitted with the TCAD paper review. It keeps the executable framework and one amplifier benchmark, `amp_dfcfc2`, so reviewers can run and inspect the method without the full benchmark/data release.
+AnalogGym-Opt is a GRPO-based optimizer for analog circuit parameter search. This repository is the public demo package submitted with the TCAD paper review. It keeps the executable framework and one amplifier benchmark, `amp_dfcfc2`. The complete code and datasets will be open-sourced after the paper is accepted.
 
 ## Demo Scope
 

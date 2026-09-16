@@ -1,0 +1,151 @@
+{
+  "schema_version": "1.0",
+  "no_numeric_unit_conversion": true,
+  "fields": [
+    {
+      "field": "gen",
+      "description_zh": "优化代数",
+      "suggested_unit": null,
+      "unit_status": "confirmed",
+      "notes": "源表字段；不是独立随机样本编号。"
+    },
+    {
+      "field": "index",
+      "description_zh": "该代内个体编号",
+      "suggested_unit": null,
+      "unit_status": "confirmed",
+      "notes": "与 source_id/gen 联合定位；原始编号从 0 开始。"
+    },
+    {
+      "field": "pm",
+      "description_zh": "相位裕度",
+      "suggested_unit": "degree",
+      "unit_status": "inferred",
+      "notes": "表格无 VariableUnits；按字段语义解释，未做单位换算。"
+    },
+    {
+      "field": "gbw",
+      "description_zh": "增益带宽积",
+      "suggested_unit": "Hz",
+      "unit_status": "inferred",
+      "notes": "按字段语义和 computeFOM.m 用法解释，未做单位换算。"
+    },
+    {
+      "field": "gain",
+      "description_zh": "增益",
+      "suggested_unit": "dB",
+      "unit_status": "inferred",
+      "notes": "按字段语义及数值量级解释，未确认具体测量频率和工况聚合方式。"
+    },
+    {
+      "field": "noise",
+      "description_zh": "噪声指标",
+      "suggested_unit": null,
+      "unit_status": "unresolved",
+      "notes": "不能确定是积分噪声还是谱密度；不要擅自标为 V 或 V/sqrt(Hz)。"
+    },
+    {
+      "field": "CMRR",
+      "description_zh": "共模抑制比",
+      "suggested_unit": "dB",
+      "unit_status": "inferred",
+      "notes": "具体频率和工况聚合方式尚未核实。"
+    },
+    {
+      "field": "PSRR",
+      "description_zh": "电源抑制比",
+      "suggested_unit": "dB",
+      "unit_status": "inferred",
+      "notes": "不能从此表区分 PSRR+、PSRR-、测量频率或工况。"
+    },
+    {
+      "field": "SR",
+      "description_zh": "压摆率",
+      "suggested_unit": "V/s",
+      "unit_status": "inferred",
+      "notes": "同包 extractLisAndCheckfile.m 解析 V/s，但尚未证明所有表都用该提取函数。负值保留并标记。"
+    },
+    {
+      "field": "ivdd_27",
+      "description_zh": "标记为 27 的电源电流",
+      "suggested_unit": "A",
+      "unit_status": "inferred",
+      "notes": "字段名暗示 27 摄氏度；不可推断其余性能列也都是 27 摄氏度或 TT。"
+    },
+    {
+      "field": "vos",
+      "description_zh": "输入失调指标",
+      "suggested_unit": "V",
+      "unit_status": "inferred",
+      "notes": "按字段语义解释；保留源值，不推断符号处理或统计口径。"
+    },
+    {
+      "field": "tc",
+      "description_zh": "温度系数指标",
+      "suggested_unit": null,
+      "unit_status": "unresolved",
+      "notes": "可能涉及温漂；基准量和公式缺失，不能自动标注 ppm/degreeC。"
+    },
+    {
+      "field": "d_settle",
+      "description_zh": "原始 d_settle 指标",
+      "suggested_unit": null,
+      "unit_status": "unresolved",
+      "notes": "含义、尺度和单位未确认，不解释为秒，不与 settlingTime 自动相减。"
+    },
+    {
+      "field": "settlingTime",
+      "description_zh": "建立时间指标",
+      "suggested_unit": null,
+      "unit_status": "unresolved",
+      "notes": "部分行与 d_settle 完全相同且原脚本会过滤；统一时间单位未确认。"
+    },
+    {
+      "field": "FOMS",
+      "description_zh": "小信号性能优值",
+      "suggested_unit": null,
+      "unit_status": "unresolved",
+      "notes": "保留原值，公式及缩放需按生成程序核实。"
+    },
+    {
+      "field": "FOML",
+      "description_zh": "大信号性能优值",
+      "suggested_unit": null,
+      "unit_status": "unresolved",
+      "notes": "保留原值，公式及缩放需按生成程序核实；存在负数。"
+    },
+    {
+      "field": "chip_area",
+      "description_zh": "源脚本平方根面积指标",
+      "suggested_unit": null,
+      "unit_status": "unresolved",
+      "notes": "extract_pop_data.m 执行 sqrt(abs(chip_area))；不能直接当作真实芯片面积，亦不擅自平方还原。"
+    },
+    {
+      "field": "fitness",
+      "description_zh": "源优化适应度",
+      "suggested_unit": null,
+      "unit_status": "unresolved",
+      "notes": "可能包含惩罚或目标函数；负值本身不判错，不跨任务直接排序。"
+    },
+    {
+      "field": "FOM_AW",
+      "description_zh": "源自定义性能优值",
+      "suggested_unit": null,
+      "unit_status": "formula_in_source",
+      "notes": "computeFOM.m 当前公式 gbw*1500e-12/ivdd_27，固定 1500pF，不能解释为采用目录 CL 的统一 FoM。"
+    }
+  ],
+  "quality_flags": {
+    "sr_negative": "SR < 0；保留原值，视作待核查。负数不自动认定为物理压摆率，亦不改成绝对值。",
+    "sr_minus_one": "SR 恰为 -1；疑似失败哨兵值，尚未找到原始仿真端定义。",
+    "foml_negative": "FOML < 0；与负 SR 同现时不适合直接做越大越好的排序。",
+    "settling_fields_equal": "d_settle == settlingTime；原 filterByFOM.m 排除此类行，本次仅标记，不删除。",
+    "nonfinite": "原值为 NaN/+Inf/-Inf；JSON 和 SQLite 中用 null，原类型记录在异常日志。",
+    "key_conflict": "同一来源文件内 gen/index 相同而数值不同，保留全部并标记。",
+    "nonpositive_basic_metric": "gbw、noise、ivdd_27 或 chip_area 非正，待核查。",
+    "phase_outside_0_180": "pm 不在 [0,180]；仅作约定范围核查，不作为全规格合格判据。"
+  },
+  "folder_label_note": "目录标签是历史分组信息，不证明每条记录实际仿真的工艺角、VDD、VCM 或温度。",
+  "provenance": "record_id = source_id + MATLAB 1-based row; source_id derives from relative path; resolve file through source_manifest.json."
+}

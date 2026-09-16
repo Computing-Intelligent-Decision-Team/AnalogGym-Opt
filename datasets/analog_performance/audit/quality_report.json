@@ -1,0 +1,20 @@
+{
+  "created_at_utc": "2026-09-16T03:28:46.738783+00:00",
+  "input_files": 73,
+  "original_rows": 358234,
+  "exported_rows": 358234,
+  "topologies": 18,
+  "exact_duplicates_removed": 0,
+  "nonfinite_cells": 0,
+  "rows_unflagged": 232260,
+  "rows_flagged": 125974,
+  "flag_counts": {
+    "sr_negative": 40444,
+    "sr_minus_one": 39684,
+    "foml_negative": 40444,
+    "settling_fields_equal": 86290
+  },
+  "sqlite_integrity": "ok",
+  "numeric_policy": "All finite numbers kept unchanged. No rounding, clipping, imputation, absolute value, unit conversion, or performance-only deduplication.",
+  "scope": "73 Perf_pop_data.mat tables only; paired TD/TBM tables are linked through manifest, not expanded."
+}

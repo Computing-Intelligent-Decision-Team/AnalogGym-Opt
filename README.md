@@ -171,6 +171,23 @@ python tools/evaluate_design.py --circuit amp_smc --vars M_M11=64 W_M8=4
 python main_AMP_grpo.py --circuit amp_smc --steps 300 --pvt-mode proxy
 ```
 
+## Historical performance dataset
+
+[`datasets/analog_performance/`](datasets/analog_performance/) contains 358,234
+historical amplifier performance observations across 18 topologies, with CSV,
+JSONL, and indexed SQLite exports, field documentation, source provenance, and
+explicit data-quality flags. The original technology labels are 22/180 nm; these
+records use historical measurement conventions and are not the results of this
+repository's current sky130 simulations.
+
+```bash
+python datasets/analog_performance/scripts/unpack.py --format sqlite
+python datasets/analog_performance/scripts/query.py --sql "SELECT topology, COUNT(*) AS observations FROM performance GROUP BY topology" --limit 30
+```
+
+See the [dataset guide](datasets/analog_performance/README.md) for unit caveats,
+LLM reading instructions, and complete data-quality and verification reports.
+
 ## Repo layout
 
 ```
@@ -181,6 +198,7 @@ circuit_configs/*.yaml    per-circuit configs (devices, targets, hierarchy, grap
 simulation_files/<name>/  netlist + testbenches + initial design point (+ reference outputs)
 simulation_files/sky130_pdk/  bundled sky130 ngspice models
 tools/                    importers, validators, evaluator, MCP server, smoke-run utilities
+datasets/analog_performance/  historical performance records, documentation, and query tools
 .claude/skills/           Claude Code skills (evaluate-design, run-optimization, ...)
 ```
 

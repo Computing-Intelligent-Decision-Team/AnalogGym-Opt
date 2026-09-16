@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "native_matlab_source_files": 73,
+  "rows_per_format": 358234,
+  "numeric_values_compared_per_format": 6806446,
+  "formats": [
+    "CSV",
+    "JSONL",
+    "SQLite"
+  ],
+  "comparison": "Exact equality to double values exported by native MATLAB, no tolerance or rounding. All records and all 19 source fields checked.",
+  "source_sha256_all_match": true,
+  "unique_record_ids": 358234,
+  "json_strict_parsing": true,
+  "sqlite_integrity": "ok",
+  "foreign_key_violations": 0,
+  "independent_quality_counts_match": true,
+  "summary_counts_match": true,
+  "profile_groups_independently_checked": 317619,
+  "profile_observation_counts_reconcile": true
+}

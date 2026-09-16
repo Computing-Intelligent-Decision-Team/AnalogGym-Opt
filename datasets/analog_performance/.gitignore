@@ -1,0 +1,10 @@
+# Dataset metadata is intentional; the repository root ignores generic JSON files.
+!*.json
+!*.jsonl
+_work/
+__pycache__/
+*.partial
+# Recreated from the checked-in gzip assets.
+data/performance.csv
+data/performance.sqlite
+data/by_topology/*.jsonl

@@ -1,0 +1,211 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Analog performance JSONL record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "record_id",
+    "topology",
+    "folder_labels",
+    "generation",
+    "individual_index",
+    "performance",
+    "quality_flags",
+    "source"
+  ],
+  "properties": {
+    "record_id": {
+      "type": "string"
+    },
+    "topology": {
+      "type": "string"
+    },
+    "folder_labels": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "tech_node",
+        "vdd",
+        "vcm",
+        "cl",
+        "run"
+      ],
+      "properties": {
+        "tech_node": {
+          "type": "integer"
+        },
+        "vdd": {
+          "type": "number"
+        },
+        "vcm": {
+          "type": "number"
+        },
+        "cl": {
+          "type": "number"
+        },
+        "run": {
+          "type": "string"
+        }
+      }
+    },
+    "generation": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "individual_index": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "performance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "pm",
+        "gbw",
+        "gain",
+        "noise",
+        "CMRR",
+        "PSRR",
+        "SR",
+        "ivdd_27",
+        "vos",
+        "tc",
+        "d_settle",
+        "settlingTime",
+        "FOMS",
+        "FOML",
+        "chip_area",
+        "fitness",
+        "FOM_AW"
+      ],
+      "properties": {
+        "pm": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "gbw": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "gain": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "noise": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "CMRR": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "PSRR": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "SR": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "ivdd_27": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "vos": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "tc": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "d_settle": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "settlingTime": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "FOMS": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "FOML": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "chip_area": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "fitness": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "FOM_AW": {
+          "type": [
+            "number",
+            "null"
+          ]
+        }
+      }
+    },
+    "quality_flags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_id",
+        "row_1based"
+      ],
+      "properties": {
+        "source_id": {
+          "type": "string"
+        },
+        "row_1based": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    }
+  }
+}

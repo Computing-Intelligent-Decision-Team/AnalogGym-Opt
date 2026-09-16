@@ -1,0 +1,186 @@
+{
+  "version": 1,
+  "record_count": 358234,
+  "assets": [
+    {
+      "compressed_path": "data/performance.csv.gz",
+      "path": "data/performance.csv",
+      "format": "csv",
+      "bytes": 150101419,
+      "sha256": "81155af166e87d173558ab09f3e9a640181fbd78d79ebe1b8c03260fd400b660",
+      "compressed_bytes": 23227899,
+      "compressed_sha256": "cfcd7746ab4a619325a09194f5e3edf89da80a80b575d3283b478d375f174c21"
+    },
+    {
+      "compressed_path": "data/performance.sqlite.gz",
+      "path": "data/performance.sqlite",
+      "format": "sqlite",
+      "bytes": 188702720,
+      "sha256": "a818c80e017ed824ffb0b0788c87368a5bc3515d866bfc04875307ec9285fab0",
+      "compressed_bytes": 33391400,
+      "compressed_sha256": "28132b753caeeb98b5ef14d4069a396ab43b5a5d8512a98f2efc8dad9df80985"
+    },
+    {
+      "compressed_path": "data/by_topology/Alfio_RAFFC_Pin_3.jsonl.gz",
+      "path": "data/by_topology/Alfio_RAFFC_Pin_3.jsonl",
+      "format": "jsonl",
+      "bytes": 9180279,
+      "sha256": "a728602b56f45ffff833e095bcef2b8e8529b722ad80cabc5264628a5949b30c",
+      "compressed_bytes": 2099747,
+      "compressed_sha256": "416e3ae495439e9e8902adb010697f08d3d0c1a10dbeb9641561f845f3a6c71d"
+    },
+    {
+      "compressed_path": "data/by_topology/Cascode_Miller_Pin_2.jsonl.gz",
+      "path": "data/by_topology/Cascode_Miller_Pin_2.jsonl",
+      "format": "jsonl",
+      "bytes": 4836389,
+      "sha256": "60a9dab030777a8a6426e3f457f0569c59ea07f63afb00e371aac068deb97897",
+      "compressed_bytes": 1102178,
+      "compressed_sha256": "a818de486106278ff9585e09db40c0bf199f2f6ba314c89645012a9513d70730"
+    },
+    {
+      "compressed_path": "data/by_topology/Fan_SMC_Pin_3.jsonl.gz",
+      "path": "data/by_topology/Fan_SMC_Pin_3.jsonl",
+      "format": "jsonl",
+      "bytes": 20088303,
+      "sha256": "c19d41eb0697c742dce2531d910738a544db5550bc1881bdda92395ef41f4ef6",
+      "compressed_bytes": 4635680,
+      "compressed_sha256": "391f9dc651a0cfd2187293705ef641202ad6a55487937f39a0b20a35478732b7"
+    },
+    {
+      "compressed_path": "data/by_topology/Grasso_RAFFC_Pin_3.jsonl.gz",
+      "path": "data/by_topology/Grasso_RAFFC_Pin_3.jsonl",
+      "format": "jsonl",
+      "bytes": 14632899,
+      "sha256": "44c258a0680b9614ad528f4a1595f37adc0db478cbac99e18c7e5efd56df837a",
+      "compressed_bytes": 3524160,
+      "compressed_sha256": "1489487ccb1f2bc7df81e8a996860d0777f5267f4fd0aade38938b67d20fe1dc"
+    },
+    {
+      "compressed_path": "data/by_topology/HoiLee_AFFC_Pin_3.jsonl.gz",
+      "path": "data/by_topology/HoiLee_AFFC_Pin_3.jsonl",
+      "format": "jsonl",
+      "bytes": 15929063,
+      "sha256": "eedac8cdef6a8f8980765f66ff02a8525a98a588988220b7a6d21aea2f8c663d",
+      "compressed_bytes": 3757207,
+      "compressed_sha256": "6f997033181d19ae308fc100339fd9730ed21fb0fdcd44c008ba30b224105f76"
+    },
+    {
+      "compressed_path": "data/by_topology/Leung_DFCFC1_Pin_3.jsonl.gz",
+      "path": "data/by_topology/Leung_DFCFC1_Pin_3.jsonl",
+      "format": "jsonl",
+      "bytes": 4686371,
+      "sha256": "9512216aa4985326ecd29f0fa8cc88153c34f59d22dc1dec0c9a59194111b937",
+      "compressed_bytes": 1087120,
+      "compressed_sha256": "d8436947ad8f27a5ca4e14c6e7111a6bdf3e0dfb3ced2bdb54dc07792416ae63"
+    },
+    {
+      "compressed_path": "data/by_topology/Leung_DFCFC2_Pin_3.jsonl.gz",
+      "path": "data/by_topology/Leung_DFCFC2_Pin_3.jsonl",
+      "format": "jsonl",
+      "bytes": 9623939,
+      "sha256": "c7ca8abd08bd905d77d641b2c936dba0784bad3effcbe78f18a4037f079ae5d9",
+      "compressed_bytes": 2235891,
+      "compressed_sha256": "d62228a221d39c3e690c4cc2a6bce7f3acbb34ccc73056a94023e07cc49fb1e3"
+    },
+    {
+      "compressed_path": "data/by_topology/Leung_NMCF_Pin_3.jsonl.gz",
+      "path": "data/by_topology/Leung_NMCF_Pin_3.jsonl",
+      "format": "jsonl",
+      "bytes": 17624484,
+      "sha256": "f0b613aca76f62ae3f804948266c374b407b478505eca830ad6f23f4896ca51f",
+      "compressed_bytes": 4173321,
+      "compressed_sha256": "e0713d400a247ca80da2f56f97b50601d351d146cb40dc74e5f55b66a8d18804"
+    },
+    {
+      "compressed_path": "data/by_topology/Leung_NMCNR_Pin_3.jsonl.gz",
+      "path": "data/by_topology/Leung_NMCNR_Pin_3.jsonl",
+      "format": "jsonl",
+      "bytes": 24941949,
+      "sha256": "a7cdbe6b76bed53cab53bf20fd4fc91135a5fb4a2dc52155a4c59662b4b9a976",
+      "compressed_bytes": 4983782,
+      "compressed_sha256": "49adde8ff9d6994ada1f0fbcca41d695225558f3f0799d22dec02e2c60db76e2"
+    },
+    {
+      "compressed_path": "data/by_topology/Peng_ACBC_Pin_3.jsonl.gz",
+      "path": "data/by_topology/Peng_ACBC_Pin_3.jsonl",
+      "format": "jsonl",
+      "bytes": 4396445,
+      "sha256": "82ef04e39a271b004c33825abb81f6572e3e58e4965a7b93cbb6394513e167e8",
+      "compressed_bytes": 987559,
+      "compressed_sha256": "1c119f26f37e82b304336f3ecab8eb0494863c9105c9540d3416c909d8efbef1"
+    },
+    {
+      "compressed_path": "data/by_topology/Peng_IAC_Pin_3.jsonl.gz",
+      "path": "data/by_topology/Peng_IAC_Pin_3.jsonl",
+      "format": "jsonl",
+      "bytes": 5665364,
+      "sha256": "634c50406abe2c97753c31d0fb8252770f9708d3571fdde5f0154d38176cd1a7",
+      "compressed_bytes": 1208561,
+      "compressed_sha256": "afc7bdb5e888f30950ce9adbe971ba8682a3c267677c88c066b520b1589873f5"
+    },
+    {
+      "compressed_path": "data/by_topology/Qu2017_AZC_Pin_3.jsonl.gz",
+      "path": "data/by_topology/Qu2017_AZC_Pin_3.jsonl",
+      "format": "jsonl",
+      "bytes": 22929786,
+      "sha256": "495e006ac8307cfff59b12a0fcd1ddbe59916c222d2f7a3b83128d8cdc681d1a",
+      "compressed_bytes": 5420270,
+      "compressed_sha256": "010057251d14bf278763408b85d0035b6121cb439682862ad8e7c3d99c595495"
+    },
+    {
+      "compressed_path": "data/by_topology/Qu_LEC_Pin_3.jsonl.gz",
+      "path": "data/by_topology/Qu_LEC_Pin_3.jsonl",
+      "format": "jsonl",
+      "bytes": 13247468,
+      "sha256": "b2ea801920e9591ede12a8aa5352f7b80ebbeb47b2b2563972140a3ee203e4fa",
+      "compressed_bytes": 3129601,
+      "compressed_sha256": "9c217c9ee1df167673e81309b1897acb34141de4808579def870b27073cfc484"
+    },
+    {
+      "compressed_path": "data/by_topology/Ramos_PFC_Pin_3.jsonl.gz",
+      "path": "data/by_topology/Ramos_PFC_Pin_3.jsonl",
+      "format": "jsonl",
+      "bytes": 4775232,
+      "sha256": "bbe9abf545e9f8ce5d9fd1a6ede44a1dd1d4b6f56688f0ecef39dc2b605c52c1",
+      "compressed_bytes": 1141558,
+      "compressed_sha256": "2f2b3840b7fa15ab1ce8d0391dd239a0625c5beec4aad830be1c09f5add298eb"
+    },
+    {
+      "compressed_path": "data/by_topology/Sau_CFCC_Pin_3.jsonl.gz",
+      "path": "data/by_topology/Sau_CFCC_Pin_3.jsonl",
+      "format": "jsonl",
+      "bytes": 19311846,
+      "sha256": "89361074ec6be0beb49c0276d919ce0e31b1fa84cb228a1a190cdc3330857400",
+      "compressed_bytes": 4375596,
+      "compressed_sha256": "38afab5fd603c15a8924710a76a7c7567401871d065176fd1efed67cce1073d4"
+    },
+    {
+      "compressed_path": "data/by_topology/Song_DACFC_Pin_3.jsonl.gz",
+      "path": "data/by_topology/Song_DACFC_Pin_3.jsonl",
+      "format": "jsonl",
+      "bytes": 31855347,
+      "sha256": "9e5981b469029adf5a2c77487a433efd1ad6c893cb91b07432b9b30739d23a88",
+      "compressed_bytes": 7448726,
+      "compressed_sha256": "ae9a7dfd13eb84c39a24a081fce5993d485fed8e0ea75b9868117707454d8236"
+    },
+    {
+      "compressed_path": "data/by_topology/Yan_AZ_Pin_3.jsonl.gz",
+      "path": "data/by_topology/Yan_AZ_Pin_3.jsonl",
+      "format": "jsonl",
+      "bytes": 28206405,
+      "sha256": "45c8b28507406625ce7c2433eb06ddb3b5fa1b7852a1dda3347330db0aef8830",
+      "compressed_bytes": 6613501,
+      "compressed_sha256": "544d810c74b65d671c7ba114133479c799ff637ae32d54fd15db0be13a478080"
+    },
+    {
+      "compressed_path": "data/by_topology/Yan_NCM_Pin_3.jsonl.gz",
+      "path": "data/by_topology/Yan_NCM_Pin_3.jsonl",
+      "format": "jsonl",
+      "bytes": 14292914,
+      "sha256": "89ad2b6325530019b3fdcae3aa822eca6ecc70b4bb301cc9c00eae5ef86c3a30",
+      "compressed_bytes": 3442173,
+      "compressed_sha256": "cec1da6e7fbb6d4589ca64e383cf35c74ff014f42dca4702fb79875c5b93ee54"
+    }
+  ]
+}

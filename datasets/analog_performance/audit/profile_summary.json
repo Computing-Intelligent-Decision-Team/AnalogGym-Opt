@@ -1,0 +1,7 @@
+{
+  "unique_profiles_within_source": 317619,
+  "original_observations": 358234,
+  "repeated_observations": 40615,
+  "grouping": "Same source_id and exact equality of all 17 performance fields; exclude gen/index only. This does not identify unique transistor designs.",
+  "representative": "Smallest original MATLAB source row; all original observations remain in performance and main CSV/JSONL."
+}

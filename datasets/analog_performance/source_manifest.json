@@ -1,0 +1,2268 @@
+{
+  "source_root": "Topo-Tech_nodes-VDD-VCM-CL-RUN",
+  "sources": [
+    {
+      "source_id": "src_aaf7ee153b930965",
+      "relative_path": "Alfio_RAFFC_Pin_3/180/1.8/0.4/500/0/ext_mat/Perf_pop_data.mat",
+      "source_sha256": "ef4f23a9323aea8b905ba7eb2091804c66cf55145d13754e48de3eca6fb325eb",
+      "rows_original": 6116,
+      "rows_exported": 6116,
+      "exact_duplicates_removed": 0,
+      "conflicting_keys": 0,
+      "matlab_variable": "newTable",
+      "matlab_units": [],
+      "matlab_descriptions": [],
+      "topology": "Alfio_RAFFC_Pin_3",
+      "folder_labels": {
+        "tech_node": 180,
+        "vdd": 1.8,
+        "vcm": 0.4,
+        "cl": 500.0,
+        "run": "0"
+      },
+      "related_files": {
+        "TD": "Alfio_RAFFC_Pin_3/180/1.8/0.4/500/0/ext_mat/TD_pop_data.mat",
+        "TBM": "Alfio_RAFFC_Pin_3/180/1.8/0.4/500/0/ext_mat/TBM_pop_data.mat"
+      },
+      "quality_flags": {
+        "sr_negative": 756,
+        "sr_minus_one": 756,
+        "foml_negative": 756,
+        "settling_fields_equal": 2511
+      },
+      "unflagged_rows": 2849
+    },
+    {
+      "source_id": "src_12b3fbe6c0b8d015",
+      "relative_path": "Alfio_RAFFC_Pin_3/180/1.8/0.9/800/3/ext_mat/Perf_pop_data.mat",
+      "source_sha256": "0e78b1badf6ca081df3eaf6e3a0fd6c8ce1ae7b80ab7a2c552bba91399e0d8d5",
+      "rows_original": 6194,
+      "rows_exported": 6194,
+      "exact_duplicates_removed": 0,
+      "conflicting_keys": 0,
+      "matlab_variable": "newTable",
+      "matlab_units": [],
+      "matlab_descriptions": [],
+      "topology": "Alfio_RAFFC_Pin_3",
+      "folder_labels": {
+        "tech_node": 180,
+        "vdd": 1.8,
+        "vcm": 0.9,
+        "cl": 800.0,
+        "run": "3"
+      },
+      "related_files": {
+        "TD": "Alfio_RAFFC_Pin_3/180/1.8/0.9/800/3/ext_mat/TD_pop_data.mat",
+        "TBM": "Alfio_RAFFC_Pin_3/180/1.8/0.9/800/3/ext_mat/TBM_pop_data.mat"
+      },
+      "quality_flags": {
+        "settling_fields_equal": 186,
+        "sr_negative": 240,
+        "sr_minus_one": 238,
+        "foml_negative": 240
+      },
+      "unflagged_rows": 5770
+    },
+    {
+      "source_id": "src_5836cb2719ac270d",
+      "relative_path": "Cascode_Miller_Pin_2/180/1.8/0.4/10/2/ext_mat/Perf_pop_data.mat",
+      "source_sha256": "ca12275dd73bddefb5ac9285a52a6e7b2929521d37fda5a09c192ae15f127c7f",
+      "rows_original": 6464,
+      "rows_exported": 6464,
+      "exact_duplicates_removed": 0,
+      "conflicting_keys": 0,
+      "matlab_variable": "newTable",
+      "matlab_units": [],
+      "matlab_descriptions": [],
+      "topology": "Cascode_Miller_Pin_2",
+      "folder_labels": {
+        "tech_node": 180,
+        "vdd": 1.8,
+        "vcm": 0.4,
+        "cl": 10.0,
+        "run": "2"
+      },
+      "related_files": {
+        "TD": "Cascode_Miller_Pin_2/180/1.8/0.4/10/2/ext_mat/TD_pop_data.mat",
+        "TBM": "Cascode_Miller_Pin_2/180/1.8/0.4/10/2/ext_mat/TBM_pop_data.mat"
+      },
+      "quality_flags": {
+        "settling_fields_equal": 2492,
+        "sr_negative": 87,
+        "sr_minus_one": 87,
+        "foml_negative": 87
+      },
+      "unflagged_rows": 3885
+    },
+    {
+      "source_id": "src_55f3df625770930c",
+      "relative_path": "Fan_SMC_Pin_3/180/1.8/0.4/100/0/ext_mat/Perf_pop_data.mat",
+      "source_sha256": "72d8bcc2ba11eb47736fbf9ea51b19568d5008658bd21674d0ed00eb0ae7411f",
+      "rows_original": 4782,
+      "rows_exported": 4782,
+      "exact_duplicates_removed": 0,
+      "conflicting_keys": 0,
+      "matlab_variable": "newTable",
+      "matlab_units": [],
+      "matlab_descriptions": [],
+      "topology": "Fan_SMC_Pin_3",
+      "folder_labels": {
+        "tech_node": 180,
+        "vdd": 1.8,
+        "vcm": 0.4,
+        "cl": 100.0,
+        "run": "0"
+      },
+      "related_files": {
+        "TD": "Fan_SMC_Pin_3/180/1.8/0.4/100/0/ext_mat/TD_pop_data.mat",
+        "TBM": "Fan_SMC_Pin_3/180/1.8/0.4/100/0/ext_mat/TBM_pop_data.mat"
+      },
+      "quality_flags": {
+        "settling_fields_equal": 1871,
+        "sr_negative": 182,
+        "sr_minus_one": 182,
+        "foml_negative": 182
+      },
+      "unflagged_rows": 2729
+    },
+    {
+      "source_id": "src_8f2baf4e6f06b227",
+      "relative_path": "Fan_SMC_Pin_3/22/0.9/0.3/120/0/ext_mat/Perf_pop_data.mat",
+      "source_sha256": "8dc4cad3616669d686c616db56abbcdd307d6b5e3a49d7071e2536f23f8dbde2",
+      "rows_original": 2085,
+      "rows_exported": 2085,
+      "exact_duplicates_removed": 0,
+      "conflicting_keys": 0,
+      "matlab_variable": "newTable",
+      "matlab_units": [],
+      "matlab_descriptions": [],
+      "topology": "Fan_SMC_Pin_3",
+      "folder_labels": {
+        "tech_node": 22,
+        "vdd": 0.9,
+        "vcm": 0.3,
+        "cl": 120.0,
+        "run": "0"
+      },
+      "related_files": {
+        "TD": "Fan_SMC_Pin_3/22/0.9/0.3/120/0/ext_mat/TD_pop_data.mat",
+        "TBM": "Fan_SMC_Pin_3/22/0.9/0.3/120/0/ext_mat/TBM_pop_data.mat"
+      },
+      "quality_flags": {
+        "sr_negative": 1326,
+        "sr_minus_one": 1307,
+        "foml_negative": 1326,
+        "settling_fields_equal": 761
+      },
+      "unflagged_rows": 17
+    },
+    {
+      "source_id": "src_6629f47165abc3d4",
+      "relative_path": "Fan_SMC_Pin_3/22/0.9/0.3/120/1/ext_mat/Perf_pop_data.mat",
+      "source_sha256": "43ed3bc8fb7f32fa2d7ac14fb8db5868a4c6075aa4e6e4fd4fc96c3ef28958d3",
+      "rows_original": 1594,
+      "rows_exported": 1594,
+      "exact_duplicates_removed": 0,
+      "conflicting_keys": 0,
+      "matlab_variable": "newTable",
+      "matlab_units": [],
+      "matlab_descriptions": [],
+      "topology": "Fan_SMC_Pin_3",
+      "folder_labels": {
+        "tech_node": 22,
+        "vdd": 0.9,
+        "vcm": 0.3,
+        "cl": 120.0,
+        "run": "1"
+      },
+      "related_files": {
+        "TD": "Fan_SMC_Pin_3/22/0.9/0.3/120/1/ext_mat/TD_pop_data.mat",
+        "TBM": "Fan_SMC_Pin_3/22/0.9/0.3/120/1/ext_mat/TBM_pop_data.mat"
+      },
+      "quality_flags": {
+        "sr_negative": 759,
+        "sr_minus_one": 728,
+        "foml_negative": 759,
+        "settling_fields_equal": 751
+      },
+      "unflagged_rows": 115
+    },
+    {
+      "source_id": "src_1142d3cd5b08df94",
+      "relative_path": "Fan_SMC_Pin_3/22/0.9/0.3/120/2/ext_mat/Perf_pop_data.mat",
+      "source_sha256": "b591660c37ac6a87a9d28a8f8282f0afa8a028fc962efff0b4d416159983674b",
+      "rows_original": 5965,
+      "rows_exported": 5965,
+      "exact_duplicates_removed": 0,
+      "conflicting_keys": 0,
+      "matlab_variable": "newTable",
+      "matlab_units": [],
+      "matlab_descriptions": [],
+      "topology": "Fan_SMC_Pin_3",
+      "folder_labels": {
+        "tech_node": 22,
+        "vdd": 0.9,
+        "vcm": 0.3,
+        "cl": 120.0,
+        "run": "2"
+      },
+      "related_files": {
+        "TD": "Fan_SMC_Pin_3/22/0.9/0.3/120/2/ext_mat/TD_pop_data.mat",
+        "TBM": "Fan_SMC_Pin_3/22/0.9/0.3/120/2/ext_mat/TBM_pop_data.mat"
+      },
+      "quality_flags": {
+        "sr_negative": 193,
+        "sr_minus_one": 180,
+        "foml_negative": 193,
+        "settling_fields_equal": 2103
+      },
+      "unflagged_rows": 3682
+    },
+    {
+      "source_id": "src_de5bde89d47874b6",
+      "relative_path": "Fan_SMC_Pin_3/22/0.9/0.3/120/3/ext_mat/Perf_pop_data.mat",
+      "source_sha256": "39138ddb89f40992c23793ea586d68ea974d52884a7e42d472b4127268d2b6e2",
+      "rows_original": 6211,
+      "rows_exported": 6211,
+      "exact_duplicates_removed": 0,
+      "conflicting_keys": 0,
+      "matlab_variable": "newTable",
+      "matlab_units": [],
+      "matlab_descriptions": [],
+      "topology": "Fan_SMC_Pin_3",
+      "folder_labels": {
+        "tech_node": 22,
+        "vdd": 0.9,
+        "vcm": 0.3,
+        "cl": 120.0,
+        "run": "3"
+      },
+      "related_files": {
+        "TD": "Fan_SMC_Pin_3/22/0.9/0.3/120/3/ext_mat/TD_pop_data.mat",
+        "TBM": "Fan_SMC_Pin_3/22/0.9/0.3/120/3/ext_mat/TBM_pop_data.mat"
+      },
+      "quality_flags": {
+        "sr_negative": 632,
+        "sr_minus_one": 622,
+        "foml_negative": 632,
+        "settling_fields_equal": 974
+      },
+      "unflagged_rows": 4615
+    },
+    {
+      "source_id": "src_520a7d87dab47873",
+      "relative_path": "Fan_SMC_Pin_3/22/0.9/0.3/120/99/ext_mat/Perf_pop_data.mat",
+      "source_sha256": "32f9792a67506173f9d048ee287e4696092f65fc49c706566ac62c49c11e42ca",
+      "rows_original": 6429,
+      "rows_exported": 6429,
+      "exact_duplicates_removed": 0,
+      "conflicting_keys": 0,
+      "matlab_variable": "newTable",
+      "matlab_units": [],
+      "matlab_descriptions": [],
+      "topology": "Fan_SMC_Pin_3",
+      "folder_labels": {
+        "tech_node": 22,
+        "vdd": 0.9,
+        "vcm": 0.3,
+        "cl": 120.0,
+        "run": "99"
+      },
+      "related_files": {
+        "TD": "Fan_SMC_Pin_3/22/0.9/0.3/120/99/ext_mat/TD_pop_data.mat",
+        "TBM": "Fan_SMC_Pin_3/22/0.9/0.3/120/99/ext_mat/TBM_pop_data.mat"
+      },
+      "quality_flags": {
+        "sr_negative": 994,
+        "sr_minus_one": 993,
+        "foml_negative": 994,
+        "settling_fields_equal": 1286
+      },
+      "unflagged_rows": 4150
+    },
+    {
+      "source_id": "src_cba014366403a3dc",
+      "relative_path": "Grasso_RAFFC_Pin_3/22/0.9/0.3/500/0/ext_mat/Perf_pop_data.mat",
+      "source_sha256": "15893e743e3308ebd3c202413ad8fb1c2f8d8fcdb255ebc409feb246fb6f13b8",
+      "rows_original": 2119,
+      "rows_exported": 2119,
+      "exact_duplicates_removed": 0,
+      "conflicting_keys": 0,
+      "matlab_variable": "newTable",
+      "matlab_units": [],
+      "matlab_descriptions": [],
+      "topology": "Grasso_RAFFC_Pin_3",
+      "folder_labels": {
+        "tech_node": 22,
+        "vdd": 0.9,
+        "vcm": 0.3,
+        "cl": 500.0,
+        "run": "0"
+      },
+      "related_files": {
+        "TD": "Grasso_RAFFC_Pin_3/22/0.9/0.3/500/0/ext_mat/TD_pop_data.mat",
+        "TBM": "Grasso_RAFFC_Pin_3/22/0.9/0.3/500/0/ext_mat/TBM_pop_data.mat"
+      },
+      "quality_flags": {
+        "sr_negative": 329,
+        "sr_minus_one": 318,
+        "foml_negative": 329,
+        "settling_fields_equal": 650
+      },
+      "unflagged_rows": 1151
+    },
+    {
+      "source_id": "src_71adafd44bb9d83a",
+      "relative_path": "Grasso_RAFFC_Pin_3/22/0.9/0.3/500/1/ext_mat/Perf_pop_data.mat",
+      "source_sha256": "23e42bfcfa7769da14b8ca98ceb646463234fd22b9e73cdb326d602950b31ec0",
+      "rows_original": 6248,
+      "rows_exported": 6248,
+      "exact_duplicates_removed": 0,
+      "conflicting_keys": 0,
+      "matlab_variable": "newTable",
+      "matlab_units": [],
+      "matlab_descriptions": [],
+      "topology": "Grasso_RAFFC_Pin_3",
+      "folder_labels": {
+        "tech_node": 22,
+        "vdd": 0.9,
+        "vcm": 0.3,
+        "cl": 500.0,
+        "run": "1"
+      },
+      "related_files": {
+        "TD": "Grasso_RAFFC_Pin_3/22/0.9/0.3/500/1/ext_mat/TD_pop_data.mat",
+        "TBM": "Grasso_RAFFC_Pin_3/22/0.9/0.3/500/1/ext_mat/TBM_pop_data.mat"
+      },
+      "quality_flags": {
+        "sr_negative": 280,
+        "sr_minus_one": 236,
+        "foml_negative": 280,
+        "settling_fields_equal": 612
+      },
+      "unflagged_rows": 5400
+    },
+    {
+      "source_id": "src_738068d35a712976",
+      "relative_path": "Grasso_RAFFC_Pin_3/22/0.9/0.3/500/2/ext_mat/Perf_pop_data.mat",
+      "source_sha256": "389767c905fa6db5f0c6d252ee5eef68a02542650ea946a3d4e8322f72e42e03",
+      "rows_original": 4921,
+      "rows_exported": 4921,
+      "exact_duplicates_removed": 0,
+      "conflicting_keys": 0,
+      "matlab_variable": "newTable",
+      "matlab_units": [],
+      "matlab_descriptions": [],
+      "topology": "Grasso_RAFFC_Pin_3",
+      "folder_labels": {
+        "tech_node": 22,
+        "vdd": 0.9,
+        "vcm": 0.3,
+        "cl": 500.0,
+        "run": "2"
+      },
+      "related_files": {
+        "TD": "Grasso_RAFFC_Pin_3/22/0.9/0.3/500/2/ext_mat/TD_pop_data.mat",
+        "TBM": "Grasso_RAFFC_Pin_3/22/0.9/0.3/500/2/ext_mat/TBM_pop_data.mat"
+      },
+      "quality_flags": {
+        "sr_negative": 238,
+        "foml_negative": 238,
+        "settling_fields_equal": 517,
+        "sr_minus_one": 224
+      },
+      "unflagged_rows": 4180
+    },
+    {
+      "source_id": "src_70fc225d8ae25c33",
+      "relative_path": "Grasso_RAFFC_Pin_3/22/0.9/0.3/500/3/ext_mat/Perf_pop_data.mat",
+      "source_sha256": "788ee3dd795358922d0b3bd64e323728fc03d1e8fd9c2ecae4bc89762b8bd8ac",
+      "rows_original": 6398,
+      "rows_exported": 6398,
+      "exact_duplicates_removed": 0,
+      "conflicting_keys": 0,
+      "matlab_variable": "newTable",
+      "matlab_units": [],
+      "matlab_descriptions": [],
+      "topology": "Grasso_RAFFC_Pin_3",
+      "folder_labels": {
+        "tech_node": 22,
+        "vdd": 0.9,
+        "vcm": 0.3,
+        "cl": 500.0,
+        "run": "3"
+      },
+      "related_files": {
+        "TD": "Grasso_RAFFC_Pin_3/22/0.9/0.3/500/3/ext_mat/TD_pop_data.mat",
+        "TBM": "Grasso_RAFFC_Pin_3/22/0.9/0.3/500/3/ext_mat/TBM_pop_data.mat"
+      },
+      "quality_flags": {
+        "sr_negative": 250,
+        "sr_minus_one": 220,
+        "foml_negative": 250,
+        "settling_fields_equal": 477
+      },
+      "unflagged_rows": 5701
+    },
+    {
+      "source_id": "src_61be94e49335e5a0",
+      "relative_path": "HoiLee_AFFC_Pin_3/180/1.8/0.4/100/0/ext_mat/Perf_pop_data.mat",
+      "source_sha256": "5a939b5ddc8b10dc564f3d827061242477695080bc8e34fff183eacf1621c82a",
+      "rows_original": 5142,
+      "rows_exported": 5142,
+      "exact_duplicates_removed": 0,
+      "conflicting_keys": 0,
+      "matlab_variable": "newTable",
+      "matlab_units": [],
+      "matlab_descriptions": [],
+      "topology": "HoiLee_AFFC_Pin_3",
+      "folder_labels": {
+        "tech_node": 180,
+        "vdd": 1.8,
+        "vcm": 0.4,
+        "cl": 100.0,
+        "run": "0"
+      },
+      "related_files": {
+        "TD": "HoiLee_AFFC_Pin_3/180/1.8/0.4/100/0/ext_mat/TD_pop_data.mat",
+        "TBM": "HoiLee_AFFC_Pin_3/180/1.8/0.4/100/0/ext_mat/TBM_pop_data.mat"
+      },
+      "quality_flags": {
+        "sr_negative": 360,
+        "sr_minus_one": 360,
+        "foml_negative": 360,
+        "settling_fields_equal": 1947
+      },
+      "unflagged_rows": 2835
+    },
+    {
+      "source_id": "src_17aabba587aa84cb",
+      "relative_path": "HoiLee_AFFC_Pin_3/22/0.9/0.3/120/1/ext_mat/Perf_pop_data.mat",
+      "source_sha256": "2f302d2ebd4e1e622479dfecd66cdee189319f1ffb2e419c81bcfc1b79a94db6",
+      "rows_original": 4614,
+      "rows_exported": 4614,
+      "exact_duplicates_removed": 0,
+      "conflicting_keys": 0,
+      "matlab_variable": "newTable",
+      "matlab_units": [],
+      "matlab_descriptions": [],
+      "topology": "HoiLee_AFFC_Pin_3",
+      "folder_labels": {
+        "tech_node": 22,
+        "vdd": 0.9,
+        "vcm": 0.3,
+        "cl": 120.0,
+        "run": "1"
+      },
+      "related_files": {
+        "TD": "HoiLee_AFFC_Pin_3/22/0.9/0.3/120/1/ext_mat/TD_pop_data.mat",
+        "TBM": "HoiLee_AFFC_Pin_3/22/0.9/0.3/120/1/ext_mat/TBM_pop_data.mat"
+      },
+      "quality_flags": {
+        "sr_negative": 375,
+        "sr_minus_one": 328,
+        "foml_negative": 375,
+        "settling_fields_equal": 1028
+      },
+      "unflagged_rows": 3258
+    },
+    {
+      "source_id": "src_18de2ec4db0a034b",
+      "relative_path": "HoiLee_AFFC_Pin_3/22/0.9/0.3/120/2/ext_mat/Perf_pop_data.mat",
+      "source_sha256": "bb42b031cae2f3f4338761eeaa926865616c22071949415ccfbc70e4414d837c",
+      "rows_original": 5648,
+      "rows_exported": 5648,
+      "exact_duplicates_removed": 0,
+      "conflicting_keys": 0,
+      "matlab_variable": "newTable",
+      "matlab_units": [],
+      "matlab_descriptions": [],
+      "topology": "HoiLee_AFFC_Pin_3",
+      "folder_labels": {
+        "tech_node": 22,
+        "vdd": 0.9,
+        "vcm": 0.3,
+        "cl": 120.0,
+        "run": "2"
+      },
+      "related_files": {
+        "TD": "HoiLee_AFFC_Pin_3/22/0.9/0.3/120/2/ext_mat/TD_pop_data.mat",
+        "TBM": "HoiLee_AFFC_Pin_3/22/0.9/0.3/120/2/ext_mat/TBM_pop_data.mat"
+      },
+      "quality_flags": {
+        "sr_negative": 438,
+        "sr_minus_one": 431,
+        "foml_negative": 438,
+        "settling_fields_equal": 455
+      },
+      "unflagged_rows": 4762
+    },
+    {
+      "source_id": "src_b1d379e3b1bcb282",
+      "relative_path": "HoiLee_AFFC_Pin_3/22/0.9/0.3/120/3/ext_mat/Perf_pop_data.mat",
+      "source_sha256": "928a832b3a6104dacb8909dcb592300b4ee3f9a071a196b2788134539731cd3e",
+      "rows_original": 6005,
+      "rows_exported": 6005,
+      "exact_duplicates_removed": 0,
+      "conflicting_keys": 0,
+      "matlab_variable": "newTable",
+      "matlab_units": [],
+      "matlab_descriptions": [],
+      "topology": "HoiLee_AFFC_Pin_3",
+      "folder_labels": {
+        "tech_node": 22,
+        "vdd": 0.9,
+        "vcm": 0.3,
+        "cl": 120.0,
+        "run": "3"
+      },
+      "related_files": {
+        "TD": "HoiLee_AFFC_Pin_3/22/0.9/0.3/120/3/ext_mat/TD_pop_data.mat",
+        "TBM": "HoiLee_AFFC_Pin_3/22/0.9/0.3/120/3/ext_mat/TBM_pop_data.mat"
+      },
+      "quality_flags": {
+        "sr_negative": 128,
+        "sr_minus_one": 123,
+        "foml_negative": 128,
+        "settling_fields_equal": 812
+      },
+      "unflagged_rows": 5070
+    },
+    {
+      "source_id": "src_b48f8cedb769af8d",
+      "relative_path": "Leung_DFCFC1_Pin_3/180/1.8/0.4/100/2/ext_mat/Perf_pop_data.mat",
+      "source_sha256": "e33f10d6dc9b0e84e3dbdd71d35e6cb7c2fd58ab1e32af6ac2f95473cd75c928",
+      "rows_original": 6265,
+      "rows_exported": 6265,
+      "exact_duplicates_removed": 0,
+      "conflicting_keys": 0,
+      "matlab_variable": "newTable",
+      "matlab_units": [],
+      "matlab_descriptions": [],
+      "topology": "Leung_DFCFC1_Pin_3",
+      "folder_labels": {
+        "tech_node": 180,
+        "vdd": 1.8,
+        "vcm": 0.4,
+        "cl": 100.0,
+        "run": "2"
+      },
+      "related_files": {
+        "TD": "Leung_DFCFC1_Pin_3/180/1.8/0.4/100/2/ext_mat/TD_pop_data.mat",
+        "TBM": "Leung_DFCFC1_Pin_3/180/1.8/0.4/100/2/ext_mat/TBM_pop_data.mat"
+      },
+      "quality_flags": {
+        "sr_negative": 104,
+        "sr_minus_one": 104,
+        "foml_negative": 104,
+        "settling_fields_equal": 2358
+      },
+      "unflagged_rows": 3803
+    },
+    {
+      "source_id": "src_56c27cda97b21b0d",
+      "relative_path": "Leung_DFCFC2_Pin_3/180/1.8/0.4/100/2/ext_mat/Perf_pop_data.mat",
+      "source_sha256": "14776148fdfc1edbe07525a591926d9abf059b8eebfc21dbe2cb5edb6fce8a6f",
+      "rows_original": 6442,
+      "rows_exported": 6442,
+      "exact_duplicates_removed": 0,
+      "conflicting_keys": 0,
+      "matlab_variable": "newTable",
+      "matlab_units": [],
+      "matlab_descriptions": [],
+      "topology": "Leung_DFCFC2_Pin_3",
+      "folder_labels": {
+        "tech_node": 180,
+        "vdd": 1.8,
+        "vcm": 0.4,
+        "cl": 100.0,
+        "run": "2"
+      },
+      "related_files": {
+        "TD": "Leung_DFCFC2_Pin_3/180/1.8/0.4/100/2/ext_mat/TD_pop_data.mat",
+        "TBM": "Leung_DFCFC2_Pin_3/180/1.8/0.4/100/2/ext_mat/TBM_pop_data.mat"
+      },
+      "quality_flags": {
+        "settling_fields_equal": 2479,
+        "sr_negative": 38,
+        "sr_minus_one": 38,
+        "foml_negative": 38
+      },
+      "unflagged_rows": 3925
+    },
+    {
+      "source_id": "src_0d772fb58d37593d",
+      "relative_path": "Leung_DFCFC2_Pin_3/22/0.9/0.3/100/0/ext_mat/Perf_pop_data.mat",
+      "source_sha256": "3b7959cb6590c83f6d8ce3f34120d32438bf0d9d3e861f51c67d62f923527d9d",
+      "rows_original": 6455,
+      "rows_exported": 6455,
+      "exact_duplicates_removed": 0,
+      "conflicting_keys": 0,
+      "matlab_variable": "newTable",
+      "matlab_units": [],
+      "matlab_descriptions": [],
+      "topology": "Leung_DFCFC2_Pin_3",
+      "folder_labels": {
+        "tech_node": 22,
+        "vdd": 0.9,
+        "vcm": 0.3,
+        "cl": 100.0,
+        "run": "0"
+      },
+      "related_files": {
+        "TD": "Leung_DFCFC2_Pin_3/22/0.9/0.3/100/0/ext_mat/TD_pop_data.mat",
+        "TBM": "Leung_DFCFC2_Pin_3/22/0.9/0.3/100/0/ext_mat/TBM_pop_data.mat"
+      },
+      "quality_flags": {
+        "settling_fields_equal": 1003,
+        "sr_negative": 5,
+        "sr_minus_one": 5,
+        "foml_negative": 5
+      },
+      "unflagged_rows": 5447
+    },
+    {
+      "source_id": "src_2017253dfc964e2e",
+      "relative_path": "Leung_NMCF_Pin_3/180/1.8/0.4/100/0/ext_mat/Perf_pop_data.mat",
+      "source_sha256": "9a41cf83ee00d2bcfcb880d78bc26994f9c4b76695a5874bb5af747b35697277",
+      "rows_original": 6333,
+      "rows_exported": 6333,
+      "exact_duplicates_removed": 0,
+      "conflicting_keys": 0,
+      "matlab_variable": "newTable",
+      "matlab_units": [],
+      "matlab_descriptions": [],
+      "topology": "Leung_NMCF_Pin_3",
+      "folder_labels": {
+        "tech_node": 180,
+        "vdd": 1.8,
+        "vcm": 0.4,
+        "cl": 100.0,
+        "run": "0"
+      },
+      "related_files": {
+        "TD": "Leung_NMCF_Pin_3/180/1.8/0.4/100/0/ext_mat/TD_pop_data.mat",
+        "TBM": "Leung_NMCF_Pin_3/180/1.8/0.4/100/0/ext_mat/TBM_pop_data.mat"
+      },
+      "quality_flags": {
+        "sr_negative": 377,
+        "sr_minus_one": 377,
+        "foml_negative": 377,
+        "settling_fields_equal": 194
+      },
+      "unflagged_rows": 5762
+    },
+    {
+      "source_id": "src_9719c64a4e645b15",
+      "relative_path": "Leung_NMCF_Pin_3/180/1.8/0.4/100/1/ext_mat/Perf_pop_data.mat",
+      "source_sha256": "b45130c9256bc1aef57476639e5700b13a3d59baa50b2e311f2b8497b4a368bf",
+      "rows_original": 6350,
+      "rows_exported": 6350,
+      "exact_duplicates_removed": 0,
+      "conflicting_keys": 0,
+      "matlab_variable": "newTable",
+      "matlab_units": [],
+      "matlab_descriptions": [],
+      "topology": "Leung_NMCF_Pin_3",
+      "folder_labels": {
+        "tech_node": 180,
+        "vdd": 1.8,
+        "vcm": 0.4,
+        "cl": 100.0,
+        "run": "1"
+      },
+      "related_files": {
+        "TD": "Leung_NMCF_Pin_3/180/1.8/0.4/100/1/ext_mat/TD_pop_data.mat",
+        "TBM": "Leung_NMCF_Pin_3/180/1.8/0.4/100/1/ext_mat/TBM_pop_data.mat"
+      },
+      "quality_flags": {
+        "settling_fields_equal": 362,
+        "sr_negative": 282,
+        "sr_minus_one": 281,
+        "foml_negative": 282
+      },
+      "unflagged_rows": 5707
+    },
+    {
+      "source_id": "src_b2677455627bc705",
+      "relative_path": "Leung_NMCF_Pin_3/180/1.8/0.9/100/0/ext_mat/Perf_pop_data.mat",
+      "source_sha256": "b624f6d73981e7e2d705c37a36585f852b838557312b2ecd4fa5ef664a068080",
+      "rows_original": 2177,
+      "rows_exported": 2177,
+      "exact_duplicates_removed": 0,
+      "conflicting_keys": 0,
+      "matlab_variable": "newTable",
+      "matlab_units": [],
+      "matlab_descriptions": [],
+      "topology": "Leung_NMCF_Pin_3",
+      "folder_labels": {
+        "tech_node": 180,
+        "vdd": 1.8,
+        "vcm": 0.9,
+        "cl": 100.0,
+        "run": "0"
+      },
+      "related_files": {
+        "TD": "Leung_NMCF_Pin_3/180/1.8/0.9/100/0/ext_mat/TD_pop_data.mat",
+        "TBM": "Leung_NMCF_Pin_3/180/1.8/0.9/100/0/ext_mat/TBM_pop_data.mat"
+      },
+      "quality_flags": {
+        "sr_negative": 592,
+        "sr_minus_one": 592,
+        "foml_negative": 592,
+        "settling_fields_equal": 2
+      },
+      "unflagged_rows": 1583
+    },
+    {
+      "source_id": "src_1c483b94eb85dfdb",
+      "relative_path": "Leung_NMCF_Pin_3/180/1.8/0.9/100/1/ext_mat/Perf_pop_data.mat",
+      "source_sha256": "0ebfb2ed552e2c98a0a898d15b6a64b850da709512856d57f6bdc101dd008360",
+      "rows_original": 2537,
+      "rows_exported": 2537,
+      "exact_duplicates_removed": 0,
+      "conflicting_keys": 0,
+      "matlab_variable": "newTable",
+      "matlab_units": [],
+      "matlab_descriptions": [],
+      "topology": "Leung_NMCF_Pin_3",
+      "folder_labels": {
+        "tech_node": 180,
+        "vdd": 1.8,
+        "vcm": 0.9,
+        "cl": 100.0,
+        "run": "1"
+      },
+      "related_files": {
+        "TD": "Leung_NMCF_Pin_3/180/1.8/0.9/100/1/ext_mat/TD_pop_data.mat",
+        "TBM": "Leung_NMCF_Pin_3/180/1.8/0.9/100/1/ext_mat/TBM_pop_data.mat"
+      },
+      "quality_flags": {
+        "sr_negative": 584,
+        "sr_minus_one": 584,
+        "foml_negative": 584,
+        "settling_fields_equal": 18
+      },
+      "unflagged_rows": 1935
+    },
+    {
+      "source_id": "src_9ac90919c2939496",
+      "relative_path": "Leung_NMCF_Pin_3/180/1/0.4/100/2/ext_mat/Perf_pop_data.mat",
+      "source_sha256": "9b880d7b10509d0a6b41df5ee53136e135a00154896ccc7708f78ba9556073ba",
+      "rows_original": 6376,
+      "rows_exported": 6376,
+      "exact_duplicates_removed": 0,
+      "conflicting_keys": 0,
+      "matlab_variable": "newTable",
+      "matlab_units": [],
+      "matlab_descriptions": [],
+      "topology": "Leung_NMCF_Pin_3",
+      "folder_labels": {
+        "tech_node": 180,
+        "vdd": 1.0,
+        "vcm": 0.4,
+        "cl": 100.0,
+        "run": "2"
+      },
+      "related_files": {
+        "TD": "Leung_NMCF_Pin_3/180/1/0.4/100/2/ext_mat/TD_pop_data.mat",
+        "TBM": "Leung_NMCF_Pin_3/180/1/0.4/100/2/ext_mat/TBM_pop_data.mat"
+      },
+      "quality_flags": {
+        "sr_negative": 558,
+        "sr_minus_one": 541,
+        "foml_negative": 558,
+        "settling_fields_equal": 82
+      },
+      "unflagged_rows": 5753
+    },
+    {
+      "source_id": "src_3d354af2dddb41de",
+      "relative_path": "Leung_NMCNR_Pin_3/180/1.2/0.4/100/7/ext_mat/Perf_pop_data.mat",
+      "source_sha256": "c54aec761cbbf602259b408522a0abec0db8d95f836b112c7389da9ce4d32bfc",
+      "rows_original": 8097,
+      "rows_exported": 8097,
+      "exact_duplicates_removed": 0,
+      "conflicting_keys": 0,
+      "matlab_variable": "newTable",
+      "matlab_units": [],
+      "matlab_descriptions": [],
+      "topology": "Leung_NMCNR_Pin_3",
+      "folder_labels": {
+        "tech_node": 180,
+        "vdd": 1.2,
+        "vcm": 0.4,
+        "cl": 100.0,
+        "run": "7"
+      },
+      "related_files": {
+        "TD": "Leung_NMCNR_Pin_3/180/1.2/0.4/100/7/ext_mat/TD_pop_data.mat",
+        "TBM": "Leung_NMCNR_Pin_3/180/1.2/0.4/100/7/ext_mat/TBM_pop_data.mat"
+      },
+      "quality_flags": {
+        "sr_negative": 3481,
+        "sr_minus_one": 3481,
+        "foml_negative": 3481,
+        "settling_fields_equal": 31
+      },
+      "unflagged_rows": 4585
+    },
+    {
+      "source_id": "src_8530ef090ec6d984",
+      "relative_path": "Leung_NMCNR_Pin_3/180/1.8/0.4/100/6/ext_mat/Perf_pop_data.mat",
+      "source_sha256": "3039d116d0c8028d92316645443a8f0f33a248c4ffb397fc731c0550d142faa9",
+      "rows_original": 12824,
+      "rows_exported": 12824,
+      "exact_duplicates_removed": 0,
+      "conflicting_keys": 0,
+      "matlab_variable": "newTable",
+      "matlab_units": [],
+      "matlab_descriptions": [],
+      "topology": "Leung_NMCNR_Pin_3",
+      "folder_labels": {
+        "tech_node": 180,
+        "vdd": 1.8,
+        "vcm": 0.4,
+        "cl": 100.0,
+        "run": "6"
+      },
+      "related_files": {
+        "TD": "Leung_NMCNR_Pin_3/180/1.8/0.4/100/6/ext_mat/TD_pop_data.mat",
+        "TBM": "Leung_NMCNR_Pin_3/180/1.8/0.4/100/6/ext_mat/TBM_pop_data.mat"
+      },
+      "quality_flags": {
+        "sr_negative": 1934,
+        "sr_minus_one": 1934,
+        "foml_negative": 1934
+      },
+      "unflagged_rows": 10890
+    },
+    {
+      "source_id": "src_e4856e5c922002d3",
+      "relative_path": "Leung_NMCNR_Pin_3/180/1/0.4/200/8/ext_mat/Perf_pop_data.mat",
+      "source_sha256": "ae2f6623556d5ab8540f813e8acda4ea807376fee41c85776034e03b1254c97a",
+      "rows_original": 12780,
+      "rows_exported": 12780,
+      "exact_duplicates_removed": 0,
+      "conflicting_keys": 0,
+      "matlab_variable": "newTable",
+      "matlab_units": [],
+      "matlab_descriptions": [],
+      "topology": "Leung_NMCNR_Pin_3",
+      "folder_labels": {
+        "tech_node": 180,
+        "vdd": 1.0,
+        "vcm": 0.4,
+        "cl": 200.0,
+        "run": "8"
+      },
+      "related_files": {
+        "TD": "Leung_NMCNR_Pin_3/180/1/0.4/200/8/ext_mat/TD_pop_data.mat",
+        "TBM": "Leung_NMCNR_Pin_3/180/1/0.4/200/8/ext_mat/TBM_pop_data.mat"
+      },
+      "quality_flags": {
+        "sr_negative": 3585,
+        "sr_minus_one": 3584,
+        "foml_negative": 3585,
+        "settling_fields_equal": 1
+      },
+      "unflagged_rows": 9195
+    },
+    {
+      "source_id": "src_e117e1f46e8478f7",
+      "relative_path": "Peng_ACBC_Pin_3/180/1.8/0.4/100/0/ext_mat/Perf_pop_data.mat",
+      "source_sha256": "85e01a14e27ce5923a0778e27d048714e4763d9ac5d850c64654a0ea14b8f8b4",
+      "rows_original": 5852,
+      "rows_exported": 5852,
+      "exact_duplicates_removed": 0,
+      "conflicting_keys": 0,
+      "matlab_variable": "newTable",
+      "matlab_units": [],
+      "matlab_descriptions": [],
+      "topology": "Peng_ACBC_Pin_3",
+      "folder_labels": {
+        "tech_node": 180,
+        "vdd": 1.8,
+        "vcm": 0.4,
+        "cl": 100.0,
+        "run": "0"
+      },
+      "related_files": {
+        "TD": "Peng_ACBC_Pin_3/180/1.8/0.4/100/0/ext_mat/TD_pop_data.mat",
+        "TBM": "Peng_ACBC_Pin_3/180/1.8/0.4/100/0/ext_mat/TBM_pop_data.mat"
+      },
+      "quality_flags": {
+        "sr_negative": 430,
+        "sr_minus_one": 430,
+        "foml_negative": 430,
+        "settling_fields_equal": 4045
+      },
+      "unflagged_rows": 1377
+    },
+    {
+      "source_id": "src_7e60cdeed89a22f5",
+      "relative_path": "Peng_IAC_Pin_3/180/1.8/0.4/100/0/ext_mat/Perf_pop_data.mat",
+      "source_sha256": "8f58e1c0ab4bdceef7beaa58f4e5d1e7baed9e3429f01ea05ba5c294ed7aa7fb",
+      "rows_original": 5321,
+      "rows_exported": 5321,
+      "exact_duplicates_removed": 0,
+      "conflicting_keys": 0,
+      "matlab_variable": "newTable",
+      "matlab_units": [],
+      "matlab_descriptions": [],
+      "topology": "Peng_IAC_Pin_3",
+      "folder_labels": {
+        "tech_node": 180,
+        "vdd": 1.8,
+        "vcm": 0.4,
+        "cl": 100.0,
+        "run": "0"
+      },
+      "related_files": {
+        "TD": "Peng_IAC_Pin_3/180/1.8/0.4/100/0/ext_mat/TD_pop_data.mat",
+        "TBM": "Peng_IAC_Pin_3/180/1.8/0.4/100/0/ext_mat/TBM_pop_data.mat"
+      },
+      "quality_flags": {
+        "sr_negative": 491,
+        "sr_minus_one": 487,
+        "foml_negative": 491,
+        "settling_fields_equal": 3526
+      },
+      "unflagged_rows": 1308
+    },
+    {
+      "source_id": "src_3c56f955f6522db5",
+      "relative_path": "Peng_IAC_Pin_3/180/1.8/0.9/800/3/ext_mat/Perf_pop_data.mat",
+      "source_sha256": "3debec8cf3b230715ca437aff3a9178c593e0ccb24a069638ca0e1ba1354cdbb",
+      "rows_original": 1652,
+      "rows_exported": 1652,
+      "exact_duplicates_removed": 0,
+      "conflicting_keys": 0,
+      "matlab_variable": "newTable",
+      "matlab_units": [],
+      "matlab_descriptions": [],
+      "topology": "Peng_IAC_Pin_3",
+      "folder_labels": {
+        "tech_node": 180,
+        "vdd": 1.8,
+        "vcm": 0.9,
+        "cl": 800.0,
+        "run": "3"
+      },
+      "related_files": {
+        "TD": "Peng_IAC_Pin_3/180/1.8/0.9/800/3/ext_mat/TD_pop_data.mat",
+        "TBM": "Peng_IAC_Pin_3/180/1.8/0.9/800/3/ext_mat/TBM_pop_data.mat"
+      },
+      "quality_flags": {
+        "sr_negative": 472,
+        "sr_minus_one": 472,
+        "foml_negative": 472,
+        "settling_fields_equal": 139
+      },
+      "unflagged_rows": 1041
+    },
+    {
+      "source_id": "src_71f0a01820fcd4bf",
+      "relative_path": "Peng_IAC_Pin_3/180/1.8/0.9/800/4/ext_mat/Perf_pop_data.mat",
+      "source_sha256": "3ef97e13f058140791242df72f61c78e0a9873aa12613ffedbe57651209bde75",
+      "rows_original": 620,
+      "rows_exported": 620,
+      "exact_duplicates_removed": 0,
+      "conflicting_keys": 0,
+      "matlab_variable": "newTable",
+      "matlab_units": [],
+      "matlab_descriptions": [],
+      "topology": "Peng_IAC_Pin_3",
+      "folder_labels": {
+        "tech_node": 180,
+        "vdd": 1.8,
+        "vcm": 0.9,
+        "cl": 800.0,
+        "run": "4"
+      },
+      "related_files": {
+        "TD": "Peng_IAC_Pin_3/180/1.8/0.9/800/4/ext_mat/TD_pop_data.mat",
+        "TBM": "Peng_IAC_Pin_3/180/1.8/0.9/800/4/ext_mat/TBM_pop_data.mat"
+      },
+      "quality_flags": {
+        "sr_negative": 448,
+        "sr_minus_one": 441,
+        "foml_negative": 448,
+        "settling_fields_equal": 62
+      },
+      "unflagged_rows": 117
+    },
+    {
+      "source_id": "src_6f3886d43077b463",
+      "relative_path": "Qu2017_AZC_Pin_3/180/1.8/0.4/15000/1/ext_mat/Perf_pop_data.mat",
+      "source_sha256": "e35b87904d46a3122cb75440c6fdeac4c9e1d6dfa7f4d2f9bddc96025e707d12",
+      "rows_original": 2391,
+      "rows_exported": 2391,
+      "exact_duplicates_removed": 0,
+      "conflicting_keys": 0,
+      "matlab_variable": "newTable",
+      "matlab_units": [],
+      "matlab_descriptions": [],
+      "topology": "Qu2017_AZC_Pin_3",
+      "folder_labels": {
+        "tech_node": 180,
+        "vdd": 1.8,
+        "vcm": 0.4,
+        "cl": 15000.0,
+        "run": "1"
+      },
+      "related_files": {
+        "TD": "Qu2017_AZC_Pin_3/180/1.8/0.4/15000/1/ext_mat/TD_pop_data.mat",
+        "TBM": "Qu2017_AZC_Pin_3/180/1.8/0.4/15000/1/ext_mat/TBM_pop_data.mat"
+      },
+      "quality_flags": {
+        "sr_negative": 407,
+        "sr_minus_one": 383,
+        "foml_negative": 407,
+        "settling_fields_equal": 1684
+      },
+      "unflagged_rows": 324
+    },
+    {
+      "source_id": "src_c0d5ed0fdab0b668",
+      "relative_path": "Qu2017_AZC_Pin_3/180/1.8/0.4/15000/2/ext_mat/Perf_pop_data.mat",
+      "source_sha256": "1929023efade0fddcfdc0d8ac6304723636ecb1e2a427f4d27b3a16e5d0172f6",
+      "rows_original": 6426,
+      "rows_exported": 6426,
+      "exact_duplicates_removed": 0,
+      "conflicting_keys": 0,
+      "matlab_variable": "newTable",
+      "matlab_units": [],
+      "matlab_descriptions": [],
+      "topology": "Qu2017_AZC_Pin_3",
+      "folder_labels": {
+        "tech_node": 180,
+        "vdd": 1.8,
+        "vcm": 0.4,
+        "cl": 15000.0,
+        "run": "2"
+      },
+      "related_files": {
+        "TD": "Qu2017_AZC_Pin_3/180/1.8/0.4/15000/2/ext_mat/TD_pop_data.mat",
+        "TBM": "Qu2017_AZC_Pin_3/180/1.8/0.4/15000/2/ext_mat/TBM_pop_data.mat"
+      },
+      "quality_flags": {
+        "sr_negative": 346,
+        "sr_minus_one": 321,
+        "foml_negative": 346,
+        "settling_fields_equal": 1633
+      },
+      "unflagged_rows": 4472
+    },
+    {
+      "source_id": "src_fb1ca26320067d54",
+      "relative_path": "Qu2017_AZC_Pin_3/180/1.8/0.4/500/0/ext_mat/Perf_pop_data.mat",
+      "source_sha256": "96b1e8d425a9c632492b35e22f88fc2bd0c49b53a3a68d4664f13dbd2f48175b",
+      "rows_original": 6378,
+      "rows_exported": 6378,
+      "exact_duplicates_removed": 0,
+      "conflicting_keys": 0,
+      "matlab_variable": "newTable",
+      "matlab_units": [],
+      "matlab_descriptions": [],
+      "topology": "Qu2017_AZC_Pin_3",
+      "folder_labels": {
+        "tech_node": 180,
+        "vdd": 1.8,
+        "vcm": 0.4,
+        "cl": 500.0,
+        "run": "0"
+      },
+      "related_files": {
+        "TD": "Qu2017_AZC_Pin_3/180/1.8/0.4/500/0/ext_mat/TD_pop_data.mat",
+        "TBM": "Qu2017_AZC_Pin_3/180/1.8/0.4/500/0/ext_mat/TBM_pop_data.mat"
+      },
+      "quality_flags": {
+        "sr_negative": 208,
+        "sr_minus_one": 208,
+        "foml_negative": 208,
+        "settling_fields_equal": 1156
+      },
+      "unflagged_rows": 5014
+    },
+    {
+      "source_id": "src_5e86b4f806c664e5",
+      "relative_path": "Qu2017_AZC_Pin_3/22/0.9/0.3/18000/0/ext_mat/Perf_pop_data.mat",
+      "source_sha256": "762b745bacfb239722935f9f39a21a6e157b619b694e0b948f2cd1345d010556",
+      "rows_original": 6367,
+      "rows_exported": 6367,
+      "exact_duplicates_removed": 0,
+      "conflicting_keys": 0,
+      "matlab_variable": "newTable",
+      "matlab_units": [],
+      "matlab_descriptions": [],
+      "topology": "Qu2017_AZC_Pin_3",
+      "folder_labels": {
+        "tech_node": 22,
+        "vdd": 0.9,
+        "vcm": 0.3,
+        "cl": 18000.0,
+        "run": "0"
+      },
+      "related_files": {
+        "TD": "Qu2017_AZC_Pin_3/22/0.9/0.3/18000/0/ext_mat/TD_pop_data.mat",
+        "TBM": "Qu2017_AZC_Pin_3/22/0.9/0.3/18000/0/ext_mat/TBM_pop_data.mat"
+      },
+      "quality_flags": {
+        "sr_negative": 510,
+        "sr_minus_one": 508,
+        "foml_negative": 510,
+        "settling_fields_equal": 908
+      },
+      "unflagged_rows": 4951
+    },
+    {
+      "source_id": "src_60b6aa96b3e6801b",
+      "relative_path": "Qu2017_AZC_Pin_3/22/0.9/0.3/18000/1/ext_mat/Perf_pop_data.mat",
+      "source_sha256": "ce3f91f411246d6ef1cf4ac203d1f4e47f8cebff10cf63696c7248e38adee98a",
+      "rows_original": 1082,
+      "rows_exported": 1082,
+      "exact_duplicates_removed": 0,
+      "conflicting_keys": 0,
+      "matlab_variable": "newTable",
+      "matlab_units": [],
+      "matlab_descriptions": [],
+      "topology": "Qu2017_AZC_Pin_3",
+      "folder_labels": {
+        "tech_node": 22,
+        "vdd": 0.9,
+        "vcm": 0.3,
+        "cl": 18000.0,
+        "run": "1"
+      },
+      "related_files": {
+        "TD": "Qu2017_AZC_Pin_3/22/0.9/0.3/18000/1/ext_mat/TD_pop_data.mat",
+        "TBM": "Qu2017_AZC_Pin_3/22/0.9/0.3/18000/1/ext_mat/TBM_pop_data.mat"
+      },
+      "quality_flags": {
+        "sr_negative": 429,
+        "sr_minus_one": 429,
+        "foml_negative": 429,
+        "settling_fields_equal": 558
+      },
+      "unflagged_rows": 95
+    },
+    {
+      "source_id": "src_8e4cdd352fa58c7b",
+      "relative_path": "Qu2017_AZC_Pin_3/22/0.9/0.3/18000/3/ext_mat/Perf_pop_data.mat",
+      "source_sha256": "a562d7f3f7385f7f32ed62e49997589615c10d303da6f55e3ee40f44cb2c2a4a",
+      "rows_original": 6323,
+      "rows_exported": 6323,
+      "exact_duplicates_removed": 0,
+      "conflicting_keys": 0,
+      "matlab_variable": "newTable",
+      "matlab_units": [],
+      "matlab_descriptions": [],
+      "topology": "Qu2017_AZC_Pin_3",
+      "folder_labels": {
+        "tech_node": 22,
+        "vdd": 0.9,
+        "vcm": 0.3,
+        "cl": 18000.0,
+        "run": "3"
+      },
+      "related_files": {
+        "TD": "Qu2017_AZC_Pin_3/22/0.9/0.3/18000/3/ext_mat/TD_pop_data.mat",
+        "TBM": "Qu2017_AZC_Pin_3/22/0.9/0.3/18000/3/ext_mat/TBM_pop_data.mat"
+      },
+      "quality_flags": {
+        "sr_negative": 312,
+        "sr_minus_one": 304,
+        "foml_negative": 312,
+        "settling_fields_equal": 555
+      },
+      "unflagged_rows": 5464
+    },
+    {
+      "source_id": "src_3e64dd4bc30c4c30",
+      "relative_path": "Qu2017_AZC_Pin_3/22/0.9/0.3/18000/4/ext_mat/Perf_pop_data.mat",
+      "source_sha256": "5fb9176199d38d3e472d20b839e21d909a01d9c20e711ef094c2d253e0f007e0",
+      "rows_original": 1840,
+      "rows_exported": 1840,
+      "exact_duplicates_removed": 0,
+      "conflicting_keys": 0,
+      "matlab_variable": "newTable",
+      "matlab_units": [],
+      "matlab_descriptions": [],
+      "topology": "Qu2017_AZC_Pin_3",
+      "folder_labels": {
+        "tech_node": 22,
+        "vdd": 0.9,
+        "vcm": 0.3,
+        "cl": 18000.0,
+        "run": "4"
+      },
+      "related_files": {
+        "TD": "Qu2017_AZC_Pin_3/22/0.9/0.3/18000/4/ext_mat/TD_pop_data.mat",
+        "TBM": "Qu2017_AZC_Pin_3/22/0.9/0.3/18000/4/ext_mat/TBM_pop_data.mat"
+      },
+      "quality_flags": {
+        "sr_negative": 370,
+        "sr_minus_one": 370,
+        "foml_negative": 370,
+        "settling_fields_equal": 778
+      },
+      "unflagged_rows": 692
+    },
+    {
+      "source_id": "src_cc6ab99abfc0cb11",
+      "relative_path": "Qu_LEC_Pin_3/180/1.8/0.4/500/0/ext_mat/Perf_pop_data.mat",
+      "source_sha256": "3dd95a375c6a96b395a67ff0c312f5e2886c545c19a294cb73a5f6848c746aa2",
+      "rows_original": 3422,
+      "rows_exported": 3422,
+      "exact_duplicates_removed": 0,
+      "conflicting_keys": 0,
+      "matlab_variable": "newTable",
+      "matlab_units": [],
+      "matlab_descriptions": [],
+      "topology": "Qu_LEC_Pin_3",
+      "folder_labels": {
+        "tech_node": 180,
+        "vdd": 1.8,
+        "vcm": 0.4,
+        "cl": 500.0,
+        "run": "0"
+      },
+      "related_files": {
+        "TD": "Qu_LEC_Pin_3/180/1.8/0.4/500/0/ext_mat/TD_pop_data.mat",
+        "TBM": "Qu_LEC_Pin_3/180/1.8/0.4/500/0/ext_mat/TBM_pop_data.mat"
+      },
+      "quality_flags": {
+        "sr_negative": 1054,
+        "sr_minus_one": 1043,
+        "foml_negative": 1054,
+        "settling_fields_equal": 734
+      },
+      "unflagged_rows": 1645
+    },
+    {
+      "source_id": "src_25aaff80f17ce9de",
+      "relative_path": "Qu_LEC_Pin_3/180/1.8/0.9/800/1/ext_mat/Perf_pop_data.mat",
+      "source_sha256": "e26f33bb8e3eb43578297d6dad104347ad0c58fc4a0cd8467ddf65b81721f21f",
+      "rows_original": 6014,
+      "rows_exported": 6014,
+      "exact_duplicates_removed": 0,
+      "conflicting_keys": 0,
+      "matlab_variable": "newTable",
+      "matlab_units": [],
+      "matlab_descriptions": [],
+      "topology": "Qu_LEC_Pin_3",
+      "folder_labels": {
+        "tech_node": 180,
+        "vdd": 1.8,
+        "vcm": 0.9,
+        "cl": 800.0,
+        "run": "1"
+      },
+      "related_files": {
+        "TD": "Qu_LEC_Pin_3/180/1.8/0.9/800/1/ext_mat/TD_pop_data.mat",
+        "TBM": "Qu_LEC_Pin_3/180/1.8/0.9/800/1/ext_mat/TBM_pop_data.mat"
+      },
+      "quality_flags": {
+        "sr_negative": 303,
+        "sr_minus_one": 294,
+        "foml_negative": 303,
+        "settling_fields_equal": 2213
+      },
+      "unflagged_rows": 3507
+    },
+    {
+      "source_id": "src_978682bb83b9ca04",
+      "relative_path": "Qu_LEC_Pin_3/180/1.8/0.9/800/6/ext_mat/Perf_pop_data.mat",
+      "source_sha256": "5215bf20884f340fa53dd8c82d93ef923eeff9b1cbf545cd34214c9c668cd5a0",
+      "rows_original": 5916,
+      "rows_exported": 5916,
+      "exact_duplicates_removed": 0,
+      "conflicting_keys": 0,
+      "matlab_variable": "newTable",
+      "matlab_units": [],
+      "matlab_descriptions": [],
+      "topology": "Qu_LEC_Pin_3",
+      "folder_labels": {
+        "tech_node": 180,
+        "vdd": 1.8,
+        "vcm": 0.9,
+        "cl": 800.0,
+        "run": "6"
+      },
+      "related_files": {
+        "TD": "Qu_LEC_Pin_3/180/1.8/0.9/800/6/ext_mat/TD_pop_data.mat",
+        "TBM": "Qu_LEC_Pin_3/180/1.8/0.9/800/6/ext_mat/TBM_pop_data.mat"
+      },
+      "quality_flags": {
+        "sr_negative": 435,
+        "sr_minus_one": 428,
+        "foml_negative": 435,
+        "settling_fields_equal": 1881
+      },
+      "unflagged_rows": 3607
+    },
+    {
+      "source_id": "src_74304d56094329de",
+      "relative_path": "Qu_LEC_Pin_3/180/1.8/0.9/800/7/ext_mat/Perf_pop_data.mat",
+      "source_sha256": "aa170c64a454bf436f9a6c33b7c77caf5882665692d5ed1e44e1fa0ccb6e3744",
+      "rows_original": 2539,
+      "rows_exported": 2539,
+      "exact_duplicates_removed": 0,
+      "conflicting_keys": 0,
+      "matlab_variable": "newTable",
+      "matlab_units": [],
+      "matlab_descriptions": [],
+      "topology": "Qu_LEC_Pin_3",
+      "folder_labels": {
+        "tech_node": 180,
+        "vdd": 1.8,
+        "vcm": 0.9,
+        "cl": 800.0,
+        "run": "7"
+      },
+      "related_files": {
+        "TD": "Qu_LEC_Pin_3/180/1.8/0.9/800/7/ext_mat/TD_pop_data.mat",
+        "TBM": "Qu_LEC_Pin_3/180/1.8/0.9/800/7/ext_mat/TBM_pop_data.mat"
+      },
+      "quality_flags": {
+        "sr_negative": 571,
+        "sr_minus_one": 564,
+        "foml_negative": 571,
+        "settling_fields_equal": 326
+      },
+      "unflagged_rows": 1649
+    },
+    {
+      "source_id": "src_5cb3eefcf17abc6b",
+      "relative_path": "Ramos_PFC_Pin_3/180/1.8/0.4/100/4/ext_mat/Perf_pop_data.mat",
+      "source_sha256": "3888b9ad976ad2afa59e39e12b5e8ad9423a8c45c1ebb93bd89ac9810eade1a8",
+      "rows_original": 6426,
+      "rows_exported": 6426,
+      "exact_duplicates_removed": 0,
+      "conflicting_keys": 0,
+      "matlab_variable": "newTable",
+      "matlab_units": [],
+      "matlab_descriptions": [],
+      "topology": "Ramos_PFC_Pin_3",
+      "folder_labels": {
+        "tech_node": 180,
+        "vdd": 1.8,
+        "vcm": 0.4,
+        "cl": 100.0,
+        "run": "4"
+      },
+      "related_files": {
+        "TD": "Ramos_PFC_Pin_3/180/1.8/0.4/100/4/ext_mat/TD_pop_data.mat",
+        "TBM": "Ramos_PFC_Pin_3/180/1.8/0.4/100/4/ext_mat/TBM_pop_data.mat"
+      },
+      "quality_flags": {
+        "sr_negative": 247,
+        "sr_minus_one": 247,
+        "foml_negative": 247,
+        "settling_fields_equal": 1209
+      },
+      "unflagged_rows": 4970
+    },
+    {
+      "source_id": "src_0546307969cd350a",
+      "relative_path": "Sau_CFCC_Pin_3/180/1.8/0.4/500/0/ext_mat/Perf_pop_data.mat",
+      "source_sha256": "62fa1e5881a2f50f29286a9314550d368aeb13227ba0f1d838e1dfb8dc61a68c",
+      "rows_original": 6080,
+      "rows_exported": 6080,
+      "exact_duplicates_removed": 0,
+      "conflicting_keys": 0,
+      "matlab_variable": "newTable",
+      "matlab_units": [],
+      "matlab_descriptions": [],
+      "topology": "Sau_CFCC_Pin_3",
+      "folder_labels": {
+        "tech_node": 180,
+        "vdd": 1.8,
+        "vcm": 0.4,
+        "cl": 500.0,
+        "run": "0"
+      },
+      "related_files": {
+        "TD": "Sau_CFCC_Pin_3/180/1.8/0.4/500/0/ext_mat/TD_pop_data.mat",
+        "TBM": "Sau_CFCC_Pin_3/180/1.8/0.4/500/0/ext_mat/TBM_pop_data.mat"
+      },
+      "quality_flags": {
+        "sr_negative": 755,
+        "sr_minus_one": 748,
+        "foml_negative": 755,
+        "settling_fields_equal": 3877
+      },
+      "unflagged_rows": 1455
+    },
+    {
+      "source_id": "src_ae20e4b355635096",
+      "relative_path": "Sau_CFCC_Pin_3/180/1.8/0.4/500/1/ext_mat/Perf_pop_data.mat",
+      "source_sha256": "847ed5c413e6daf8e37005e95447cd5efc0eb3a7e50a207a10ef3a8bf3667bcd",
+      "rows_original": 6032,
+      "rows_exported": 6032,
+      "exact_duplicates_removed": 0,
+      "conflicting_keys": 0,
+      "matlab_variable": "newTable",
+      "matlab_units": [],
+      "matlab_descriptions": [],
+      "topology": "Sau_CFCC_Pin_3",
+      "folder_labels": {
+        "tech_node": 180,
+        "vdd": 1.8,
+        "vcm": 0.4,
+        "cl": 500.0,
+        "run": "1"
+      },
+      "related_files": {
+        "TD": "Sau_CFCC_Pin_3/180/1.8/0.4/500/1/ext_mat/TD_pop_data.mat",
+        "TBM": "Sau_CFCC_Pin_3/180/1.8/0.4/500/1/ext_mat/TBM_pop_data.mat"
+      },
+      "quality_flags": {
+        "sr_negative": 800,
+        "sr_minus_one": 800,
+        "foml_negative": 800,
+        "settling_fields_equal": 4072
+      },
+      "unflagged_rows": 1160
+    },
+    {
+      "source_id": "src_538ea22a65933aa2",
+      "relative_path": "Sau_CFCC_Pin_3/180/1.8/0.9/800/10/ext_mat/Perf_pop_data.mat",
+      "source_sha256": "e30c48acd8d1b3be36314a3e419042166e5140584de7fbfb67d2ed1a63d5f6b1",
+      "rows_original": 5191,
+      "rows_exported": 5191,
+      "exact_duplicates_removed": 0,
+      "conflicting_keys": 0,
+      "matlab_variable": "newTable",
+      "matlab_units": [],
+      "matlab_descriptions": [],
+      "topology": "Sau_CFCC_Pin_3",
+      "folder_labels": {
+        "tech_node": 180,
+        "vdd": 1.8,
+        "vcm": 0.9,
+        "cl": 800.0,
+        "run": "10"
+      },
+      "related_files": {
+        "TD": "Sau_CFCC_Pin_3/180/1.8/0.9/800/10/ext_mat/TD_pop_data.mat",
+        "TBM": "Sau_CFCC_Pin_3/180/1.8/0.9/800/10/ext_mat/TBM_pop_data.mat"
+      },
+      "quality_flags": {
+        "sr_negative": 454,
+        "sr_minus_one": 445,
+        "foml_negative": 454,
+        "settling_fields_equal": 803
+      },
+      "unflagged_rows": 3943
+    },
+    {
+      "source_id": "src_50662abc1700aebd",
+      "relative_path": "Sau_CFCC_Pin_3/180/1.8/0.9/800/12/ext_mat/Perf_pop_data.mat",
+      "source_sha256": "140edf6486294d6bac49075336a9716914557f2ad6c4a4f572cb6e2d2d8f4a07",
+      "rows_original": 2111,
+      "rows_exported": 2111,
+      "exact_duplicates_removed": 0,
+      "conflicting_keys": 0,
+      "matlab_variable": "newTable",
+      "matlab_units": [],
+      "matlab_descriptions": [],
+      "topology": "Sau_CFCC_Pin_3",
+      "folder_labels": {
+        "tech_node": 180,
+        "vdd": 1.8,
+        "vcm": 0.9,
+        "cl": 800.0,
+        "run": "12"
+      },
+      "related_files": {
+        "TD": "Sau_CFCC_Pin_3/180/1.8/0.9/800/12/ext_mat/TD_pop_data.mat",
+        "TBM": "Sau_CFCC_Pin_3/180/1.8/0.9/800/12/ext_mat/TBM_pop_data.mat"
+      },
+      "quality_flags": {
+        "sr_negative": 188,
+        "sr_minus_one": 187,
+        "foml_negative": 188,
+        "settling_fields_equal": 580
+      },
+      "unflagged_rows": 1344
+    },
+    {
+      "source_id": "src_bb5f372ee5342980",
+      "relative_path": "Sau_CFCC_Pin_3/22/0.9/0.3/500/0/ext_mat/Perf_pop_data.mat",
+      "source_sha256": "118dfbd1884bd6369556e821e8488aa98a38b24f5a23ae8e5cbcc629aefbb472",
+      "rows_original": 1425,
+      "rows_exported": 1425,
+      "exact_duplicates_removed": 0,
+      "conflicting_keys": 0,
+      "matlab_variable": "newTable",
+      "matlab_units": [],
+      "matlab_descriptions": [],
+      "topology": "Sau_CFCC_Pin_3",
+      "folder_labels": {
+        "tech_node": 22,
+        "vdd": 0.9,
+        "vcm": 0.3,
+        "cl": 500.0,
+        "run": "0"
+      },
+      "related_files": {
+        "TD": "Sau_CFCC_Pin_3/22/0.9/0.3/500/0/ext_mat/TD_pop_data.mat",
+        "TBM": "Sau_CFCC_Pin_3/22/0.9/0.3/500/0/ext_mat/TBM_pop_data.mat"
+      },
+      "quality_flags": {
+        "sr_negative": 553,
+        "sr_minus_one": 553,
+        "foml_negative": 553,
+        "settling_fields_equal": 306
+      },
+      "unflagged_rows": 566
+    },
+    {
+      "source_id": "src_5e756c846d4951d4",
+      "relative_path": "Sau_CFCC_Pin_3/22/0.9/0.3/500/1/ext_mat/Perf_pop_data.mat",
+      "source_sha256": "4e8c6c7e739d9737397919c5e2be73120fccc825e7e9d448d93ced50b7c2bd2a",
+      "rows_original": 533,
+      "rows_exported": 533,
+      "exact_duplicates_removed": 0,
+      "conflicting_keys": 0,
+      "matlab_variable": "newTable",
+      "matlab_units": [],
+      "matlab_descriptions": [],
+      "topology": "Sau_CFCC_Pin_3",
+      "folder_labels": {
+        "tech_node": 22,
+        "vdd": 0.9,
+        "vcm": 0.3,
+        "cl": 500.0,
+        "run": "1"
+      },
+      "related_files": {
+        "TD": "Sau_CFCC_Pin_3/22/0.9/0.3/500/1/ext_mat/TD_pop_data.mat",
+        "TBM": "Sau_CFCC_Pin_3/22/0.9/0.3/500/1/ext_mat/TBM_pop_data.mat"
+      },
+      "quality_flags": {
+        "sr_negative": 142,
+        "sr_minus_one": 142,
+        "foml_negative": 142,
+        "settling_fields_equal": 176
+      },
+      "unflagged_rows": 215
+    },
+    {
+      "source_id": "src_e9ca64b31fcb7e66",
+      "relative_path": "Sau_CFCC_Pin_3/22/0.9/0.3/800/2/ext_mat/Perf_pop_data.mat",
+      "source_sha256": "f0f9f8b78fed3a955d2c1eeedb0838a8302345b8e407c890c8681c73b567f721",
+      "rows_original": 4567,
+      "rows_exported": 4567,
+      "exact_duplicates_removed": 0,
+      "conflicting_keys": 0,
+      "matlab_variable": "newTable",
+      "matlab_units": [],
+      "matlab_descriptions": [],
+      "topology": "Sau_CFCC_Pin_3",
+      "folder_labels": {
+        "tech_node": 22,
+        "vdd": 0.9,
+        "vcm": 0.3,
+        "cl": 800.0,
+        "run": "2"
+      },
+      "related_files": {
+        "TD": "Sau_CFCC_Pin_3/22/0.9/0.3/800/2/ext_mat/TD_pop_data.mat",
+        "TBM": "Sau_CFCC_Pin_3/22/0.9/0.3/800/2/ext_mat/TBM_pop_data.mat"
+      },
+      "quality_flags": {
+        "sr_negative": 682,
+        "sr_minus_one": 682,
+        "foml_negative": 682,
+        "settling_fields_equal": 565
+      },
+      "unflagged_rows": 3320
+    },
+    {
+      "source_id": "src_2e4e3178bbefd188",
+      "relative_path": "Song_DACFC_Pin_3/180/1.8/0.4/500/0/ext_mat/Perf_pop_data.mat",
+      "source_sha256": "71bca95895374bb720c7d790587d60d9fb47bc181e59b8013e5d060a32247f20",
+      "rows_original": 6388,
+      "rows_exported": 6388,
+      "exact_duplicates_removed": 0,
+      "conflicting_keys": 0,
+      "matlab_variable": "newTable",
+      "matlab_units": [],
+      "matlab_descriptions": [],
+      "topology": "Song_DACFC_Pin_3",
+      "folder_labels": {
+        "tech_node": 180,
+        "vdd": 1.8,
+        "vcm": 0.4,
+        "cl": 500.0,
+        "run": "0"
+      },
+      "related_files": {
+        "TD": "Song_DACFC_Pin_3/180/1.8/0.4/500/0/ext_mat/TD_pop_data.mat",
+        "TBM": "Song_DACFC_Pin_3/180/1.8/0.4/500/0/ext_mat/TBM_pop_data.mat"
+      },
+      "quality_flags": {
+        "sr_negative": 92,
+        "sr_minus_one": 91,
+        "foml_negative": 92,
+        "settling_fields_equal": 3647
+      },
+      "unflagged_rows": 2650
+    },
+    {
+      "source_id": "src_f92201d6f06df3cd",
+      "relative_path": "Song_DACFC_Pin_3/180/1.8/0.4/500/1/ext_mat/Perf_pop_data.mat",
+      "source_sha256": "7785c7a4e25d3c7068524a66ec73d05630c16bd548117ca3fbcd5ef5b85e4e05",
+      "rows_original": 948,
+      "rows_exported": 948,
+      "exact_duplicates_removed": 0,
+      "conflicting_keys": 0,
+      "matlab_variable": "newTable",
+      "matlab_units": [],
+      "matlab_descriptions": [],
+      "topology": "Song_DACFC_Pin_3",
+      "folder_labels": {
+        "tech_node": 180,
+        "vdd": 1.8,
+        "vcm": 0.4,
+        "cl": 500.0,
+        "run": "1"
+      },
+      "related_files": {
+        "TD": "Song_DACFC_Pin_3/180/1.8/0.4/500/1/ext_mat/TD_pop_data.mat",
+        "TBM": "Song_DACFC_Pin_3/180/1.8/0.4/500/1/ext_mat/TBM_pop_data.mat"
+      },
+      "quality_flags": {
+        "sr_negative": 642,
+        "sr_minus_one": 642,
+        "foml_negative": 642,
+        "settling_fields_equal": 287
+      },
+      "unflagged_rows": 19
+    },
+    {
+      "source_id": "src_6d79edfde1fd6edd",
+      "relative_path": "Song_DACFC_Pin_3/180/1.8/0.4/500/2/ext_mat/Perf_pop_data.mat",
+      "source_sha256": "a72fe14838d56bf5a698f63e0163d49526efb681d028d43c5900f60bbfb898f5",
+      "rows_original": 6341,
+      "rows_exported": 6341,
+      "exact_duplicates_removed": 0,
+      "conflicting_keys": 0,
+      "matlab_variable": "newTable",
+      "matlab_units": [],
+      "matlab_descriptions": [],
+      "topology": "Song_DACFC_Pin_3",
+      "folder_labels": {
+        "tech_node": 180,
+        "vdd": 1.8,
+        "vcm": 0.4,
+        "cl": 500.0,
+        "run": "2"
+      },
+      "related_files": {
+        "TD": "Song_DACFC_Pin_3/180/1.8/0.4/500/2/ext_mat/TD_pop_data.mat",
+        "TBM": "Song_DACFC_Pin_3/180/1.8/0.4/500/2/ext_mat/TBM_pop_data.mat"
+      },
+      "quality_flags": {
+        "sr_negative": 413,
+        "sr_minus_one": 413,
+        "foml_negative": 413,
+        "settling_fields_equal": 4120
+      },
+      "unflagged_rows": 1808
+    },
+    {
+      "source_id": "src_b904b08432deaf58",
+      "relative_path": "Song_DACFC_Pin_3/180/1.8/0.9/800/0/ext_mat/Perf_pop_data.mat",
+      "source_sha256": "c5ea76702a238dbb4e55ad223bbf1ee9d032d01de3e7d01e7a28b7066387091b",
+      "rows_original": 1757,
+      "rows_exported": 1757,
+      "exact_duplicates_removed": 0,
+      "conflicting_keys": 0,
+      "matlab_variable": "newTable",
+      "matlab_units": [],
+      "matlab_descriptions": [],
+      "topology": "Song_DACFC_Pin_3",
+      "folder_labels": {
+        "tech_node": 180,
+        "vdd": 1.8,
+        "vcm": 0.9,
+        "cl": 800.0,
+        "run": "0"
+      },
+      "related_files": {
+        "TD": "Song_DACFC_Pin_3/180/1.8/0.9/800/0/ext_mat/TD_pop_data.mat",
+        "TBM": "Song_DACFC_Pin_3/180/1.8/0.9/800/0/ext_mat/TBM_pop_data.mat"
+      },
+      "quality_flags": {
+        "sr_negative": 953,
+        "sr_minus_one": 939,
+        "foml_negative": 953,
+        "settling_fields_equal": 387
+      },
+      "unflagged_rows": 431
+    },
+    {
+      "source_id": "src_27405daede08c24c",
+      "relative_path": "Song_DACFC_Pin_3/180/1.8/0.9/800/11/ext_mat/Perf_pop_data.mat",
+      "source_sha256": "51a6b0ba6184e2c2a779b47d70e9cc927317466c24b3475384df8ae51e48e5e9",
+      "rows_original": 4784,
+      "rows_exported": 4784,
+      "exact_duplicates_removed": 0,
+      "conflicting_keys": 0,
+      "matlab_variable": "newTable",
+      "matlab_units": [],
+      "matlab_descriptions": [],
+      "topology": "Song_DACFC_Pin_3",
+      "folder_labels": {
+        "tech_node": 180,
+        "vdd": 1.8,
+        "vcm": 0.9,
+        "cl": 800.0,
+        "run": "11"
+      },
+      "related_files": {
+        "TD": "Song_DACFC_Pin_3/180/1.8/0.9/800/11/ext_mat/TD_pop_data.mat",
+        "TBM": "Song_DACFC_Pin_3/180/1.8/0.9/800/11/ext_mat/TBM_pop_data.mat"
+      },
+      "quality_flags": {
+        "settling_fields_equal": 2751,
+        "sr_negative": 300,
+        "sr_minus_one": 292,
+        "foml_negative": 300
+      },
+      "unflagged_rows": 1741
+    },
+    {
+      "source_id": "src_dc94a8042d9d451f",
+      "relative_path": "Song_DACFC_Pin_3/180/1.8/0.9/800/1/ext_mat/Perf_pop_data.mat",
+      "source_sha256": "9bae9e5d25a4dc16acb5230c15cfcee15089d8601b9a03c9b2596a57695ef766",
+      "rows_original": 1402,
+      "rows_exported": 1402,
+      "exact_duplicates_removed": 0,
+      "conflicting_keys": 0,
+      "matlab_variable": "newTable",
+      "matlab_units": [],
+      "matlab_descriptions": [],
+      "topology": "Song_DACFC_Pin_3",
+      "folder_labels": {
+        "tech_node": 180,
+        "vdd": 1.8,
+        "vcm": 0.9,
+        "cl": 800.0,
+        "run": "1"
+      },
+      "related_files": {
+        "TD": "Song_DACFC_Pin_3/180/1.8/0.9/800/1/ext_mat/TD_pop_data.mat",
+        "TBM": "Song_DACFC_Pin_3/180/1.8/0.9/800/1/ext_mat/TBM_pop_data.mat"
+      },
+      "quality_flags": {
+        "sr_negative": 1019,
+        "sr_minus_one": 1018,
+        "foml_negative": 1019,
+        "settling_fields_equal": 355
+      },
+      "unflagged_rows": 29
+    },
+    {
+      "source_id": "src_fd3aa6d34e2089d1",
+      "relative_path": "Song_DACFC_Pin_3/180/1.8/0.9/800/2/ext_mat/Perf_pop_data.mat",
+      "source_sha256": "89410ba86116daf18765c9056b0630d1cbc915067988bb5e470221d370aad75f",
+      "rows_original": 12821,
+      "rows_exported": 12821,
+      "exact_duplicates_removed": 0,
+      "conflicting_keys": 0,
+      "matlab_variable": "newTable",
+      "matlab_units": [],
+      "matlab_descriptions": [],
+      "topology": "Song_DACFC_Pin_3",
+      "folder_labels": {
+        "tech_node": 180,
+        "vdd": 1.8,
+        "vcm": 0.9,
+        "cl": 800.0,
+        "run": "2"
+      },
+      "related_files": {
+        "TD": "Song_DACFC_Pin_3/180/1.8/0.9/800/2/ext_mat/TD_pop_data.mat",
+        "TBM": "Song_DACFC_Pin_3/180/1.8/0.9/800/2/ext_mat/TBM_pop_data.mat"
+      },
+      "quality_flags": {
+        "sr_negative": 409,
+        "sr_minus_one": 398,
+        "foml_negative": 409,
+        "settling_fields_equal": 3591
+      },
+      "unflagged_rows": 8832
+    },
+    {
+      "source_id": "src_6173971d8e85887f",
+      "relative_path": "Song_DACFC_Pin_3/180/1.8/0.9/800/3/ext_mat/Perf_pop_data.mat",
+      "source_sha256": "4055b946b6273f786aa41147e287e8d633bedf7c643d2c56a925db6a5aa4d352",
+      "rows_original": 5495,
+      "rows_exported": 5495,
+      "exact_duplicates_removed": 0,
+      "conflicting_keys": 0,
+      "matlab_variable": "newTable",
+      "matlab_units": [],
+      "matlab_descriptions": [],
+      "topology": "Song_DACFC_Pin_3",
+      "folder_labels": {
+        "tech_node": 180,
+        "vdd": 1.8,
+        "vcm": 0.9,
+        "cl": 800.0,
+        "run": "3"
+      },
+      "related_files": {
+        "TD": "Song_DACFC_Pin_3/180/1.8/0.9/800/3/ext_mat/TD_pop_data.mat",
+        "TBM": "Song_DACFC_Pin_3/180/1.8/0.9/800/3/ext_mat/TBM_pop_data.mat"
+      },
+      "quality_flags": {
+        "sr_negative": 740,
+        "sr_minus_one": 740,
+        "foml_negative": 740,
+        "settling_fields_equal": 1248
+      },
+      "unflagged_rows": 3507
+    },
+    {
+      "source_id": "src_5a535de5117b9a88",
+      "relative_path": "Song_DACFC_Pin_3/180/1.8/0.9/800/4/ext_mat/Perf_pop_data.mat",
+      "source_sha256": "c2c3405a5e62263dc3a531041e59ea41725d629409c43ef89ac91452fe1f1aa7",
+      "rows_original": 2762,
+      "rows_exported": 2762,
+      "exact_duplicates_removed": 0,
+      "conflicting_keys": 0,
+      "matlab_variable": "newTable",
+      "matlab_units": [],
+      "matlab_descriptions": [],
+      "topology": "Song_DACFC_Pin_3",
+      "folder_labels": {
+        "tech_node": 180,
+        "vdd": 1.8,
+        "vcm": 0.9,
+        "cl": 800.0,
+        "run": "4"
+      },
+      "related_files": {
+        "TD": "Song_DACFC_Pin_3/180/1.8/0.9/800/4/ext_mat/TD_pop_data.mat",
+        "TBM": "Song_DACFC_Pin_3/180/1.8/0.9/800/4/ext_mat/TBM_pop_data.mat"
+      },
+      "quality_flags": {
+        "sr_negative": 405,
+        "sr_minus_one": 382,
+        "foml_negative": 405,
+        "settling_fields_equal": 1641
+      },
+      "unflagged_rows": 739
+    },
+    {
+      "source_id": "src_8a433aa6ea33258e",
+      "relative_path": "Yan_AZ_Pin_3/180/1.8/0.4/15000/1/ext_mat/Perf_pop_data.mat",
+      "source_sha256": "1a26bf9bf1d11b82b17edb5ba75c6e3adf50b7e1482b5dd576f59c8d6496a37e",
+      "rows_original": 5797,
+      "rows_exported": 5797,
+      "exact_duplicates_removed": 0,
+      "conflicting_keys": 0,
+      "matlab_variable": "newTable",
+      "matlab_units": [],
+      "matlab_descriptions": [],
+      "topology": "Yan_AZ_Pin_3",
+      "folder_labels": {
+        "tech_node": 180,
+        "vdd": 1.8,
+        "vcm": 0.4,
+        "cl": 15000.0,
+        "run": "1"
+      },
+      "related_files": {
+        "TD": "Yan_AZ_Pin_3/180/1.8/0.4/15000/1/ext_mat/TD_pop_data.mat",
+        "TBM": "Yan_AZ_Pin_3/180/1.8/0.4/15000/1/ext_mat/TBM_pop_data.mat"
+      },
+      "quality_flags": {
+        "sr_negative": 1009,
+        "sr_minus_one": 958,
+        "foml_negative": 1009,
+        "settling_fields_equal": 3609
+      },
+      "unflagged_rows": 1230
+    },
+    {
+      "source_id": "src_77acec5e3acee767",
+      "relative_path": "Yan_AZ_Pin_3/180/1.8/0.9/800/0/ext_mat/Perf_pop_data.mat",
+      "source_sha256": "b533267f5f67c54b55a03c82dfb96860284607fba7ca8a63e4da63d1828df57d",
+      "rows_original": 4667,
+      "rows_exported": 4667,
+      "exact_duplicates_removed": 0,
+      "conflicting_keys": 0,
+      "matlab_variable": "newTable",
+      "matlab_units": [],
+      "matlab_descriptions": [],
+      "topology": "Yan_AZ_Pin_3",
+      "folder_labels": {
+        "tech_node": 180,
+        "vdd": 1.8,
+        "vcm": 0.9,
+        "cl": 800.0,
+        "run": "0"
+      },
+      "related_files": {
+        "TD": "Yan_AZ_Pin_3/180/1.8/0.9/800/0/ext_mat/TD_pop_data.mat",
+        "TBM": "Yan_AZ_Pin_3/180/1.8/0.9/800/0/ext_mat/TBM_pop_data.mat"
+      },
+      "quality_flags": {
+        "sr_negative": 492,
+        "sr_minus_one": 491,
+        "foml_negative": 492,
+        "settling_fields_equal": 1503
+      },
+      "unflagged_rows": 2673
+    },
+    {
+      "source_id": "src_fe805b59e3061db9",
+      "relative_path": "Yan_AZ_Pin_3/180/1.8/0.9/800/1/ext_mat/Perf_pop_data.mat",
+      "source_sha256": "1776f1ebbb5fdbc36b7d0c00ba5bc74fdc59c5cefa758b72eef5868d8b4d12fa",
+      "rows_original": 5660,
+      "rows_exported": 5660,
+      "exact_duplicates_removed": 0,
+      "conflicting_keys": 0,
+      "matlab_variable": "newTable",
+      "matlab_units": [],
+      "matlab_descriptions": [],
+      "topology": "Yan_AZ_Pin_3",
+      "folder_labels": {
+        "tech_node": 180,
+        "vdd": 1.8,
+        "vcm": 0.9,
+        "cl": 800.0,
+        "run": "1"
+      },
+      "related_files": {
+        "TD": "Yan_AZ_Pin_3/180/1.8/0.9/800/1/ext_mat/TD_pop_data.mat",
+        "TBM": "Yan_AZ_Pin_3/180/1.8/0.9/800/1/ext_mat/TBM_pop_data.mat"
+      },
+      "quality_flags": {
+        "sr_negative": 611,
+        "sr_minus_one": 593,
+        "foml_negative": 611,
+        "settling_fields_equal": 1001
+      },
+      "unflagged_rows": 4066
+    },
+    {
+      "source_id": "src_ca57eca58c664771",
+      "relative_path": "Yan_AZ_Pin_3/22/0.9/0.3/15000/0/ext_mat/Perf_pop_data.mat",
+      "source_sha256": "4f85309ab572ceded5bf5095e36874e3587260380991a25b28de60cbec88784d",
+      "rows_original": 6118,
+      "rows_exported": 6118,
+      "exact_duplicates_removed": 0,
+      "conflicting_keys": 0,
+      "matlab_variable": "newTable",
+      "matlab_units": [],
+      "matlab_descriptions": [],
+      "topology": "Yan_AZ_Pin_3",
+      "folder_labels": {
+        "tech_node": 22,
+        "vdd": 0.9,
+        "vcm": 0.3,
+        "cl": 15000.0,
+        "run": "0"
+      },
+      "related_files": {
+        "TD": "Yan_AZ_Pin_3/22/0.9/0.3/15000/0/ext_mat/TD_pop_data.mat",
+        "TBM": "Yan_AZ_Pin_3/22/0.9/0.3/15000/0/ext_mat/TBM_pop_data.mat"
+      },
+      "quality_flags": {
+        "sr_negative": 495,
+        "sr_minus_one": 448,
+        "foml_negative": 495,
+        "settling_fields_equal": 643
+      },
+      "unflagged_rows": 5027
+    },
+    {
+      "source_id": "src_55099ecff625bd1e",
+      "relative_path": "Yan_AZ_Pin_3/22/0.9/0.3/15000/1/ext_mat/Perf_pop_data.mat",
+      "source_sha256": "8cd5a421f66ae0148c64c23e771d609c28bcc8bc65799d706deee87e0555f4d1",
+      "rows_original": 6055,
+      "rows_exported": 6055,
+      "exact_duplicates_removed": 0,
+      "conflicting_keys": 0,
+      "matlab_variable": "newTable",
+      "matlab_units": [],
+      "matlab_descriptions": [],
+      "topology": "Yan_AZ_Pin_3",
+      "folder_labels": {
+        "tech_node": 22,
+        "vdd": 0.9,
+        "vcm": 0.3,
+        "cl": 15000.0,
+        "run": "1"
+      },
+      "related_files": {
+        "TD": "Yan_AZ_Pin_3/22/0.9/0.3/15000/1/ext_mat/TD_pop_data.mat",
+        "TBM": "Yan_AZ_Pin_3/22/0.9/0.3/15000/1/ext_mat/TBM_pop_data.mat"
+      },
+      "quality_flags": {
+        "sr_negative": 499,
+        "sr_minus_one": 493,
+        "foml_negative": 499,
+        "settling_fields_equal": 878
+      },
+      "unflagged_rows": 4684
+    },
+    {
+      "source_id": "src_ef4be3039c2aeb6f",
+      "relative_path": "Yan_AZ_Pin_3/22/0.9/0.3/15000/2/ext_mat/Perf_pop_data.mat",
+      "source_sha256": "b24862bfac3394e7318e847eae71fc9b05140ff40b326859afe7012db4c7ddfb",
+      "rows_original": 2189,
+      "rows_exported": 2189,
+      "exact_duplicates_removed": 0,
+      "conflicting_keys": 0,
+      "matlab_variable": "newTable",
+      "matlab_units": [],
+      "matlab_descriptions": [],
+      "topology": "Yan_AZ_Pin_3",
+      "folder_labels": {
+        "tech_node": 22,
+        "vdd": 0.9,
+        "vcm": 0.3,
+        "cl": 15000.0,
+        "run": "2"
+      },
+      "related_files": {
+        "TD": "Yan_AZ_Pin_3/22/0.9/0.3/15000/2/ext_mat/TD_pop_data.mat",
+        "TBM": "Yan_AZ_Pin_3/22/0.9/0.3/15000/2/ext_mat/TBM_pop_data.mat"
+      },
+      "quality_flags": {
+        "sr_negative": 552,
+        "sr_minus_one": 513,
+        "foml_negative": 552,
+        "settling_fields_equal": 1110
+      },
+      "unflagged_rows": 566
+    },
+    {
+      "source_id": "src_2d70b4d8f8e268f6",
+      "relative_path": "Yan_AZ_Pin_3/22/0.9/0.3/15000/3/ext_mat/Perf_pop_data.mat",
+      "source_sha256": "13df431651552d3515d501b59a8b5a5497653a9a3693d9d9d07bad7f1e5fb6e3",
+      "rows_original": 1236,
+      "rows_exported": 1236,
+      "exact_duplicates_removed": 0,
+      "conflicting_keys": 0,
+      "matlab_variable": "newTable",
+      "matlab_units": [],
+      "matlab_descriptions": [],
+      "topology": "Yan_AZ_Pin_3",
+      "folder_labels": {
+        "tech_node": 22,
+        "vdd": 0.9,
+        "vcm": 0.3,
+        "cl": 15000.0,
+        "run": "3"
+      },
+      "related_files": {
+        "TD": "Yan_AZ_Pin_3/22/0.9/0.3/15000/3/ext_mat/TD_pop_data.mat",
+        "TBM": "Yan_AZ_Pin_3/22/0.9/0.3/15000/3/ext_mat/TBM_pop_data.mat"
+      },
+      "quality_flags": {
+        "sr_negative": 598,
+        "sr_minus_one": 552,
+        "foml_negative": 598,
+        "settling_fields_equal": 660
+      },
+      "unflagged_rows": 24
+    },
+    {
+      "source_id": "src_cd7049f980c8c596",
+      "relative_path": "Yan_AZ_Pin_3/22/0.9/0.3/15000/4/ext_mat/Perf_pop_data.mat",
+      "source_sha256": "51cc384302b66335337825724ac814467bc86e1fffb7e37bf4eec71cc3d38b18",
+      "rows_original": 14,
+      "rows_exported": 14,
+      "exact_duplicates_removed": 0,
+      "conflicting_keys": 0,
+      "matlab_variable": "newTable",
+      "matlab_units": [],
+      "matlab_descriptions": [],
+      "topology": "Yan_AZ_Pin_3",
+      "folder_labels": {
+        "tech_node": 22,
+        "vdd": 0.9,
+        "vcm": 0.3,
+        "cl": 15000.0,
+        "run": "4"
+      },
+      "related_files": {
+        "TD": "Yan_AZ_Pin_3/22/0.9/0.3/15000/4/ext_mat/TD_pop_data.mat",
+        "TBM": "Yan_AZ_Pin_3/22/0.9/0.3/15000/4/ext_mat/TBM_pop_data.mat"
+      },
+      "quality_flags": {
+        "sr_negative": 14,
+        "foml_negative": 14,
+        "settling_fields_equal": 4,
+        "sr_minus_one": 10
+      },
+      "unflagged_rows": 0
+    },
+    {
+      "source_id": "src_333a4561dfa223b2",
+      "relative_path": "Yan_AZ_Pin_3/22/0.9/0.3/15000/5/ext_mat/Perf_pop_data.mat",
+      "source_sha256": "880e38dbe884f4cfc74497006df393ef6af5857ddac614cc98d6b555969c6ea8",
+      "rows_original": 5412,
+      "rows_exported": 5412,
+      "exact_duplicates_removed": 0,
+      "conflicting_keys": 0,
+      "matlab_variable": "newTable",
+      "matlab_units": [],
+      "matlab_descriptions": [],
+      "topology": "Yan_AZ_Pin_3",
+      "folder_labels": {
+        "tech_node": 22,
+        "vdd": 0.9,
+        "vcm": 0.3,
+        "cl": 15000.0,
+        "run": "5"
+      },
+      "related_files": {
+        "TD": "Yan_AZ_Pin_3/22/0.9/0.3/15000/5/ext_mat/TD_pop_data.mat",
+        "TBM": "Yan_AZ_Pin_3/22/0.9/0.3/15000/5/ext_mat/TBM_pop_data.mat"
+      },
+      "quality_flags": {
+        "sr_negative": 302,
+        "sr_minus_one": 302,
+        "foml_negative": 302,
+        "settling_fields_equal": 55
+      },
+      "unflagged_rows": 5055
+    },
+    {
+      "source_id": "src_9ea927eb51089bca",
+      "relative_path": "Yan_AZ_Pin_3/22/0.9/0.3/15000/6/ext_mat/Perf_pop_data.mat",
+      "source_sha256": "aa0240dcf645fe9c7565d9ef77deba0ee774ae35b9aa108d7fd3be1805c7fe4c",
+      "rows_original": 942,
+      "rows_exported": 942,
+      "exact_duplicates_removed": 0,
+      "conflicting_keys": 0,
+      "matlab_variable": "newTable",
+      "matlab_units": [],
+      "matlab_descriptions": [],
+      "topology": "Yan_AZ_Pin_3",
+      "folder_labels": {
+        "tech_node": 22,
+        "vdd": 0.9,
+        "vcm": 0.3,
+        "cl": 15000.0,
+        "run": "6"
+      },
+      "related_files": {
+        "TD": "Yan_AZ_Pin_3/22/0.9/0.3/15000/6/ext_mat/TD_pop_data.mat",
+        "TBM": "Yan_AZ_Pin_3/22/0.9/0.3/15000/6/ext_mat/TBM_pop_data.mat"
+      },
+      "quality_flags": {
+        "sr_negative": 601,
+        "sr_minus_one": 601,
+        "foml_negative": 601,
+        "settling_fields_equal": 335
+      },
+      "unflagged_rows": 6
+    },
+    {
+      "source_id": "src_4feb0b7b9c541f70",
+      "relative_path": "Yan_NCM_Pin_3/180/1.8/0.9/800/0/ext_mat/Perf_pop_data.mat",
+      "source_sha256": "bc07b78bc0e06d2881e9644350c9068e8e016395184d1cd1168044bc50df2e93",
+      "rows_original": 6456,
+      "rows_exported": 6456,
+      "exact_duplicates_removed": 0,
+      "conflicting_keys": 0,
+      "matlab_variable": "newTable",
+      "matlab_units": [],
+      "matlab_descriptions": [],
+      "topology": "Yan_NCM_Pin_3",
+      "folder_labels": {
+        "tech_node": 180,
+        "vdd": 1.8,
+        "vcm": 0.9,
+        "cl": 800.0,
+        "run": "0"
+      },
+      "related_files": {
+        "TD": "Yan_NCM_Pin_3/180/1.8/0.9/800/0/ext_mat/TD_pop_data.mat",
+        "TBM": "Yan_NCM_Pin_3/180/1.8/0.9/800/0/ext_mat/TBM_pop_data.mat"
+      },
+      "quality_flags": {
+        "sr_negative": 210,
+        "sr_minus_one": 171,
+        "foml_negative": 210,
+        "settling_fields_equal": 418
+      },
+      "unflagged_rows": 5867
+    },
+    {
+      "source_id": "src_f46a45174cc4ec58",
+      "relative_path": "Yan_NCM_Pin_3/180/1.8/0.9/800/1/ext_mat/Perf_pop_data.mat",
+      "source_sha256": "e55f23efec4d4464c48a692367ede9d3f934990b75313d58749961a72136c247",
+      "rows_original": 6457,
+      "rows_exported": 6457,
+      "exact_duplicates_removed": 0,
+      "conflicting_keys": 0,
+      "matlab_variable": "newTable",
+      "matlab_units": [],
+      "matlab_descriptions": [],
+      "topology": "Yan_NCM_Pin_3",
+      "folder_labels": {
+        "tech_node": 180,
+        "vdd": 1.8,
+        "vcm": 0.9,
+        "cl": 800.0,
+        "run": "1"
+      },
+      "related_files": {
+        "TD": "Yan_NCM_Pin_3/180/1.8/0.9/800/1/ext_mat/TD_pop_data.mat",
+        "TBM": "Yan_NCM_Pin_3/180/1.8/0.9/800/1/ext_mat/TBM_pop_data.mat"
+      },
+      "quality_flags": {
+        "sr_negative": 198,
+        "foml_negative": 198,
+        "settling_fields_equal": 148,
+        "sr_minus_one": 154
+      },
+      "unflagged_rows": 6155
+    },
+    {
+      "source_id": "src_e698dcd3f57c4f82",
+      "relative_path": "Yan_NCM_Pin_3/180/1.8/0.9/800/2/ext_mat/Perf_pop_data.mat",
+      "source_sha256": "093065ec652ce334df035779206edb09dc1b63935d4f2ef8f87b595d893e5942",
+      "rows_original": 6454,
+      "rows_exported": 6454,
+      "exact_duplicates_removed": 0,
+      "conflicting_keys": 0,
+      "matlab_variable": "newTable",
+      "matlab_units": [],
+      "matlab_descriptions": [],
+      "topology": "Yan_NCM_Pin_3",
+      "folder_labels": {
+        "tech_node": 180,
+        "vdd": 1.8,
+        "vcm": 0.9,
+        "cl": 800.0,
+        "run": "2"
+      },
+      "related_files": {
+        "TD": "Yan_NCM_Pin_3/180/1.8/0.9/800/2/ext_mat/TD_pop_data.mat",
+        "TBM": "Yan_NCM_Pin_3/180/1.8/0.9/800/2/ext_mat/TBM_pop_data.mat"
+      },
+      "quality_flags": {
+        "settling_fields_equal": 150,
+        "sr_negative": 176,
+        "sr_minus_one": 143,
+        "foml_negative": 176
+      },
+      "unflagged_rows": 6161
+    }
+  ],
+  "source_root_note": "Logical name of the original collection. Machine-specific absolute paths are omitted. Original MAT and TD/TBM files are not included."
+}

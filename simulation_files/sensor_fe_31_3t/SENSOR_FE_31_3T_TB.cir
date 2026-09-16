@@ -1,0 +1,64 @@
+SENSOR_FE_31_3T sensor core testbench (ngspice, sky130)
+* Upstream AnalogGym source: AnalogGym/Sensing Front End/front_end_31_3T_schematic
+* Testbench converted from: AnalogGym/Sensing Front End/TB_2T_sensor_core.sp
+
+.include ./SENSOR_FE_31_3T_netlist.txt
+
+.param mc_mm_switch=0
+.param mc_pr_switch=0
+.include ../sky130_pdk/libs.tech/ngspice/corners/tt.spice
+.include ../sky130_pdk/libs.tech/ngspice/r+c/res_typical__cap_typical.spice
+.include ../sky130_pdk/libs.tech/ngspice/r+c/res_typical__cap_typical__lin.spice
+.include ../sky130_pdk/libs.tech/ngspice/corners/tt/specialized_cells.spice
+
+.PARAM supply_voltage = 1.8
+.TEMP 27
+
+VGNDA GNDA 0 0
+VVDDA VDDA 0 DC 'supply_voltage' AC=1
+* subckt pins: GND VDD VOUT (vsense connects to VOUT)
+x0 GNDA VDDA vsense front_end_31_3T_schematic
+c0 vsense 0 0.2p
+
+.control
+save all
+set filetype=ascii
+set units=degrees
+
+* ---- supply current at 27C (op) ----
+op
+let idd = abs(i(VVDDA))
+let vsense_op = v(vsense)
+wrdata SENSOR_FE_31_3T_IDD idd
+print idd vsense_op
+
+* ---- PSR: AC=1 on supply, vdb(vsense) at low frequency ----
+ac dec 10 1 1e6
+meas ac psr FIND vdb(vsense) AT=1
+wrdata SENSOR_FE_31_3T_PSR psr
+
+* ---- line sensitivity: supply sweep 0.5x..1.5x of 1.8V ----
+dc VVDDA 0.9 2.7 0.018
+* LS window 0.8x..1.2x nominal = 1.44V..2.16V, range 0.4*1.8 = 0.72V
+meas dc maxls MAX v(vsense) from=1.44 to=2.16
+meas dc minls MIN v(vsense) from=1.44 to=2.16
+meas dc avgls AVG v(vsense) from=1.44 to=2.16
+meas dc ppls  PP  v(vsense) from=1.44 to=2.16
+let ls = ppls/avgls/0.72
+wrdata SENSOR_FE_31_3T_LS ls
+
+* ---- temperature characteristic (ngspice: dc temp sweeps temperature) ----
+dc temp 0 120 1
+meas dc vout25 FIND v(vsense) AT=25
+meas dc vout75 FIND v(vsense) AT=75
+let vtc = vout25
+let lsb = (vout75-vout25)/50
+meas dc maxv MAX v(vsense) from=0 to=120
+meas dc minv MIN v(vsense) from=0 to=120
+meas dc avgv AVG v(vsense) from=0 to=120
+meas dc ppv  PP  v(vsense) from=0 to=120
+let tc = ppv/avgv/120
+wrdata SENSOR_FE_31_3T_TEMP vtc lsb tc
+.endc
+
+.end

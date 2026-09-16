@@ -1,4 +1,21 @@
-"""Optional reward transformation helpers for GRPO experiments."""
+'''
+Reward Adapter for GRPO - Phase 3 Implementation
+
+This module provides different reward transformation strategies
+to adapt the original DDPG reward function for GRPO training.
+
+Original DDPG Reward Range: [-11, 0]
+- Each of 11 metrics contributes a score in [-1, 0]
+- Total reward = sum of 11 individual scores
+- reward = 0 means ALL metrics satisfied
+- reward = -11 means ALL metrics failed
+
+GRPO-Compatible Reward Strategies:
+1. Binary: {0, 1} - Simple success/failure
+2. Multi-level: {0, 0.5, 1.0, 1.5, 2.0} - Graduated rewards
+3. Normalized Continuous: [0, 2.0] - Smooth transformation
+4. Adaptive: Dynamic scaling based on training progress
+'''
 
 import numpy as np
 from typing import Dict, Tuple, Optional
@@ -27,7 +44,15 @@ class RewardConfig:
 
 
 class RewardAdapter:
-    """Transform legacy scalar rewards into alternative GRPO reward scales."""
+    """
+    Adapts DDPG reward [-11, 0] to GRPO-compatible rewards.
+
+    Supports multiple strategies:
+    - Binary: Simple 0/1 classification
+    - Multi-level: Graduated rewards based on satisfaction count
+    - Normalized: Linear transformation to [0, 2.0]
+    - Adaptive: Temperature-based softmax transformation
+    """
 
     def __init__(self, config: Optional[RewardConfig] = None):
         self.config = config if config is not None else RewardConfig()
@@ -85,11 +110,22 @@ class RewardAdapter:
         return transformed, info
 
     def _multi_level_transform(self, raw_reward: float, performance: Dict) -> Tuple[float, Dict]:
-        """Bucket the raw reward by the number of satisfied metrics."""
+        """
+        Multi-level reward based on number of satisfied metrics.
+
+        Logic:
+        - Count how many metrics are satisfied (score = 0)
+        - Assign reward based on satisfaction count:
+          * 11 satisfied → 2.0 (Excellent)
+          * 8-10 satisfied → 1.5 (Good)
+          * 5-7 satisfied → 1.0 (Fair)
+          * 2-4 satisfied → 0.5 (Poor)
+          * 0-1 satisfied → 0.0 (Failed)
+        """
         # Count satisfied metrics
         # In DDPG: each metric contributes score in [-1, 0]
         # score = 0 means satisfied
-        
+        # We approximate: num_satisfied ≈ 11 + raw_reward (since each failure is -1)
         num_satisfied = int(11 + raw_reward)
         num_satisfied = np.clip(num_satisfied, 0, 11)
 
@@ -165,7 +201,7 @@ class RewardAdapter:
         more binary as temperature decreases.
         """
         # Sigmoid transformation with temperature
-        
+        # Map [-11, 0] → [0, 2.0] with temperature control
         transformed = self.config.target_max / (1 + np.exp(-raw_reward / self.current_temperature))
 
         # Decay temperature
@@ -189,15 +225,30 @@ class RewardAdapter:
     # EHVI-based transformation (direct formula over raw scores)
     # ------------------------------------------------------------------
     def _ehvi_transform(self, raw_reward: float, performance: Dict) -> Tuple[float, Dict]:
-        """Compute an EHVI-inspired score from individual metric scores."""
+        """EHVI-like reward computed from raw per-metric scores using the new formula.
+
+        New formula (alpha=2):
+            r = -12 + 2 * exp( (1/M) * sum_{m=1..M} ln( 1 + 5 * exp(s_m / alpha) ) )
+
+        Where s_m are the original metric scores (≤ 0, 0 means satisfied),
+        and M is the count of included scores. This yields r ∈ [-10, 0].
+
+        Notes:
+        - We still filter out {TC_score, PSRP_score, PSRN_score} and never synthesize PSRR_score.
+        - Non-finite scores are treated as very negative (≈ contribute ln(1)→0).
+        - No piecewise/soft normalization; computed directly from raw scores.
+
+        If no score keys are present, return a strong negative sentinel (e.g., -999)
+        to indicate invalid transformation.
+        """
         # Extract raw metric scores
         raw_score_keys = [k for k in performance.keys() if k.endswith('_score')]
-        
+        # 需要排除的原始键
         exclude_keys = {'TC_score', 'PSRP_score', 'PSRN_score'}
-        
+        # 不再合成 PSRR_score，完全依赖环境返回
         score_keys = [k for k in raw_score_keys if k not in exclude_keys]
         if not score_keys:
-            
+            # No *_score keys → treat as invalid and return very bad reward
             transformed = -999.0
             info = {
                 'raw_reward': raw_reward,
@@ -215,7 +266,7 @@ class RewardAdapter:
         # Geometric mean via log; guard against any tiny numerical underflow
         log_g = float(np.mean(np.log(interior)))
         g = float(np.exp(log_g))
-        
+        # Reward scaling: r = -12 + 2g ∈ [-10, 0]
         transformed = float(-12.0 + 2.0 * g)
 
         info = {
@@ -357,7 +408,7 @@ if __name__ == '__main__':
 
     plt.tight_layout()
     plt.savefig('reward_transformation_strategies.png', dpi=150, bbox_inches='tight')
-    print("Reward transformation plot saved to: reward_transformation_strategies.png")
+    print("\n✓ Visualization saved to: reward_transformation_strategies.png")
 
     # Print sample transformations
     print("\n" + "="*80)
@@ -383,5 +434,5 @@ if __name__ == '__main__':
             print(f"  {strategy:15s}: {transformed:.4f}{extra_info}")
 
     print("\n" + "="*80)
-    print("Reward adapter test complete.")
+    print("✓ Reward Adapter Test Complete")
     print("="*80)

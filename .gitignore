@@ -46,6 +46,12 @@ model/
 *.pdf
 *.csv
 
-# Keep required demo normalization data
+# Keep per-circuit normalization data
 *.json
-!simulation_files/amp_dfcfc2/AMP_DFCFC2_op_mean_std.json
+!simulation_files/*/*_op_mean_std.json
+
+# Unused legacy PDK copy (the code uses simulation_files/sky130_pdk)
+mosfet_model/
+
+# Local assistant settings
+.claude/

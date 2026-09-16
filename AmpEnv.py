@@ -13,7 +13,6 @@ from dev_params import DeviceParams
 from utils import ActionNormalizer, OutputParser2
 
 class AmpEnv(DeviceParams):
-    """Ngspice-backed reinforcement-learning environment for amplifier sizing."""
     def __init__(self, circuit_config: dict):
         self.circuit_config = circuit_config
         self.ckt_hierarchy = tuple(tuple(item) for item in self.circuit_config.get('ckt_hierarchy', ()))
@@ -43,15 +42,16 @@ class AmpEnv(DeviceParams):
         self.action_space_high = np.array(action_high)
         self.action_space_step = action_step if action_step else None
         self.initial_params = np.array(initial_params)
+        self.initial_params = np.array(initial_params)
         self.action_dim = len(self.action_space_low)
 
-        # Generated simulation workspace. Circuit templates are kept read-only.
+        # Simulation directory
         self.base_sim_dir = os.path.join(os.getcwd(), 'simulation_output')
         if os.path.exists(self.base_sim_dir):
             shutil.rmtree(self.base_sim_dir)
         os.makedirs(self.base_sim_dir, exist_ok=True)
 
-        # Read-only simulation template directory resolved by circuit_config_loader.
+        # Simulation files directory - 使用 circuit_config_loader 已经处理好的完整路径
         self.simulation_files_dir = os.path.dirname(circuit_config['paths']['ACDC_cir_path'])
         self.path = circuit_config['paths']
         self.post_target_bonus_config = self.circuit_config.get('post_target_bonus', {}) or {}
@@ -60,7 +60,11 @@ class AmpEnv(DeviceParams):
         self.eps = 1e-8
 
     def _score_higher_better(self, value, target):
-        """Return a non-positive score for a maximize objective."""
+        """
+        Unified score calculation:指标越大越好
+        - Score = 0 when target is met
+        - Score ∈ [-0.5, 0) when target is not met
+        """
         if value is None or math.isnan(value) or math.isinf(value):
             return -1.0
         denominator = abs(value) + abs(target) + self.eps
@@ -68,7 +72,11 @@ class AmpEnv(DeviceParams):
         return min(0.0, score)
 
     def _score_lower_better(self, value, target):
-        """Return a non-positive score for a minimize objective."""
+        """
+        Unified score calculation:指标越小越好
+        - Score = 0 when target is met
+        - Score ∈ [-0.5, 0) when target is not met
+        """
         if value is None or math.isnan(value) or math.isinf(value):
             return -1.0
         denominator = abs(value) + abs(target) + self.eps
@@ -226,11 +234,8 @@ class AmpEnv(DeviceParams):
         return observation, info, reward
 
     def reset(self):
+        sim_dir = self.simulation_files_dir   
         """Run the initial simulations."""
-        sim_dir = os.path.join(self.base_sim_dir, 'reset')
-        os.makedirs(sim_dir, exist_ok=True)
-        files_to_copy = [os.path.basename(self.path['ACDC_cir_path']), os.path.basename(self.path['Tran_cir_path'])]
-        self._prepare_action_files(sim_dir, files_to_copy)
         # Use initial parameters from configuration
         individual_params = self._parse_action_to_params(self.initial_params)
         self._write_vars_file(sim_dir, individual_params)
@@ -248,10 +253,7 @@ class AmpEnv(DeviceParams):
         """
         action = ActionNormalizer(action_space_low=self.action_space_low, action_space_high=self.action_space_high, action_space_step=self.action_space_step).action(action)  # Convert [-1, 1] range back to normal range
         print(f"Action: {action}")
-        sim_dir = os.path.join(self.base_sim_dir, 'step')
-        os.makedirs(sim_dir, exist_ok=True)
-        files_to_copy = [os.path.basename(self.path['ACDC_cir_path']), os.path.basename(self.path['Tran_cir_path'])]
-        self._prepare_action_files(sim_dir, files_to_copy)
+        sim_dir = self.simulation_files_dir
         # Run simulations
         individual_params = self._parse_action_to_params(action)
         self._write_vars_file(sim_dir, individual_params)
@@ -344,7 +346,8 @@ class AmpEnv(DeviceParams):
             src_file = os.path.join(self.simulation_files_dir, filename)
             dest_file = os.path.join(action_dir, filename)
             
-            shutil.copy(src_file, dest_file)
+            if not os.path.exists(dest_file):
+                shutil.copy(src_file, dest_file)
             
             with open(dest_file, 'r') as f:
                 content = f.read()
@@ -523,7 +526,7 @@ class AmpEnv(DeviceParams):
         PSRN = 0 if ac_results is None else ac_results[3][1]
         dcgain = 0 if ac_results is None else ac_results[4][1]
         
-        
+        # cmrrdc、PSRP、PSRN、PSRR: value is negative (dB), larger absolute value (more negative) is better
         cmrrdc_score = -1.0 if cmrrdc > 0 else self._score_lower_better(cmrrdc, performance['cmrrdc']['target'])
         PSRP_score = -1.0 if PSRP > 0 else self._score_lower_better(PSRP, performance['PSRP']['target'])
         PSRN_score = -1.0 if PSRN > 0 else self._score_lower_better(PSRN, performance['PSRN']['target'])
@@ -817,7 +820,7 @@ class AmpEnv(DeviceParams):
             elif row_key.startswith('R'):
                 row = list(row_format)
                 M_R_key = f"M_{row_key.upper()}"
-                
+                # 从实际参数中获取
                 Rsheet = 1112.4
                 L_R = 3.0
                 W_R = 0.35
@@ -932,14 +935,14 @@ class AmpEnv(DeviceParams):
         for dtype in device_types:
             data = op_results[dtype]
             if data and len(data) > 0:
-                
+                # 合并所有仿真结果的设备数据
                 combined_data = []
                 for sim_data in data:
                     if isinstance(sim_data, np.ndarray) and sim_data.size > 0:
                         combined_data.append(sim_data)
                 
                 if combined_data:
-                    
+                    # 堆叠所有数据
                     stacked_data = np.vstack(combined_data)
                     mean = np.mean(stacked_data, axis=0)
                     std = np.std(stacked_data, axis=0)

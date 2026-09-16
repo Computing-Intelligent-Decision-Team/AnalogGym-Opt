@@ -1,0 +1,17 @@
+* SENSOR_PTAT_CLASSIC netlist (sky130 conversion)
+* Upstream AnalogGym source: AnalogGym/Sensing Front End/ptat_classic
+* Classic 4T + 1R PTAT core (beta-multiplier style); r0 kept as ideal resistor.
+* Device mapping: nch_mac -> sky130_fd_pr__nfet_01v8, pch_mac -> sky130_fd_pr__pfet_01v8
+* (l/w in microns), m kept, nf dropped, layout params dropped.
+.SUBCKT PTAT_CLASSIC VDDA vsense GNDA
+* xm0: original l=350n w=2u m=1
+XM0 vsense net1 net12 net12 sky130_fd_pr__nfet_01v8 l=0.35 w=2 m=1
+* xm1: original l=350n w=2u m=1
+XM1 net1 net1 gnda gnda sky130_fd_pr__nfet_01v8 l=0.35 w=2 m=1
+* xm3: original l=300n w=2u m=1
+XM3 vsense vsense VDDA VDDA sky130_fd_pr__pfet_01v8 l=0.3 w=2 m=1
+* xm4: original l=300n w=2u m=1
+XM4 net1 vsense VDDA VDDA sky130_fd_pr__pfet_01v8 l=0.3 w=2 m=1
+* r0: ideal resistor kept from upstream
+r0 net12 gnda 1000
+.ENDS

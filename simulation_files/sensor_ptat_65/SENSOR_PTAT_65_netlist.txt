@@ -1,0 +1,17 @@
+* SENSOR_PTAT_65 netlist (sky130 conversion)
+* Upstream AnalogGym source: AnalogGym/Sensing Front End/PTAT_65_classic1
+* (spectre syntax: subckt PTAT_65_classic1 GND VDD VOUT, converted to ngspice)
+* Device mapping: nch_mac -> sky130_fd_pr__nfet_01v8, pch_mac -> sky130_fd_pr__pfet_01v8
+* (l/w in microns), multi -> m, nf dropped, all layout/mismatch params dropped.
+* ALL 4 devices were l=60n w=200n upstream (65nm PDK):
+*   CLAMPED to sky130 bin limits: l 0.06 -> 0.15, w 0.2 -> 0.42
+.SUBCKT PTAT_65_classic1 GND VDD VOUT
+* M1: original l=60n w=200n multi=1  (l,w clamped to 0.15/0.42)
+XM1 net3 net3 GND GND sky130_fd_pr__nfet_01v8 l=0.15 w=0.42 m=1
+* M0: original l=60n w=200n multi=1  (l,w clamped to 0.15/0.42)
+XM0 VOUT net3 GND GND sky130_fd_pr__nfet_01v8 l=0.15 w=0.42 m=1
+* M3: original l=60n w=200n multi=1  (l,w clamped to 0.15/0.42)
+XM3 VOUT VOUT VDD VDD sky130_fd_pr__pfet_01v8 l=0.15 w=0.42 m=1
+* M4: original l=60n w=200n multi=1  (l,w clamped to 0.15/0.42)
+XM4 net3 VOUT VDD VDD sky130_fd_pr__pfet_01v8 l=0.15 w=0.42 m=1
+.ENDS

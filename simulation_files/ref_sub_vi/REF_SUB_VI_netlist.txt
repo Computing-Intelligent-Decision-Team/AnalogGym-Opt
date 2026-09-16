@@ -1,0 +1,68 @@
+* REF_SUB_VI: Sub-threshold voltage and current reference (sky130 conversion)
+* Upstream AnalogGym source:
+*   E:\AnalogGym_opt\_analoggym_upstream\AnalogGym\Voltage Reference\
+*   "Description of  Voltage References  in AnalogGym.md"
+*   section "Sub-threshold voltage and current reference" (netlist code block, ~lines 222-261)
+* Device mapping: NMOS -> sky130_fd_pr__nfet_01v8, PMOS -> sky130_fd_pr__pfet_01v8
+*   (all layout params sd/ad/as/ps/pd/nrs/nrd/sa/sb/nf dropped; L/W converted to microns;
+*    all original W >= 0.42um and L >= 0.18um, so no sky130 min-size clamps were needed)
+* PNP q0 (pbhvnwpsub2_ga, vertical PNP to substrate) -> sky130_fd_pr__pnp_05v5_w3p40l3p40
+*   subckt, pin order (Collector Base Emitter), verified with a probe deck (V_EB=0.68V @ 1uA).
+* rppolyhri3k high-res poly resistors -> ideal resistors, assuming Rsheet ~ 3 kohm/sq:
+*   R = 3k * L/W  (W=0.73u,L=1000u -> 4.1096Meg ; W=0.42u,L=1000u -> 7.1429Meg each)
+
+.subckt REF_SUB_VI gnd vdda vref
+
+* ---- error amplifier (nested; NOTE: inside OPA the net "vcc" is the NEGATIVE rail) ----
+.subckt OPA ib out va vb vcc vdd
+XMB1 ib   ib   vcc  vcc sky130_fd_pr__nfet_01v8 l=2.85 w=7.23  m=1
+XMB2 net1 ib   vcc  vcc sky130_fd_pr__nfet_01v8 l=2.85 w=7.23  m=1
+XMB3 net1 net1 vdd  vdd sky130_fd_pr__pfet_01v8 l=9.59 w=2.67  m=1
+XMB4 vbn  net1 vdd  vdd sky130_fd_pr__pfet_01v8 l=9.59 w=2.67  m=1
+XMB5 vbn  vbn  net7 vcc sky130_fd_pr__nfet_01v8 l=10   w=20    m=1
+XMB6 net7 net7 vcc  vcc sky130_fd_pr__nfet_01v8 l=10   w=20    m=1
+XMA1 net9  net1  vdd   vdd sky130_fd_pr__pfet_01v8 l=9.59 w=2.67  m=1
+XMA2 net25 va    net9  vdd sky130_fd_pr__pfet_01v8 l=7.52 w=16.6  m=1
+XMA3 net29 vb    net9  vdd sky130_fd_pr__pfet_01v8 l=7.52 w=16.6  m=1
+XMA4 net25 ib    vcc   vcc sky130_fd_pr__nfet_01v8 l=2.07 w=0.71  m=9
+XMA5 net29 ib    vcc   vcc sky130_fd_pr__nfet_01v8 l=2.07 w=0.71  m=9
+XMA6 net10 vbn   net25 vcc sky130_fd_pr__nfet_01v8 l=10   w=20    m=9
+XMA7 out   vbn   net29 vcc sky130_fd_pr__nfet_01v8 l=10   w=20    m=9
+XMA8 net10 net10 vdd   vdd sky130_fd_pr__pfet_01v8 l=10   w=3     m=4
+XMA9 out   net10 vdd   vdd sky130_fd_pr__pfet_01v8 l=10   w=3     m=4
+.ends OPA
+
+* ---- reference core ----
+xi1 ib net3 net4 net2 gnd vdda OPA
+c1 vref gnd 1e-12
+c0 vdda net3 1e-12
+
+* vertical PNP, diode-connected (C=gnd B=gnd E=net2); original: pbhvnwpsub2_ga m=1
+XQ0 gnd gnd net2 sky130_fd_pr__pnp_05v5_w3p40l3p40
+
+XM1 net2 net3 vdda vdda sky130_fd_pr__pfet_01v8 l=10   w=18.56 m=8
+XM2 net4 net3 vdda vdda sky130_fd_pr__pfet_01v8 l=10   w=37.12 m=8
+XM3 net8 net3 vdda vdda sky130_fd_pr__pfet_01v8 l=10   w=18.56 m=8
+XM4 net9 net3 vdda vdda sky130_fd_pr__pfet_01v8 l=10   w=18.56 m=8
+XM5 ib   net3 vdda vdda sky130_fd_pr__pfet_01v8 l=8.73 w=2.94  m=1
+
+XM6 net8  net8 net10 gnd sky130_fd_pr__nfet_01v8 l=5.74 w=12.76 m=6
+XM7 net10 net8 net5  gnd sky130_fd_pr__nfet_01v8 l=3.79 w=1.13  m=1
+XM8 net9  net9 vref  gnd sky130_fd_pr__nfet_01v8 l=1.11 w=15.29 m=8
+XM9 vref  net9 net10 gnd sky130_fd_pr__nfet_01v8 l=10   w=2.64  m=2
+
+* ---- startup ----
+* XMS1 is a MOS capacitor (drain=source=bulk=vdda), couples net1 up during supply ramp
+XMS1 vdda net1 vdda vdda sky130_fd_pr__pfet_01v8 l=0.18 w=7.06 m=10
+XMS2 net3 net1 gnd  gnd  sky130_fd_pr__nfet_01v8 l=0.85 w=1.98 m=1
+XMS3 net1 vref gnd  gnd  sky130_fd_pr__nfet_01v8 l=0.18 w=6.27 m=1
+
+* ---- resistors (were rppolyhri3k high-res poly, Rsheet ~3k/sq) ----
+* xr2: W=0.73u L=1000u -> 3k*1000/0.73 = 4.1096 Mohm
+Rxr2 net5 gnd 4.1096meg
+* xr1 split in two series segments, W=0.42u L=1000u each -> 3k*1000/0.42 = 7.1429 Mohm
+* (original mid node name "xr1_1__dmy0" kept)
+Rxr1_1 net4 xr1_1__dmy0 7.1429meg
+Rxr1_2 xr1_1__dmy0 net5 7.1429meg
+
+.ends REF_SUB_VI

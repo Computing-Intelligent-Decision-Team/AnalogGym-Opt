@@ -1,6 +1,11 @@
-"""Command-line entry point for the AnalogGym-Opt GRPO demo."""
+"""
+GRPO Training Script for Amplifier (AMP) Circuits.
 
-import argparse
+This script runs the existing TT optimization loop and optionally attaches
+an outer-loop PVT proxy/verification workflow without changing the TT PPO
+update logic.
+"""
+
 import inspect
 import json
 import os
@@ -12,6 +17,7 @@ import numpy as np
 import torch
 
 from AmpEnv import AmpEnv
+from env_factory import make_env
 from circuit_config_loader import CircuitConfigLoader
 from dev_params import DeviceParams
 from grpo import GRPOAgent, Episode
@@ -39,40 +45,9 @@ CIRCUIT_NAME = "amp_dfcfc2"
 GNN = PolicyNetRGCN
 QUICK_CONFIG = {
     "num_steps": 300,
-    "enable_full_pvt_training": False,
-    "enable_pvt_outer_loop": True,
+    "enable_full_pvt_training": False,  # True = every step runs real full-corner PVT
+    "enable_pvt_outer_loop": True,     # True = keep TT training, add VAE proxy + selective real PVT verify
 }
-
-MODE_TO_QUICK_CONFIG = {
-    "tt-only": {
-        "enable_full_pvt_training": False,
-        "enable_pvt_outer_loop": False,
-    },
-    "tt-proxy": {
-        "enable_full_pvt_training": False,
-        "enable_pvt_outer_loop": True,
-    },
-    "full-pvt": {
-        "enable_full_pvt_training": True,
-        "enable_pvt_outer_loop": False,
-    },
-}
-
-
-def parse_args(argv=None):
-    parser = argparse.ArgumentParser(
-        description="Run the AnalogGym-Opt GRPO demo.",
-        formatter_class=argparse.ArgumentDefaultsHelpFormatter,
-    )
-    parser.add_argument("--circuit", default=CIRCUIT_NAME, help="Circuit config name.")
-    parser.add_argument("--steps", type=int, default=QUICK_CONFIG["num_steps"], help="Training steps.")
-    parser.add_argument(
-        "--mode",
-        choices=sorted(MODE_TO_QUICK_CONFIG),
-        default="tt-proxy",
-        help="Training runtime mode.",
-    )
-    return parser.parse_args(argv)
 
 
 def _rank_episodes(agent: GRPOAgent, episodes: List[Episode]) -> List[Episode]:
@@ -419,15 +394,7 @@ def _save_recommended_records(
     return records
 
 
-def main(argv=None):
-    args = parse_args(argv)
-    global CIRCUIT_NAME, QUICK_CONFIG
-    CIRCUIT_NAME = args.circuit
-    QUICK_CONFIG = {
-        "num_steps": max(1, int(args.steps)),
-        **MODE_TO_QUICK_CONFIG[args.mode],
-    }
-
+def main():
     print("=" * 80)
     print("GRPO Training for Analog Circuit Optimization")
     print(f"Circuit: {CIRCUIT_NAME}")
@@ -438,7 +405,7 @@ def main(argv=None):
     print(f"  Reported metrics: {get_reporting_config_keys(circuit_config['performance'])}")
     print("=" * 80)
 
-    dev_initial = False
+    dev_initial = True
     if dev_initial:
         ckt_hierarchy = tuple(tuple(item) for item in circuit_config.get("ckt_hierarchy", ()))
         dev_params_script = DeviceParams(ckt_hierarchy).gen_dev_params(
@@ -451,12 +418,12 @@ def main(argv=None):
     op_initial = False
     if op_initial:
         print("\n[Step 0] Generating OP statistics...")
-        env = AmpEnv(circuit_config)
+        env = make_env(circuit_config)
         env._init_random_sim(100)
         print(f"[OK] OP statistics generated and saved to {CIRCUIT_NAME}_op_mean_std.json")
 
     print("\n[Step 1] Initializing environment...")
-    env = AmpEnv(circuit_config)
+    env = make_env(circuit_config)
     dummy_state, dummy_info = env.reset()
 
     quick_config = dict(QUICK_CONFIG)
@@ -545,7 +512,7 @@ def main(argv=None):
         print(f"  {key:30s}: {value}")
     print("=" * 80)
 
-    print("\n[Step 3] Initializing GRPO agent...")
+    print("\n[Step 3] Initializing GRPO Agent...")
     policy_network = GNN().Actor(circuit_config)
 
     wandb_logger = None
@@ -673,7 +640,7 @@ def main(argv=None):
         _ = policy_network(dummy_state_tensor)
     print(f"  Total Parameters: {sum(p.numel() for p in policy_network.parameters()):,}")
 
-    print("\n[Step 4] Starting training...")
+    print("\n[Step 4] Starting Training...")
     agent.train(
         num_steps=config["num_steps"],
         num_circuits_per_step=config["num_circuits_per_step"],
@@ -682,7 +649,7 @@ def main(argv=None):
     )
     print("\n[OK] Training complete!")
 
-    print("\n[Step 5] Running final evaluation...")
+    print("\n[Step 5] Final Evaluation...")
     final_eval_num_designs = max(1, int(config.get("final_eval_num_designs", 20)))
     recommended_num_designs = max(1, int(config.get("recommended_num_designs", 5)))
     print(f"\nGenerating final TT designs ({final_eval_num_designs})...")
@@ -892,7 +859,7 @@ def main(argv=None):
             f"pm_feasible={verify_pvt_episode.pm_feasible}, pm_violation={verify_pvt_episode.pm_violation:.4f}"
         )
 
-    print("\n[Step 6] Saving results...")
+    print("\n[Step 6] Saving Results...")
     tt_top_design_records = _save_top_designs(
         agent,
         env,
@@ -1028,6 +995,21 @@ def main(argv=None):
         print(f"  Recommended Verified-PVT Candidates: {len(recommended_verified_pvt_records)}")
     print(f"  Final Mean Training Reward: {np.mean(agent.reward_history[-10:]):.4f}")
     print(f"  Final Success Rate: {np.mean(agent.success_rate_history[-10:]):.2%}")
+    print("=" * 80)
+
+    print("\n" + "=" * 80)
+    print("GRPO vs DDPG Comparison Notes:")
+    print("=" * 80)
+    print("GRPO Advantages:")
+    print("  [OK] No Critic network (50% memory reduction)")
+    print("  [OK] Group-relative advantages (more stable)")
+    print("  [OK] Simpler architecture")
+    print("\nGRPO Trade-offs:")
+    print("  [WARN] Requires more simulations per step (group sampling)")
+    print("  [WARN] On-policy learning (cannot reuse old data)")
+    print("\nTo compare with DDPG:")
+    print("  1. Run: python ../RGNN_RL/main_AMP.py")
+    print("  2. Compare best_reward and convergence speed")
     print("=" * 80)
 
     print("\n[OK] GRPO training script complete!")

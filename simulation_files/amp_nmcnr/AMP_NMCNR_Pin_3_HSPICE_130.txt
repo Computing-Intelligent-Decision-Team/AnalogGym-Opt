@@ -1,0 +1,29 @@
+.subckt Leung_NMCNR_Pin_3 gnda vdda vinn vinp vout Ib
+XM11 vout Ib vdda vdda sky130_fd_pr__pfet_01v8 l=L_M0 w='W_M0*1' m='M_M0*10'  
+XM7 net049 Ib vdda vdda sky130_fd_pr__pfet_01v8 l=L_M0 w='W_M0*1' m=M_M0   
+XM10 net043 net050 vdda vdda sky130_fd_pr__pfet_01v8 l=L_M10 w='W_M10*1' m=M_M10   
+XM6 net050 voutn vdda vdda sky130_fd_pr__pfet_01v8 l=L_M0 w='W_M0*1' m=M_M0  
+XM5 voutn voutn vdda vdda sky130_fd_pr__pfet_01v8 l=L_M0 w='W_M0*1' m=M_M0   
+XM9 net063 vinp net31 net31 sky130_fd_pr__pfet_01v8 l=L_M8 w='W_M8*1' m=M_M8   
+XM8 dm_2 vinn net31 net31 sky130_fd_pr__pfet_01v8 l=L_M8 w='W_M8*1' m=M_M8   
+XM4 net31 Ib vdda vdda sky130_fd_pr__pfet_01v8 l=L_M0 w='W_M0*1' m='4*M_M0'   
+XM3 vb3 Ib vdda vdda sky130_fd_pr__pfet_01v8 l=L_M0 w='W_M0*1' m=M_M0   
+XM2 dm_1 Ib vdda vdda sky130_fd_pr__pfet_01v8 l=L_M0 w='W_M0*1' m=M_M0   
+XM1 vb4 Ib vdda vdda sky130_fd_pr__pfet_01v8 l=L_M0 w='W_M0*1' m=M_M0   
+XM0 Ib Ib vdda vdda sky130_fd_pr__pfet_01v8 l=L_M0 w='W_M0*1' m=M_M0   
+XM23 vout net049 gnda gnda sky130_fd_pr__nfet_01v8 l=L_M23 w='W_M23*1' m=M_M23   
+XM22 net049 net043 gnda gnda sky130_fd_pr__nfet_01v8 l=L_M21 w='W_M21*1' m=M_M21   
+XM21 net043 net043 gnda gnda sky130_fd_pr__nfet_01v8 l=L_M21 w='W_M21*1' m=M_M21   
+XM19 dm_2 vb4 gnda gnda sky130_fd_pr__nfet_01v8 l=L_M17 w='W_M17*1' m='M_M17*8'   
+XM15 voutn vb3 dm_2 gnda sky130_fd_pr__nfet_01v8 l=L_M17 w='W_M17*1' m='M_M17*4'   
+XM20 net063 vb4 gnda gnda sky130_fd_pr__nfet_01v8 l=L_M17 w='W_M17*1' m='M_M17*8'   
+XM16 net050 vb3 net063 gnda sky130_fd_pr__nfet_01v8 l=L_M17 w='W_M17*1' m='M_M17*4'  
+XM17 net54 vb4 gnda gnda sky130_fd_pr__nfet_01v8 l=L_M17 w='W_M17*1' m='M_M17*4'  
+XM14 vb3 vb3 gnda gnda sky130_fd_pr__nfet_01v8 l=L_M17 w='W_M17*1' m=M_M17   
+XM12 vb4 vb3 net54 gnda sky130_fd_pr__nfet_01v8 l=L_M17 w='W_M17*1' m='M_M17*4'   
+XM18 net56 vb4 gnda gnda sky130_fd_pr__nfet_01v8 l=L_M17 w='W_M17*1' m='M_M17*4'   
+XM13 dm_1 vb3 net56 gnda sky130_fd_pr__nfet_01v8 l=L_M17 w='W_M17*1' m='M_M17*4'   
+XC0 net050 net044 sky130_fd_pr__cap_mim_m3_1 W=30 L=30 MF=M_C0 m=M_C0
+XC1 net044 net049 sky130_fd_pr__cap_mim_m3_1 W=30 L=30 MF=M_C1 m=M_C1
+XR0 net044 vout gnda sky130_fd_pr__res_high_po_0p35 L=3 mult=M_R0 m=M_R0
+.ends Leung_NMCNR_Pin_3

@@ -1,0 +1,30 @@
+.subckt Tan_CLIA_Pin_3 gnda vdda vinn vinp vout Ib
+XM73 net5 dm_1 vdda vdda sky130_fd_pr__pfet_01v8 l=L_M0 w='W_M0*1' m='12*M_M0'
+XM70 net3 net050 vdda vdda sky130_fd_pr__pfet_01v8 l=L_M70 w='W_M70*1' m=M_M70
+XM2 dm_1 dm_1 vdda vdda sky130_fd_pr__pfet_01v8 l=L_M0 w='W_M0*1' m='M_M0*4'
+XM68 vout net050 vdda vdda sky130_fd_pr__pfet_01v8 l=L_M68 w='W_M68*1' m=M_M68
+XM6 net050 voutn vdda vdda sky130_fd_pr__pfet_01v8 l=L_M5 w='W_M5*1' m=M_M5
+XM5 voutn voutn vdda vdda sky130_fd_pr__pfet_01v8 l=L_M5 w='W_M5*1' m=M_M5
+XM9 net8 vinp net31 net31 sky130_fd_pr__pfet_01v8 l=L_M8 w='W_M8*1' m=M_M8
+XM8 dm_2 vinn net31 net31 sky130_fd_pr__pfet_01v8 l=L_M8 w='W_M8*1' m=M_M8
+XM4 net31 Ib vdda vdda sky130_fd_pr__pfet_01v8 l=L_M0 w='W_M0*1' m='8*M_M0'
+XM3 vb3 Ib vdda vdda sky130_fd_pr__pfet_01v8 l=L_M0 w='W_M0*1' m='M_M0*4'
+XM1 vb4 Ib vdda vdda sky130_fd_pr__pfet_01v8 l=L_M0 w='W_M0*1' m='M_M0*4'
+XM0 Ib Ib vdda vdda sky130_fd_pr__pfet_01v8 l=L_M0 w='W_M0*1' m='M_M0*4'
+XM72 net5 net3 gnda gnda sky130_fd_pr__nfet_01v8 l=L_M71 w='W_M71*1' m='M_M71*3'
+XM61 net3 vb4 gnda gnda sky130_fd_pr__nfet_01v8 l=L_M17 w='W_M17*1' m='M_M17*6'
+XM71 net3 net3 gnda gnda sky130_fd_pr__nfet_01v8 l=L_M71 w='W_M71*1' m=M_M71
+XM19 dm_2 vb4 gnda gnda sky130_fd_pr__nfet_01v8 l=L_M17 w='W_M17*1' m='M_M17*12'
+XM15 voutn vb3 dm_2 gnda sky130_fd_pr__nfet_01v8 l=L_M17 w='W_M17*1' m='M_M17*8'
+XM20 net8 vb4 gnda gnda sky130_fd_pr__nfet_01v8 l=L_M17 w='W_M17*1' m='M_M17*12'
+XM16 net050 vb3 net8 gnda sky130_fd_pr__nfet_01v8 l=L_M17 w='W_M17*1' m='M_M17*8'
+XM18 net7 vb4 gnda gnda sky130_fd_pr__nfet_01v8 l=L_M17 w='W_M17*1' m='M_M17*4'
+XM12 vb4 vb3 net6 gnda sky130_fd_pr__nfet_01v8 l=L_M17 w='W_M17*1' m='M_M17*4'
+XM13 dm_1 vb3 net7 gnda sky130_fd_pr__nfet_01v8 l=L_M17 w='W_M17*1' m='M_M17*4'
+XM17 net6 vb4 gnda gnda sky130_fd_pr__nfet_01v8 l=L_M17 w='W_M17*1' m='M_M17*4'
+XM69 vout net5 gnda gnda sky130_fd_pr__nfet_01v8 l=L_M69 w='W_M69*1' m=M_M69
+XM14 vb3 vb3 gnda gnda sky130_fd_pr__nfet_01v8 l=L_M17 w='W_M17*1' m=M_M17
+XR0 net5 net2 gnda sky130_fd_pr__res_high_po_0p35 L=311.56 mult=M_R0 m=M_R0
+XC0 net2 gnda sky130_fd_pr__cap_mim_m3_1 W=30 L=30 MF=M_C0 m=M_C0
+XC1 net8 vout sky130_fd_pr__cap_mim_m3_1 W=30 L=30 MF=M_C1 m=M_C1
+.ends Tan_CLIA_Pin_3

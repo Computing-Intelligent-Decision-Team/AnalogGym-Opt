@@ -14,14 +14,14 @@ os.environ['CUDA_LAUNCH_BLOCKING'] = "1"
 
 
 class ActionNormalizer():
-    """Map actions between normalized policy space and physical parameter ranges."""
+    """Rescale and relocate the actions."""
     def __init__(self, action_space_low, action_space_high, action_space_step=None):
         self.action_space_low = action_space_low     
         self.action_space_high = action_space_high
         self.action_space_step = action_space_step
 
     def action(self, action: np.ndarray) -> np.ndarray:
-        """Convert an action from [-1, 1] to the configured physical range."""
+        """Change the range (-1, 1) to (low, high), considering minimum step if provided."""
         low, high = self.action_space_low, self.action_space_high
         # Rescale action from [-1, 1] to [low, high]
         action = low + (action + 1) * (high - low) / 2
@@ -41,7 +41,7 @@ class ActionNormalizer():
         return action
 
     def reverse_action(self, action: np.ndarray) -> np.ndarray:
-        """Convert a physical parameter value back to [-1, 1]."""
+        """Change the range (low, high) to (-1, 1)."""
         low, high = self.action_space_low, self.action_space_high
         
         # Rescale action from [low, high] to [-1, 1]
@@ -54,7 +54,7 @@ class OutputParser2(DeviceParams):
     
     def __init__(self, ckt_hierarchy, base_dir: str = None):
         self.ckt_hierarchy = ckt_hierarchy 
-        
+        # 初始化op字典
         self.op = {}
         for device in self.ckt_hierarchy:
             device_name = device[0]
@@ -66,8 +66,8 @@ class OutputParser2(DeviceParams):
 
     def ac(self, file_name):
         try:
-            ac_file = open(f'{self.base_dir}/{file_name}', 'r')  
-            lines_ac = ac_file.readlines()     
+            AMP_PFC_ac = open(f'{self.base_dir}/{file_name}', 'r')  
+            lines_ac = AMP_PFC_ac.readlines()     
             freq = []                        
             cmrrdc_ac = []
             PSRP_ac = []
@@ -80,7 +80,7 @@ class OutputParser2(DeviceParams):
                 cmrrdc_ac.append(float(Vac[1]))
                 PSRP_ac.append(float(Vac[3]))
                 PSRN_ac.append(float(Vac[5]))
-                dcgain_ac.append(float(Vac[7]))
+                dcgain_ac.append(float(Vac[7]))#除温度外添加的值均一样
                 
             return freq, cmrrdc_ac, PSRP_ac, PSRN_ac, dcgain_ac
         except:
@@ -89,8 +89,8 @@ class OutputParser2(DeviceParams):
 
     def GBW_PM(self, file_name):
         try:
-            gbw_pm_file = open(f'{self.base_dir}/{file_name}', 'r') 
-            lines_GBW_PM = gbw_pm_file.readlines()     
+            AMP_PFC_GBW_PM = open(f'{self.base_dir}/{file_name}', 'r') 
+            lines_GBW_PM = AMP_PFC_GBW_PM.readlines()     
             freq = []                        
             GBW_ac = []
             phase_margin_ac = []
@@ -108,8 +108,8 @@ class OutputParser2(DeviceParams):
             
     def dc(self, file_name):
         try:
-            dc_file = open(f'{self.base_dir}/{file_name}', 'r')
-            lines_dc = dc_file.readlines()
+            AMP_PFC_dc = open(f'{self.base_dir}/{file_name}', 'r')
+            lines_dc = AMP_PFC_dc.readlines()
             Temp_dc = []                     
             TC_dc = []
             Power_dc = []
@@ -117,11 +117,11 @@ class OutputParser2(DeviceParams):
             for line in lines_dc:
                 Vdc = line.split(' ')
                 Vdc = [i for i in Vdc if i != '']
-                Temp_dc.append(float(Vdc[0]))
-                TC_dc.append(float(Vdc[1]))
+                Temp_dc.append(float(Vdc[0]))#DC文件第一列
+                TC_dc.append(float(Vdc[1]))#DC文件第二列
                 Power_dc.append(float(Vdc[3])) 
                 vos_dc.append(float(Vdc[5]))
-          
+          #-40度到120度仿真的dc值，且加入列表的值除了温度其他几个数据都一样
             return Temp_dc, TC_dc, Power_dc, vos_dc
         except:
             print(f"Simulation errors in {self.base_dir}: no file: {file_name}.")
@@ -129,8 +129,8 @@ class OutputParser2(DeviceParams):
       
     def tran(self, file_name):
         try:
-            tran_file = open(f'{self.base_dir}/{file_name}', 'r')
-            lines_tran = tran_file.readlines()
+            AMP_PFC_tran = open(f'{self.base_dir}/{file_name}', 'r')
+            lines_tran = AMP_PFC_tran.readlines()
             time = []                         
             sr_rise = []
             sr_fall = []
@@ -149,17 +149,17 @@ class OutputParser2(DeviceParams):
             
     def dcop(self, file_name):
         try:
-            op_file = open(f'{self.base_dir}/{file_name}', 'r')
+            AMP_PFC_op = open(f'{self.base_dir}/{file_name}', 'r')
             
-            lines_op = op_file.readlines()
+            lines_op = AMP_PFC_op.readlines()
             for index, line in enumerate(lines_op):
                 if line == "Values:\n":       
                     start_idx = index
-            
+            # 提取VDD参数（Values:后第1行）
             vdd_line = lines_op[start_idx+1]
             self.op['VDD'] = {}
             self.op['VDD']['v'] = float(vdd_line.split('\n')[0].split('\t')[1])
-            
+            # 提取其他器件参数（Values:后第2行开始）
             _lines_op = lines_op[start_idx+2:-1]     
             lines_op = []
             for _line in _lines_op:            
@@ -219,7 +219,7 @@ class OutputParser2(DeviceParams):
             v0 = np.median(vinp[time < t0])
             v1 = np.median(vinp[(time > t0) & (time < t1)])
             return v0, v1, t0, t1
-        v0, v1, t0, t1 = get_step_parameters(vinp, time)
+        v0, v1, t0, t1 = get_step_parameters(vinp, time)#取电压上升和下降的时间为t0、t1；变化前后的中位数作为变化前后的电压值  
     
         pre_step_data = vout[time < t0]
         delta0 = (pre_step_data - v0) / v0

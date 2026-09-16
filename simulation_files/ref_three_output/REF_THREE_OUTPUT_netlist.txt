@@ -1,0 +1,57 @@
+* REF_THREE_OUTPUT: Three-output subthreshold voltage reference, ported to sky130
+* Upstream AnalogGym source:
+*   AnalogGym/Voltage Reference/Description of  Voltage References  in AnalogGym.md
+*   (second code block, "Three-output voltage reference" netlist, md lines ~119-149)
+* Device mapping: NMOS -> sky130_fd_pr__nfet_01v8, PMOS -> sky130_fd_pr__pfet_01v8
+* All layout params (sd ad as ps pd nrs nrd sa sb, nf) dropped; l/w converted to microns.
+* sky130 bin limits: l >= 0.15, w >= 0.42 -- every clamp is noted per device below.
+*
+.subckt REF_THREE_OUTPUT gnd vdd vref1 vref2 vref3
+
+* --- reference core: vref1 diode stack (mo1a-c), leakage device mo2, vref2 stack (mo3a-d)
+* w clamped 0.22 -> 0.42 (sky130 min width); all core NMOS clamped by the same
+* factor so the original W ratios of the stacks are preserved.
+XMo1a vref1 vref1 net3 gnd sky130_fd_pr__nfet_01v8 l=10.0 w=0.42 m=1
+XMo1b net3  vref1 net4 gnd sky130_fd_pr__nfet_01v8 l=10.0 w=0.42 m=1
+XMo1c net4  vref1 vref2 gnd sky130_fd_pr__nfet_01v8 l=10.0 w=0.42 m=1
+* mo2: w clamped 0.22 -> 0.42 (l=0.22 is legal, >= 0.15)
+XMo2  vref2 vref1 vref3 gnd sky130_fd_pr__nfet_01v8 l=0.22 w=0.42 m=7
+* w clamped 0.22 -> 0.42 on the mo3 stack
+XMo3a vref3 vref2 net5 gnd sky130_fd_pr__nfet_01v8 l=8.95 w=0.42 m=1
+XMo3b net5  vref2 net1 gnd sky130_fd_pr__nfet_01v8 l=8.95 w=0.42 m=1
+XMo3c net1  vref2 net2 gnd sky130_fd_pr__nfet_01v8 l=8.95 w=0.42 m=1
+XMo3d net2  vref2 gnd  gnd sky130_fd_pr__nfet_01v8 l=8.95 w=0.42 m=1
+
+* --- bias generator for vn / vp
+XMp1 a  a  b   gnd sky130_fd_pr__nfet_01v8 l=0.43 w=16.34 m=1
+* mp2: w clamped 0.32 -> 0.42
+XMp2 b  a  gnd gnd sky130_fd_pr__nfet_01v8 l=4.5  w=0.42  m=1
+XMp3 vn vn b   gnd sky130_fd_pr__nfet_01v8 l=8.84 w=5.98  m=1
+* mp4: w clamped 0.22 -> 0.42
+XMp4 vp vp gnd gnd sky130_fd_pr__nfet_01v8 l=10.0 w=0.42  m=1
+
+* --- error amplifier: diff pair ma1/ma2, tail stack ma3a-c, PMOS load ma4/ma5
+* ma1/ma2: w clamped 0.25 -> 0.42 (both clamped identically, pair stays matched)
+XMa1 av vn trail gnd sky130_fd_pr__nfet_01v8 l=10.0 w=0.42 m=1
+XMa2 a1 vp trail gnd sky130_fd_pr__nfet_01v8 l=10.0 w=0.42 m=1
+* ma3 tail stack: w clamped 0.22 -> 0.42
+XMa3a trail vref1 net6 gnd sky130_fd_pr__nfet_01v8 l=10.0 w=0.42 m=1
+XMa3b net6  vref1 net7 gnd sky130_fd_pr__nfet_01v8 l=10.0 w=0.42 m=1
+XMa3c net7  vref1 gnd  gnd sky130_fd_pr__nfet_01v8 l=10.0 w=0.42 m=1
+XMa4 av a1 vdd vdd sky130_fd_pr__pfet_01v8 l=8.71 w=20.0 m=1
+XMa5 a1 a1 vdd vdd sky130_fd_pr__pfet_01v8 l=8.71 w=20.0 m=1
+
+* --- startup circuit
+XMs1 vdd s1 vdd vdd sky130_fd_pr__pfet_01v8 l=2.0 w=2.0  m=1
+* ms2: w=440e-9 -> 0.44 (legal, no clamp needed)
+XMs2 av  s1 gnd gnd sky130_fd_pr__nfet_01v8 l=2.0 w=0.44 m=1
+* ms3: w clamped 0.22 -> 0.42
+XMs3 s1 vref3 gnd gnd sky130_fd_pr__nfet_01v8 l=4.0 w=0.42 m=1
+
+* --- output current mirrors driven by amplifier output av
+XMm1 a     av vdd vdd sky130_fd_pr__pfet_01v8 l=2.66 w=20.0 m=2
+XMm2 vn    av vdd vdd sky130_fd_pr__pfet_01v8 l=2.66 w=20.0 m=2
+XMm3 vp    av vdd vdd sky130_fd_pr__pfet_01v8 l=2.66 w=20.0 m=8
+XMm4 vref1 av vdd vdd sky130_fd_pr__pfet_01v8 l=2.66 w=20.0 m=1
+
+.ends REF_THREE_OUTPUT

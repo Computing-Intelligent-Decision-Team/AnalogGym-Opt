@@ -1,0 +1,20 @@
+* SENSOR_FE_25_6T netlist (sky130 conversion)
+* Upstream AnalogGym source: AnalogGym/Sensing Front End/front_end_25_6T_schematic
+* (spectre syntax: subckt front_end_25_6T_schematic GND VDD VOUT, converted to ngspice)
+* 6-transistor all-NMOS subthreshold sensing front end.
+* Device mapping: nch_mac -> sky130_fd_pr__nfet_01v8 (l/w in microns),
+* multi -> m, nf dropped, layout params dropped. l=0.18 w=2 within sky130 limits.
+.SUBCKT front_end_25_6T_schematic GND VDD VOUT
+* M5: original l=180n w=2u multi=1
+XM5 VOUT VOUT GND GND sky130_fd_pr__nfet_01v8 l=0.18 w=2 m=1
+* M4: original l=180n w=2u multi=1
+XM4 net19 GND GND GND sky130_fd_pr__nfet_01v8 l=0.18 w=2 m=1
+* M3: original l=180n w=2u multi=1
+XM3 net13 GND VOUT GND sky130_fd_pr__nfet_01v8 l=0.18 w=2 m=1
+* M2: original l=180n w=2u multi=1
+XM2 net13 net13 GND GND sky130_fd_pr__nfet_01v8 l=0.18 w=2 m=1
+* M1: original l=180n w=2u multi=1
+XM1 VDD GND net13 GND sky130_fd_pr__nfet_01v8 l=0.18 w=2 m=1
+* M0: original l=180n w=2u multi=1
+XM0 VDD GND net19 GND sky130_fd_pr__nfet_01v8 l=0.18 w=2 m=1
+.ENDS

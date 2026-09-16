@@ -1,0 +1,86 @@
+Test REF_THREE_OUTPUT: three-output subthreshold voltage reference (sky130, ngspice)
+* Upstream AnalogGym source:
+*   AnalogGym/Voltage Reference/Description of  Voltage References  in AnalogGym.md
+*   (first code block = hspice TB, md lines ~37-115: temp sweep -20..80 measuring
+*    VTC/TC of vref1/vref2/vref3, plus VDD sweep measuring line sensitivity)
+
+***************************************
+* Step 1: circuit netlist
+***************************************
+.include ./REF_THREE_OUTPUT_netlist.txt
+
+.param mc_mm_switch=0
+.param mc_pr_switch=0
+.include ../sky130_pdk/libs.tech/ngspice/corners/tt.spice
+.include ../sky130_pdk/libs.tech/ngspice/r+c/res_typical__cap_typical.spice
+.include ../sky130_pdk/libs.tech/ngspice/r+c/res_typical__cap_typical__lin.spice
+.include ../sky130_pdk/libs.tech/ngspice/corners/tt/specialized_cells.spice
+
+***************************************
+* Step 2: circuit params / sources
+***************************************
+.PARAM supply_voltage = 1.8
+
+* note: ngspice aliases node name "gnd" to node 0, so no VGNDA source is needed
+* (upstream hspice TB had "VGNDA GND 0 0", which ngspice rejects as a shorted VSRC)
+VVDDA vdd 0 'supply_voltage'
+
+* XREF gnd vdd vref1 vref2 vref3
+Xref gnd vdd vref1 vref2 vref3 REF_THREE_OUTPUT
+
+.control
+save all
+set filetype=ascii
+set units=degrees
+
+* ---- supply sweep at 25C (upstream: .DC VDDA 0 2.5; here 0.8..2.0 per task) ----
+dc VVDDA 0.8 2.0 0.005
+* line-sensitivity style measurements (upstream LSx over 1.0..2.5V; here 1.0..2.0V, /1.0V range)
+meas dc vls1 FIND v(vref1) AT=1.8
+meas dc ppls1  PP  v(vref1) from=1.0 to=2.0
+meas dc avgls1 AVG v(vref1) from=1.0 to=2.0
+let ls1 = ppls1/avgls1/1.0
+meas dc vls2 FIND v(vref2) AT=1.8
+meas dc ppls2  PP  v(vref2) from=1.0 to=2.0
+meas dc avgls2 AVG v(vref2) from=1.0 to=2.0
+let ls2 = ppls2/avgls2/1.0
+meas dc vls3 FIND v(vref3) AT=1.8
+meas dc ppls3  PP  v(vref3) from=1.0 to=2.0
+meas dc avgls3 AVG v(vref3) from=1.0 to=2.0
+let ls3 = ppls3/avgls3/1.0
+wrdata REF_THREE_OUTPUT_VSWEEP v(vref1) v(vref2) v(vref3)
+
+* ---- temperature sweep -20..80C at vdd = 1.8V (upstream: .dc temp -20 80 0.01) ----
+dc temp -20 80 0.25
+* vref1: value at 25C and TC = pp/avg/100 over -20..80C
+meas dc vtc1   FIND v(vref1) AT=25
+meas dc maxv1  MAX  v(vref1) from=-20 to=80
+meas dc minv1  MIN  v(vref1) from=-20 to=80
+meas dc avgv1  AVG  v(vref1) from=-20 to=80
+meas dc ppv1   PP   v(vref1) from=-20 to=80
+let tc1 = ppv1/avgv1/100
+* vref2
+meas dc vtc2   FIND v(vref2) AT=25
+meas dc maxv2  MAX  v(vref2) from=-20 to=80
+meas dc minv2  MIN  v(vref2) from=-20 to=80
+meas dc avgv2  AVG  v(vref2) from=-20 to=80
+meas dc ppv2   PP   v(vref2) from=-20 to=80
+let tc2 = ppv2/avgv2/100
+* vref3
+meas dc vtc3   FIND v(vref3) AT=25
+meas dc maxv3  MAX  v(vref3) from=-20 to=80
+meas dc minv3  MIN  v(vref3) from=-20 to=80
+meas dc avgv3  AVG  v(vref3) from=-20 to=80
+meas dc ppv3   PP   v(vref3) from=-20 to=80
+let tc3 = ppv3/avgv3/100
+wrdata REF_THREE_OUTPUT_TEMP vtc1 tc1 vtc2 tc2 vtc3 tc3
+
+* ---- supply current at 25C, vdd = 1.8V (from the temp sweep) ----
+meas dc idd25raw FIND i(VVDDA) AT=25
+let idd25 = -1*idd25raw
+let idd25_ua = idd25*1e6
+wrdata REF_THREE_OUTPUT_IDD idd25 idd25_ua
+
+.endc
+
+.end

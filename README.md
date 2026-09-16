@@ -1,79 +1,151 @@
-# AnalogGym-Opt Demo
+# AnalogGym-Opt: Multi-Objective RL Sizing on AnalogGym Circuits
 
-AnalogGym-Opt is a GRPO-based optimizer for analog circuit parameter search. This repository is the public demo package submitted with the TCAD paper review. It keeps the executable framework and one amplifier benchmark, `amp_dfcfc2`. The complete code and datasets will be open-sourced after the paper is accepted.
+Reinforcement-learning based analog circuit sizing (GRPO with a relational-GNN policy,
+multi-objective reward with Pareto tracking and optional PVT verification) evaluated on
+circuits from the [AnalogGym](https://github.com/CODA-Team/AnalogGym) testing suite,
+simulated with **ngspice** on the open-source **SkyWater sky130** PDK.
 
-## Demo Scope
+This repository accompanies our IEEE TCAD paper
+[*AnalogGym-Opt: An LLM-Oriented Optimization Infrastructure for Analog Circuit Sizing
+with GRPO*](https://ieeexplore.ieee.org/document/11690621) — if you use this code in
+your research, please cite it:
 
-- Included circuit: `amp_dfcfc2`
-- Included config: `circuit_configs/amp_dfcfc2.yaml`
-- Included simulation templates: `simulation_files/amp_dfcfc2/`
-- Included PDK dependency: one bundled Sky130 PDK copy under `simulation_files/sky130_pdk/`
-- Excluded before paper acceptance: full benchmark set, complete datasets, and generated training results
-
-The complete dataset and additional cases will be released after paper acceptance.
-
-## Prerequisites
-
-- Python 3.9 or newer
-- Ngspice available on `PATH`
-- PyTorch and PyTorch Geometric compatible with your Python/CUDA setup
-
-Install Python dependencies:
-
-```bash
-pip install -r requirements.txt
+```bibtex
+@ARTICLE{AnalogGym-Opt,
+  author={Li, Jintao and Zhi, Haochang and Long, Yongji and Liu, Weixuan and Zeng, Yanhan and Zhu, Keren and Yu, Shui and Li, Yun},
+  journal={IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems},
+  title={AnalogGym-Opt: An LLM-Oriented Optimization Infrastructure for Analog Circuit Sizing with GRPO},
+  year={2026},
+  pages={1-1},
+  keywords={Analog circuit sizing;group-relative policy optimization;PVT variations;variational autoencoders},
+  doi={10.1109/TCAD.2026.3733612}}
 ```
 
-Check Ngspice:
+## Requirements
+
+- Python 3.10+ with `torch`, `torch-geometric`, `numpy`, `pyyaml`, `tabulate`
+  (optional: `wandb` for logging)
+- [ngspice](https://ngspice.sourceforge.io/) on the `PATH`
+  (tested with the Windows build; any recent version works)
+- The sky130 model files are bundled under `simulation_files/sky130_pdk/` — no setup needed.
+
+## Quick start
 
 ```bash
-ngspice -v
+# pick the circuit at the top of main_AMP_grpo.py:  CIRCUIT_NAME = "amp_nmcf"
+python main_AMP_grpo.py
 ```
 
-## Quick Start
+Every circuit instance is defined by a YAML config in `circuit_configs/` (design
+variables and their ranges, performance targets, netlist hierarchy, GNN graph) plus a
+simulation directory under `simulation_files/<name>/` (netlist, ngspice testbenches,
+initial design variables). The environment (`AmpEnv` for amplifiers, `LdoEnv` for LDOs,
+chosen automatically by `env_factory.make_env`) writes design variables, runs the
+testbenches with ngspice, and parses the measurements into rewards/observations.
 
-Run the default demo:
+## Supported circuit instances
+
+### Operational amplifiers (RL-integrated, `AmpEnv`)
+
+All are three-pin-compensation amplifier topologies from the AnalogGym Amplifier suite,
+ported to sky130 (1.8 V). Verified: both testbenches run in ngspice, all measurement
+files parse, and the shipped initial design point is functional (numbers below).
+
+| config | AnalogGym topology | devices | dcgain (dB) | GBW (MHz) | PM (deg) |
+|---|---|---|---|---|---|
+| `amp_nmcf`   | Leung_NMCF    | 24T+2C   | 137.1 | 2.98 | 44 |
+| `amp_nmcnr`  | Leung_NMCNR   | 24T+2C+R | 141.3 | 4.27 | 73 |
+| `amp_dfcfc1` | Leung_DFCFC1  | 26T+2C   | 137.9 | 2.61 | 50 |
+| `amp_dfcfc2` | Leung_DFCFC2  | 26T+2C   | 105.3 | 0.34 | 84 |
+| `amp_pfc`    | Ramos_PFC     | 24T+2C   | 137.7 | 1.78 | 49 |
+| `amp_raffc`  | Alfio_RAFFC   | 24T+2C   | 123.5 | 1.95 | 82 |
+| `amp_smc`    | Fan_SMC       | 24T+1C   | 69.9  | 1.92 | 89 |
+| `amp_affc`   | HoiLee_AFFC   | 30T+2C   | 90.1  | 1.80 | 19 |
+| `amp_acbc`   | Peng_ACBC     | 27T+2C   | 94.2  | 0.81 | 82 |
+| `amp_iac`    | Peng_IAC      | 34T+2C+R | 113.4 | 0.14 | 65 |
+| `amp_tcfc`   | Peng_TCFC     | 32T+2C   | 117.6 | 1.57 | 67 |
+| `amp_azc`    | Qu2017_AZC    | 25T+3C+4R| 98.1  | 0.80 | 65 |
+| `amp_cfcc`   | Sau_CFCC      | 24T+1C   | 99.6  | 5.37 | 36 |
+| `amp_dacfc`  | Song_DACFC    | 37T+2C   | 90.3  | 0.80 | 82 |
+| `amp_clia`   | Tan_CLIA      | 25T+2C+R | 121.0 | 1.70 | 38 |
+| `amp_az`     | Yan_AZ        | 21T+2C+3R| 102.7 | 0.71 | 48 |
+
+(The first five are the original hand-converted instances, measured at their shipped
+design points; metrics are starting points for the optimizer, not final results.)
+
+### Low-dropout regulator (RL-integrated, `LdoEnv`)
+
+| config | AnalogGym source | notes |
+|---|---|---|
+| `ldo_basic` | Basic_LDO (RGNN_RL suite) | 24T + feedback divider + MiM load cap. Measures dropout, line/load regulation, offset, PSRR, loop gain/GBW/PM at min/max load (5–55 mA), and load-step under/overshoot. LDO objectives are mapped onto the repo's MOO keys (see `LdoEnv.py`). |
+
+### Temperature sensors and voltage references (simulation-only)
+
+Ported to ngspice + sky130 from the AnalogGym *Sensing Front End* and *Voltage Reference*
+collections. These ship as netlist + testbench pairs (no RL config yet); run them with:
 
 ```bash
-python main_AMP_grpo.py --circuit amp_dfcfc2 --steps 300 --mode tt-proxy
+python tools/run_instance_sims.py sensor_ptat_2t ref_three_output   # or --all
 ```
 
-Run a short smoke test:
+| instance | AnalogGym source | measures |
+|---|---|---|
+| `sensor_ptat_2t`      | PTAT_SENSOR (2T core)        | V(T) 0–120 °C, TC, LSB, line sensitivity, PSR, IDD |
+| `sensor_ptat_classic` | ptat_classic (4T+R)          | same |
+| `sensor_ptat_65`      | PTAT_65_classic1             | same |
+| `sensor_fe_31_3t`     | front_end_31_3T_schematic    | same |
+| `sensor_fe_11_6t`     | front_end_11_6T_schematic    | same |
+| `sensor_fe_25_6t`     | front_end_25_6T_schematic    | same |
+| `ref_three_output`    | Three-output voltage reference | vref1/2/3 vs T, supply sweep, IDD |
+| `ref_sub_vi`          | Sub-threshold V & I reference  | vref vs T, supply sweep, IDD |
+
+Note: these circuits were originally designed on confidential 180/65 nm PDKs; the sky130
+port keeps the topology and relative sizing but absolute levels and temperature
+coefficients shift. Each file documents its source and any clamped device sizes.
+
+## Adding more circuits from AnalogGym
 
 ```bash
-python main_AMP_grpo.py --circuit amp_dfcfc2 --steps 1 --mode tt-only
+git clone --depth 1 https://github.com/CODA-Team/AnalogGym.git <upstream>
+
+# amplifiers (Pin_3 family): netlist + testbenches + vars + dev_params + YAML with GNN graph
+python tools/import_analoggym_amp.py --upstream <upstream> --name Fan_SMC_Pin_3
+python tools/import_analoggym_amp.py --upstream <upstream> --all
+
+# the Basic_LDO instance
+python tools/import_analoggym_ldo.py --upstream <upstream>
+
+# generate the .OP statistics used to normalize GNN observations (runs random sims)
+python tools/gen_op_stats.py --missing --sims 30
+
+# consistency checks over all configs + instances
+python tools/validate_configs.py
+
+# smoke-run every instance's testbenches through ngspice
+python tools/run_instance_sims.py --all
 ```
 
-Available modes:
+The importer reproduces the repo conventions exactly (it regenerates the hand-made
+`amp_nmcf` graph bit-for-bit): design-variable groups `W_Mx/L_Mx/M_Mx`, the bias current
+exposed as an `Ib` pin, ideal capacitors quantized to 30×30 µm sky130 MiM units
+(~1.82 pF each, multiplier `M_Ck`), ideal resistors mapped to high-res poly with
+multiplier `M_Rk`, and the circuit graph (nodes = devices + Ib/VDD/GND + passives,
+edge type 1 for supply/bias edges) generated from netlist connectivity.
 
-- `tt-only`: TT-corner optimization only; useful for quick checks.
-- `tt-proxy`: TT inner-loop training with selective PVT proxy/verification; this is the default demo mode.
-- `full-pvt`: full PVT evaluation inside training; this is much more expensive.
+## Repo layout
 
-## Outputs
+```
+main_AMP_grpo.py          training entry point (set CIRCUIT_NAME)
+AmpEnv.py / LdoEnv.py     simulation environments (ngspice in, reward/observation out)
+env_factory.py            picks the env class from the config category
+circuit_configs/*.yaml    per-circuit configs (devices, targets, hierarchy, graph)
+simulation_files/<name>/  netlist + testbenches + initial design point (+ reference outputs)
+simulation_files/sky130_pdk/  bundled sky130 ngspice models
+tools/                    importers, validators, op-stats and smoke-run utilities
+```
 
-Runtime outputs are disposable and are written to:
+## Credits
 
-- `simulation_output/`: generated Ngspice work directories and logs
-- `training_saves/`: checkpoints, plots, candidate summaries, and training histories
-
-These directories are ignored by Git and can be deleted between runs.
-
-## Repository Layout
-
-- `main_AMP_grpo.py`: command-line entry point
-- `grpo.py`: GRPO agent and training loop
-- `AmpEnv.py`: Ngspice-backed circuit environment
-- `models.py`: graph policy networks
-- `circuit_config_loader.py`: YAML config loader and path resolver
-- `circuit_configs/`: circuit definitions
-- `simulation_files/amp_dfcfc2/`: read-only demo circuit templates
-- `simulation_files/sky130_pdk/`: bundled Sky130 model files used by the demo
-
-## Notes
-
-The bundled Sky130 files are third-party process-design-kit assets required by the demo simulation decks. Keep their upstream license terms in mind when redistributing modified PDK content.
-
-## License
-
-This project code is released under the MIT License. See `LICENSE`.
+- Circuit topologies and testbench methodology: [AnalogGym](https://github.com/CODA-Team/AnalogGym)
+  (CODA-Team), *AnalogGym: An Open and Practical Testing Suite for Analog Circuit Synthesis*.
+- PDK: [SkyWater sky130](https://github.com/google/skywater-pdk).

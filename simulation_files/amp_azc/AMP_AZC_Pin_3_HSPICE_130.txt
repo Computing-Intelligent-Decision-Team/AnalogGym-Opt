@@ -1,0 +1,34 @@
+.subckt Qu2017_AZC_Pin_3 gnda vdda vinn vinp vout Ib
+XM7 net057 net055 vdda vdda sky130_fd_pr__pfet_01v8 l=L_M6 w='W_M6*1' m='M_M6*2'
+XM6 net055 net055 vdda vdda sky130_fd_pr__pfet_01v8 l=L_M6 w='W_M6*1' m=M_M6
+XM3 net078 Ib vdda vdda sky130_fd_pr__pfet_01v8 l=L_M0 w='W_M0*1' m='6*M_M0'
+XM13 vout net050 vdda vdda sky130_fd_pr__pfet_01v8 l=L_M13 w='W_M13*1' m=M_M13
+XM8 net049 Ib vdda vdda sky130_fd_pr__pfet_01v8 l=L_M0 w='W_M0*1' m='M_M0*2'
+XM11 net094 net050 vdda vdda sky130_fd_pr__pfet_01v8 l=L_M11 w='W_M11*1' m=M_M11
+XM5 net050 voutn vdda vdda sky130_fd_pr__pfet_01v8 l=L_M0 w='W_M0*1' m=M_M0
+XM4 voutn voutn vdda vdda sky130_fd_pr__pfet_01v8 l=L_M0 w='W_M0*1' m=M_M0
+XM10 net063 vinp net019 net019 sky130_fd_pr__pfet_01v8 l=L_M9 w='W_M9*1' m=M_M9
+XM9 dm_2 vinn net019 net019 sky130_fd_pr__pfet_01v8 l=L_M9 w='W_M9*1' m=M_M9
+XM2 net019 Ib vdda vdda sky130_fd_pr__pfet_01v8 l=L_M0 w='W_M0*1' m='M_M0*2'
+XM1 vb4 Ib vdda vdda sky130_fd_pr__pfet_01v8 l=L_M0 w='W_M0*1' m=M_M0
+XM0 Ib Ib vdda vdda sky130_fd_pr__pfet_01v8 l=L_M0 w='W_M0*1' m=M_M0
+XM24 net049 net057 gnda gnda sky130_fd_pr__nfet_01v8 l=L_M24 w='W_M24*1' m=M_M24
+XM12 net055 net094 gnda gnda sky130_fd_pr__nfet_01v8 l=L_M12 w='W_M12*1' m=M_M12
+XM16 net077 dm_2 gnda gnda sky130_fd_pr__nfet_01v8 l=L_M14 w='W_M14*1' m=M_M14
+XM17 net082 net063 gnda gnda sky130_fd_pr__nfet_01v8 l=L_M14 w='W_M14*1' m=M_M14
+XM18 vout net049 gnda gnda sky130_fd_pr__nfet_01v8 l=L_M18 w='W_M18*1' m=M_M18
+XM22 net094 net051 gnda gnda sky130_fd_pr__nfet_01v8 l=L_M24 w='W_M24*1' m='M_M24*4'
+XM23 net057 net043 gnda gnda sky130_fd_pr__nfet_01v8 l=L_M24 w='W_M24*1' m='M_M24*3'
+XM20 dm_2 vb4 gnda gnda sky130_fd_pr__nfet_01v8 l=L_M19 w='W_M19*7' m=M_M19
+XM14 voutn net077 dm_2 gnda sky130_fd_pr__nfet_01v8 l=L_M14 w='W_M14*1' m=M_M14
+XM21 net063 vb4 gnda gnda sky130_fd_pr__nfet_01v8 l=L_M19 w='W_M19*7' m=M_M19
+XM15 net050 net082 net063 gnda sky130_fd_pr__nfet_01v8 l=L_M14 w='W_M14*1' m=M_M14
+XM19 vb4 vb4 gnda gnda sky130_fd_pr__nfet_01v8 l=L_M19 w='W_M19*2' m=M_M19
+XR0 net078 net077 gnda sky130_fd_pr__res_high_po_0p35 L=44.05 mult=M_R0 m=M_R0
+XR1 net078 net082 gnda sky130_fd_pr__res_high_po_0p35 L=44.05 mult=M_R1 m=M_R1
+XR2 net057 net051 gnda sky130_fd_pr__res_high_po_0p35 L=440.49 mult=M_R2 m=M_R2
+XR3 net057 net043 gnda sky130_fd_pr__res_high_po_0p35 L=50.34 mult=M_R3 m=M_R3
+XC0 net063 vout sky130_fd_pr__cap_mim_m3_1 W=30 L=30 MF=M_C0 m=M_C0
+XC1 net051 gnda sky130_fd_pr__cap_mim_m3_1 W=30 L=30 MF=M_C1 m=M_C1
+XC2 net043 gnda sky130_fd_pr__cap_mim_m3_1 W=30 L=30 MF=M_C2 m=M_C2
+.ends Qu2017_AZC_Pin_3

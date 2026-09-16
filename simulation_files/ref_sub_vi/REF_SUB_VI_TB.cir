@@ -1,0 +1,70 @@
+Test REF_SUB_VI sub-threshold voltage and current reference (sky130)
+* Upstream AnalogGym source:
+*   E:\AnalogGym_opt\_analoggym_upstream\AnalogGym\Voltage Reference\
+*   "Description of  Voltage References  in AnalogGym.md"
+*   ("SPICE" testbench code block ~lines 155-216: temp sweep of vref, line sensitivity)
+
+***************************************
+* Step 1: circuit netlist
+***************************************
+.include ./REF_SUB_VI_netlist.txt
+
+.param mc_mm_switch=0
+.param mc_pr_switch=0
+.include ../sky130_pdk/libs.tech/ngspice/corners/tt.spice
+.include ../sky130_pdk/libs.tech/ngspice/r+c/res_typical__cap_typical.spice
+.include ../sky130_pdk/libs.tech/ngspice/r+c/res_typical__cap_typical__lin.spice
+.include ../sky130_pdk/libs.tech/ngspice/corners/tt/specialized_cells.spice
+
+***************************************
+* Step 2: circuit parameters
+***************************************
+* original design used 0.9 V (TSMC 180nm HV, subthreshold); sky130 1v8 devices
+* work fine at the default 1.8 V (verified: vref regulates, loop starts)
+.PARAM supply_voltage = 1.8
+
+* NOTE: "gnd" is ngspice's built-in alias for node 0, so no VGNDA 0V source is
+* needed (ngspice flags "VGNDA gnd 0 0" as a shorted VSRC)
+VDDA vdda 0 'supply_voltage'
+
+* X1 gnd vdda vref
+X1 gnd vdda vref REF_SUB_VI
+
+.control
+save all
+set filetype=ascii
+set units=degrees
+
+* ---- operating point at nominal supply, 27C default temp ----
+op
+print v(vref) v(x1.net2) v(x1.net3) v(x1.net4) v(x1.net5) v(x1.net1) vdda#branch
+
+* ---- temperature sweep: vref TC over -20..80C, supply current ----
+dc temp -20 80 1
+meas dc vref25  FIND v(vref) AT=25
+meas dc maxvt   MAX v(vref) from=-20 to=80
+meas dc minvt   MIN v(vref) from=-20 to=80
+meas dc avgvt   AVG v(vref) from=-20 to=80
+meas dc ppvt    PP  v(vref) from=-20 to=80
+* temperature coefficient in ppm/C over the 100C span
+let TC_ppm = ppvt/avgvt/100*1e6
+meas dc idd25raw FIND vdda#branch AT=25
+let idd25 = -idd25raw
+let idd_vs_temp = -vdda#branch
+wrdata REF_SUB_VI_TEMP v(vref) vref25 TC_ppm
+wrdata REF_SUB_VI_IDD idd_vs_temp idd25
+
+* ---- supply sweep: line sensitivity ----
+dc VDDA 0 2 0.02
+meas dc vls18   FIND v(vref) AT=1.8
+meas dc maxvs   MAX v(vref) from=1.2 to=2.0
+meas dc minvs   MIN v(vref) from=1.2 to=2.0
+meas dc avgvs   AVG v(vref) from=1.2 to=2.0
+meas dc ppvs    PP  v(vref) from=1.2 to=2.0
+* line sensitivity in %/V over the 0.8V span
+let LS_pct = ppvs/avgvs/0.8*100
+wrdata REF_SUB_VI_VSWEEP v(vref) vls18 LS_pct
+
+.endc
+
+.end

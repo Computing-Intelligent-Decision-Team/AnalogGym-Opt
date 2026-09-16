@@ -133,11 +133,15 @@ edge type 1 for supply/bias edges) generated from netlist connectivity.
 
 ## LLM integration (skills & MCP)
 
-The optimizer is designed to be driven by LLM agents; two integration layers ship with
-the repo, both backed by the same CLI tools:
+As an *LLM-oriented* optimization infrastructure, this repo is built to be driven by AI
+coding agents, not just by hand. Two integration layers ship with it, both thin wrappers
+over the same CLI tools — so an agent can inspect a circuit, simulate candidate design
+points, launch/monitor GRPO runs, and add new benchmark circuits without any glue code:
 
-**Claude Code skills** (`.claude/skills/`) — workflow knowledge, available automatically
-when you open this repo in [Claude Code](https://claude.com/claude-code):
+**Claude Code skills** (`.claude/skills/`) — *skills are markdown playbooks that an AI
+coding agent loads on demand*; they encode this repo's workflows, conventions and known
+failure modes. They are picked up automatically when you open this repo in
+[Claude Code](https://claude.com/claude-code) (no installation):
 
 | skill | what it does |
 |---|---|
@@ -146,11 +150,16 @@ when you open this repo in [Claude Code](https://claude.com/claude-code):
 | `add-circuit`       | import + verify new AnalogGym circuits |
 | `repo-doctor`       | health checks and troubleshooting |
 
-**MCP server** (`tools/mcp_server.py`, registered via `.mcp.json`) — typed tools for any
-MCP-capable agent: `list_circuits`, `describe_circuit`, `evaluate_design`,
+**MCP server** (`tools/mcp_server.py`, registered via `.mcp.json`) — the
+[Model Context Protocol](https://modelcontextprotocol.io) is an open standard that lets
+any LLM agent call external tools with typed schemas; this server exposes the optimizer
+as eight such tools: `list_circuits`, `describe_circuit`, `evaluate_design`,
 `run_instance_sims`, `validate_configs`, `start_training`, `training_status`,
 `stop_training`. Requires `pip install mcp`; Claude Code picks it up from `.mcp.json`,
 other clients run it over stdio: `python tools/mcp_server.py`.
+
+Typical agent loop: `describe_circuit` → propose sizing → `evaluate_design` → read the
+per-metric scores → refine, or hand off to `start_training` for a full GRPO run.
 
 The underlying CLI works standalone too:
 

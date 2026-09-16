@@ -1,6 +1,6 @@
-# AnalogGym-Opt: Multi-Objective RL Sizing on AnalogGym Circuits
+# AnalogGym-Opt: Multi-Objective GRPO Sizing on AnalogGym Circuits
 
-Reinforcement-learning based analog circuit sizing (GRPO with a relational-GNN policy,
+GRPO-based analog circuit sizing (group-relative policy optimization with a relational-GNN policy,
 multi-objective reward with Pareto tracking and optional PVT verification) evaluated on
 circuits from the [AnalogGym](https://github.com/CODA-Team/AnalogGym) testing suite,
 simulated with **ngspice** on the open-source **SkyWater sky130** PDK.
@@ -45,7 +45,7 @@ testbenches with ngspice, and parses the measurements into rewards/observations.
 
 ## Supported circuit instances
 
-### Operational amplifiers (RL-integrated, `AmpEnv`)
+### Operational amplifiers (GRPO-integrated, `AmpEnv`)
 
 All are three-pin-compensation amplifier topologies from the AnalogGym Amplifier suite,
 ported to sky130 (1.8 V). Every instance is verified to run in ngspice with all
@@ -70,7 +70,7 @@ measurement files parsing correctly.
 | `amp_clia`   | Tan_CLIA      | 25T+2C+R |
 | `amp_az`     | Yan_AZ        | 21T+2C+3R|
 
-### Low-dropout regulator (RL-integrated, `LdoEnv`)
+### Low-dropout regulator (GRPO-integrated, `LdoEnv`)
 
 | config | AnalogGym source | notes |
 |---|---|---|
@@ -79,7 +79,7 @@ measurement files parsing correctly.
 ### Temperature sensors and voltage references (simulation-only)
 
 Ported to ngspice + sky130 from the AnalogGym *Sensing Front End* and *Voltage Reference*
-collections. These ship as netlist + testbench pairs (no RL config yet); run them with:
+collections. These ship as netlist + testbench pairs (no GRPO config yet); run them with:
 
 ```bash
 python tools/run_instance_sims.py sensor_ptat_2t ref_three_output   # or --all

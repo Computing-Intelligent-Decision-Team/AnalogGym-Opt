@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "analoggym-opt": {
+      "command": "python",
+      "args": ["tools/mcp_server.py"],
+      "env": {
+        "KMP_DUPLICATE_LIB_OK": "TRUE"
+      }
+    }
+  }
+}

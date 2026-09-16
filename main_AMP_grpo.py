@@ -394,7 +394,31 @@ def _save_recommended_records(
     return records
 
 
+def _parse_cli_args():
+    """Optional CLI overrides; defaults keep the in-file constants unchanged."""
+    import argparse
+    parser = argparse.ArgumentParser(description="GRPO training for analog circuit sizing")
+    parser.add_argument("--circuit", default=None,
+                        help="circuit config name from circuit_configs/ (default: CIRCUIT_NAME constant)")
+    parser.add_argument("--steps", type=int, default=None,
+                        help="number of training steps (default: QUICK_CONFIG['num_steps'])")
+    parser.add_argument("--pvt-mode", choices=["tt", "proxy", "full"], default=None,
+                        help="tt: TT-corner only; proxy: TT training + VAE proxy with selective "
+                             "PVT verification (default); full: every step runs all PVT corners")
+    return parser.parse_args()
+
+
 def main():
+    global CIRCUIT_NAME
+    args = _parse_cli_args()
+    if args.circuit:
+        CIRCUIT_NAME = args.circuit
+    if args.steps:
+        QUICK_CONFIG["num_steps"] = int(args.steps)
+    if args.pvt_mode:
+        QUICK_CONFIG["enable_full_pvt_training"] = args.pvt_mode == "full"
+        QUICK_CONFIG["enable_pvt_outer_loop"] = args.pvt_mode == "proxy"
+
     print("=" * 80)
     print("GRPO Training for Analog Circuit Optimization")
     print(f"Circuit: {CIRCUIT_NAME}")

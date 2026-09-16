@@ -5,3 +5,6 @@ tabulate>=0.8.9
 torch>=2.0
 torch-geometric>=2.3
 ipython>=8.0
+
+# optional: MCP server for LLM agents (tools/mcp_server.py)
+# mcp

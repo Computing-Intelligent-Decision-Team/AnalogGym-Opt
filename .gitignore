@@ -46,12 +46,17 @@ model/
 *.pdf
 *.csv
 
-# Keep per-circuit normalization data
+# Keep per-circuit normalization data and the MCP server registration
 *.json
 !simulation_files/*/*_op_mean_std.json
+!.mcp.json
 
 # Unused legacy PDK copy (the code uses simulation_files/sky130_pdk)
 mosfet_model/
 
-# Local assistant settings
-.claude/
+# Local assistant settings (but ship the repo skills)
+.claude/*
+!.claude/skills/
+
+# Background training logs
+training_logs/

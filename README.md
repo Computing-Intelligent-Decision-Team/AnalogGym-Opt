@@ -32,9 +32,11 @@ your research, please cite it:
 ## Quick start
 
 ```bash
-# pick the circuit at the top of main_AMP_grpo.py:  CIRCUIT_NAME = "amp_nmcf"
-python main_AMP_grpo.py
+python main_AMP_grpo.py --circuit amp_nmcf --steps 300 --pvt-mode proxy
 ```
+
+(Without arguments it falls back to the `CIRCUIT_NAME` / `QUICK_CONFIG` constants at
+the top of `main_AMP_grpo.py`.)
 
 Every circuit instance is defined by a YAML config in `circuit_configs/` (design
 variables and their ranges, performance targets, netlist hierarchy, GNN graph) plus a
@@ -129,16 +131,48 @@ exposed as an `Ib` pin, ideal capacitors quantized to 30×30 µm sky130 MiM unit
 multiplier `M_Rk`, and the circuit graph (nodes = devices + Ib/VDD/GND + passives,
 edge type 1 for supply/bias edges) generated from netlist connectivity.
 
+## LLM integration (skills & MCP)
+
+The optimizer is designed to be driven by LLM agents; two integration layers ship with
+the repo, both backed by the same CLI tools:
+
+**Claude Code skills** (`.claude/skills/`) — workflow knowledge, available automatically
+when you open this repo in [Claude Code](https://claude.com/claude-code):
+
+| skill | what it does |
+|---|---|
+| `evaluate-design`   | manual/LLM-driven sizing loops: simulate one design point, interpret metrics vs targets |
+| `run-optimization`  | configure, launch and monitor GRPO runs |
+| `add-circuit`       | import + verify new AnalogGym circuits |
+| `repo-doctor`       | health checks and troubleshooting |
+
+**MCP server** (`tools/mcp_server.py`, registered via `.mcp.json`) — typed tools for any
+MCP-capable agent: `list_circuits`, `describe_circuit`, `evaluate_design`,
+`run_instance_sims`, `validate_configs`, `start_training`, `training_status`,
+`stop_training`. Requires `pip install mcp`; Claude Code picks it up from `.mcp.json`,
+other clients run it over stdio: `python tools/mcp_server.py`.
+
+The underlying CLI works standalone too:
+
+```bash
+# simulate one design point and score it against the targets
+python tools/evaluate_design.py --circuit amp_smc --vars M_M11=64 W_M8=4
+
+# launch training with overrides
+python main_AMP_grpo.py --circuit amp_smc --steps 300 --pvt-mode proxy
+```
+
 ## Repo layout
 
 ```
-main_AMP_grpo.py          training entry point (set CIRCUIT_NAME)
+main_AMP_grpo.py          training entry point (--circuit/--steps/--pvt-mode)
 AmpEnv.py / LdoEnv.py     simulation environments (ngspice in, reward/observation out)
 env_factory.py            picks the env class from the config category
 circuit_configs/*.yaml    per-circuit configs (devices, targets, hierarchy, graph)
 simulation_files/<name>/  netlist + testbenches + initial design point (+ reference outputs)
 simulation_files/sky130_pdk/  bundled sky130 ngspice models
-tools/                    importers, validators, op-stats and smoke-run utilities
+tools/                    importers, validators, evaluator, MCP server, smoke-run utilities
+.claude/skills/           Claude Code skills (evaluate-design, run-optimization, ...)
 ```
 
 ## Credits

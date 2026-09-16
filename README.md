@@ -48,30 +48,27 @@ testbenches with ngspice, and parses the measurements into rewards/observations.
 ### Operational amplifiers (RL-integrated, `AmpEnv`)
 
 All are three-pin-compensation amplifier topologies from the AnalogGym Amplifier suite,
-ported to sky130 (1.8 V). Verified: both testbenches run in ngspice, all measurement
-files parse, and the shipped initial design point is functional (numbers below).
+ported to sky130 (1.8 V). Every instance is verified to run in ngspice with all
+measurement files parsing correctly.
 
-| config | AnalogGym topology | devices | dcgain (dB) | GBW (MHz) | PM (deg) |
-|---|---|---|---|---|---|
-| `amp_nmcf`   | Leung_NMCF    | 24T+2C   | 137.1 | 2.98 | 44 |
-| `amp_nmcnr`  | Leung_NMCNR   | 24T+2C+R | 141.3 | 4.27 | 73 |
-| `amp_dfcfc1` | Leung_DFCFC1  | 26T+2C   | 137.9 | 2.61 | 50 |
-| `amp_dfcfc2` | Leung_DFCFC2  | 26T+2C   | 105.3 | 0.34 | 84 |
-| `amp_pfc`    | Ramos_PFC     | 24T+2C   | 137.7 | 1.78 | 49 |
-| `amp_raffc`  | Alfio_RAFFC   | 24T+2C   | 123.5 | 1.95 | 82 |
-| `amp_smc`    | Fan_SMC       | 24T+1C   | 69.9  | 1.92 | 89 |
-| `amp_affc`   | HoiLee_AFFC   | 30T+2C   | 90.1  | 1.80 | 19 |
-| `amp_acbc`   | Peng_ACBC     | 27T+2C   | 94.2  | 0.81 | 82 |
-| `amp_iac`    | Peng_IAC      | 34T+2C+R | 113.4 | 0.14 | 65 |
-| `amp_tcfc`   | Peng_TCFC     | 32T+2C   | 117.6 | 1.57 | 67 |
-| `amp_azc`    | Qu2017_AZC    | 25T+3C+4R| 98.1  | 0.80 | 65 |
-| `amp_cfcc`   | Sau_CFCC      | 24T+1C   | 99.6  | 5.37 | 36 |
-| `amp_dacfc`  | Song_DACFC    | 37T+2C   | 90.3  | 0.80 | 82 |
-| `amp_clia`   | Tan_CLIA      | 25T+2C+R | 121.0 | 1.70 | 38 |
-| `amp_az`     | Yan_AZ        | 21T+2C+3R| 102.7 | 0.71 | 48 |
-
-(The first five are the original hand-converted instances, measured at their shipped
-design points; metrics are starting points for the optimizer, not final results.)
+| config | AnalogGym topology | devices |
+|---|---|---|
+| `amp_nmcf`   | Leung_NMCF    | 24T+2C   |
+| `amp_nmcnr`  | Leung_NMCNR   | 24T+2C+R |
+| `amp_dfcfc1` | Leung_DFCFC1  | 26T+2C   |
+| `amp_dfcfc2` | Leung_DFCFC2  | 26T+2C   |
+| `amp_pfc`    | Ramos_PFC     | 24T+2C   |
+| `amp_raffc`  | Alfio_RAFFC   | 24T+2C   |
+| `amp_smc`    | Fan_SMC       | 24T+1C   |
+| `amp_affc`   | HoiLee_AFFC   | 30T+2C   |
+| `amp_acbc`   | Peng_ACBC     | 27T+2C   |
+| `amp_iac`    | Peng_IAC      | 34T+2C+R |
+| `amp_tcfc`   | Peng_TCFC     | 32T+2C   |
+| `amp_azc`    | Qu2017_AZC    | 25T+3C+4R|
+| `amp_cfcc`   | Sau_CFCC      | 24T+1C   |
+| `amp_dacfc`  | Song_DACFC    | 37T+2C   |
+| `amp_clia`   | Tan_CLIA      | 25T+2C+R |
+| `amp_az`     | Yan_AZ        | 21T+2C+3R|
 
 ### Low-dropout regulator (RL-integrated, `LdoEnv`)
 

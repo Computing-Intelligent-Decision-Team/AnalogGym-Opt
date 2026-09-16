@@ -1,28 +1,43 @@
-# 清理与核查报告
+# Data quality report
 
-输入 73 个性能文件，共 358,234 行；导出 358,234 行，覆盖 18 个拓扑。
+The export covers **358,234 observations across 18 topologies**, from 73 MATLAB performance tables containing 358,234 source rows.
 
-同一文件内完全重复行 0 条；非有限数值 0 个；触发规则的记录 125,974 条；未触发规则的记录 232,260 条。
+## Cleaning results
 
-| 规则 | 记录数 |
+| Measure | Count |
 |---|---:|
-| sr_negative | 40,444 |
-| sr_minus_one | 39,684 |
-| foml_negative | 40,444 |
-| settling_fields_equal | 86,290 |
+| Identical full rows removed within a source | 0 |
+| Non-finite numeric cells | 0 |
+| Observations with at least one review flag | 125,974 |
+| Observations with no review flags | 232,260 |
 
-同一记录可能触发多项规则，规则计数不可直接相加。
+| Review flag | Observations |
+|---|---:|
+| `sr_negative` | 40,444 |
+| `sr_minus_one` | 39,684 |
+| `foml_negative` | 40,444 |
+| `settling_fields_equal` | 86,290 |
 
-有限数值全部保留原值和双精度，不填补、不截断、不取绝对值、不做未获证实的单位换算。只对同一文件内、包含 gen/index 的全部 19 列完全相同行去重，并写入审计日志；本批没有此类重复。不同代数/个体、甚至不同来源的性能相同行不合并，因为不能据此证明是同一设计。
+Flags overlap, so their counts must not be added to obtain a row count. Unflagged observations are not certified feasible designs.
 
-已知限制：
+## Numeric and duplicate policy
 
-- 原始提取脚本已过滤 pm<0 并执行过去重；本包不是完整仿真轨迹，也不能用于计算总仿真成功率。
-- chip_area 在提取脚本中经过 sqrt(abs(...))。本包未验证全部文件的历史生成版本，不将其当作物理面积。
-- d_settle 与 settlingTime 相等是源过滤脚本使用的可疑条件，不能据此断言所有标记行仿真失败。
-- FOM_AW 当前源公式使用固定 1500e-12，不采用目录中的 CL。未重新计算或替换任何 FoM。
-- 仅处理性能表；配套 TD/TBM 设计参数仍在原目录，可按 source_id + gen + index 关联，但应先验证键唯一性。
-- 拓扑摘要中的分位数混合本拓扑的多组条件，只作导航，不用于断言最优设计。
-- 用于训练时应按 run、设计或拓扑分组切分，并进一步核查设计重复；随机按行切分可能泄漏重复设计/优化轨迹信息。
+All finite double values are preserved without rounding, imputation, clipping, absolute-value transforms, or unit conversion. Full-row deduplication requires exact equality of all 19 source fields, including `gen` and `index`, within one source file. Removed rows would be recorded in `duplicates.jsonl`; none were found in this collection.
 
-验证结果另见 verification.json。
+Observations with equal performance values remain in the main dataset. The optional `performance_unique_profiles` view groups them within a source while preserving their observation counts. Equal performance values do not identify the same physical design.
+
+## Interpretation limits
+
+- The source extraction code already filtered `pm < 0` and removed duplicates. This collection is not a complete simulation trajectory and cannot establish the overall simulation success rate.
+- The source script applies `sqrt(abs(chip_area))`. Historical generating versions have not been verified for every file; do not treat this metric as physical area.
+- Equality of `d_settle` and `settlingTime` is a condition used by a source selection script. It does not prove that every flagged observation failed simulation.
+- The current `FOM_AW` source formula uses a fixed `1500e-12`, not the directory CL label. No figure of merit has been recomputed.
+- Only performance tables are exported. Paired TD/TBM parameter tables remain in the original collection. Verify key uniqueness before joining them through `source_id`, `gen`, and `index`.
+- Topology summaries pool multiple condition groups and serve as navigation aids, not evidence of an optimal design.
+- For training, split by run, design, or topology as appropriate and check for repeated designs. Random row splits can leak repeated designs or optimization history.
+
+## Verification
+
+See [verification.json](verification.json) for the full-value comparison against native MATLAB exports, source hashes, row counts, quality flags, and SQLite integrity. Verification compares all 6,806,446 source numeric values in each of CSV, JSONL, and SQLite. See [profile_summary.json](profile_summary.json) for optional group counts.
+
+The reference MATLAB snippets in `../evidence/` retain their calculations and selection logic. Comments and the extraction completion message are translated into English; these annotated copies are not byte-identical archives of the original scripts.

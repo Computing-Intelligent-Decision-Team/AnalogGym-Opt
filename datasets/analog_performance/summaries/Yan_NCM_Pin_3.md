@@ -1,18 +1,22 @@
 # Yan_NCM_Pin_3
 
-记录 19,367 条；未触发已定义核查规则 18,183 条；来源文件 3 个。
+**19,367 observations** from 3 source tables; 18,183 observations trigger none of the defined review flags.
 
-工艺目录标签：[180]。其他条件见下表，均为目录标签。
+Technology directory labels: [180]. All conditions below are directory labels, not verified per-record operating conditions.
 
-| source_id | tech | VDD | VCM | CL | run | rows | unflagged |
+## Source tables
+
+| Source ID | Technology | VDD | VCM | CL | Run | Observations | Unflagged |
 |---|---:|---:|---:|---:|---|---:|---:|
 | src_4feb0b7b9c541f70 | 180 | 1.8 | 0.9 | 800.0 | 0 | 6456 | 5867 |
 | src_f46a45174cc4ec58 | 180 | 1.8 | 0.9 | 800.0 | 1 | 6457 | 6155 |
 | src_e698dcd3f57c4f82 | 180 | 1.8 | 0.9 | 800.0 | 2 | 6454 | 6161 |
 
-以下仅是本拓扑全部记录的分布摘要，混合多组条件，不作为跨条件排名。指标是原始数值，单位状态见 FIELD_GUIDE.md。
+## Metric distributions
 
-| field | min | median | max |
+These summaries pool all observations for this topology across its condition groups. Use them for navigation, not comparisons across operating conditions. Values retain the source scale; see the [field guide](../FIELD_GUIDE.md) for unit status.
+
+| Field | Minimum | Median | Maximum |
 |---|---:|---:|---:|
 | pm | 8.62561 | 51.8417 | 90.8552 |
 | gbw | 0.102222 | 146733 | 869711 |

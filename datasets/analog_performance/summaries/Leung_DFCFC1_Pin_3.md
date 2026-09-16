@@ -1,16 +1,20 @@
 # Leung_DFCFC1_Pin_3
 
-记录 6,265 条；未触发已定义核查规则 3,803 条；来源文件 1 个。
+**6,265 observations** from 1 source tables; 3,803 observations trigger none of the defined review flags.
 
-工艺目录标签：[180]。其他条件见下表，均为目录标签。
+Technology directory labels: [180]. All conditions below are directory labels, not verified per-record operating conditions.
 
-| source_id | tech | VDD | VCM | CL | run | rows | unflagged |
+## Source tables
+
+| Source ID | Technology | VDD | VCM | CL | Run | Observations | Unflagged |
 |---|---:|---:|---:|---:|---|---:|---:|
 | src_b48f8cedb769af8d | 180 | 1.8 | 0.4 | 100.0 | 2 | 6265 | 3803 |
 
-以下仅是本拓扑全部记录的分布摘要，混合多组条件，不作为跨条件排名。指标是原始数值，单位状态见 FIELD_GUIDE.md。
+## Metric distributions
 
-| field | min | median | max |
+These summaries pool all observations for this topology across its condition groups. Use them for navigation, not comparisons across operating conditions. Values retain the source scale; see the [field guide](../FIELD_GUIDE.md) for unit status.
+
+| Field | Minimum | Median | Maximum |
 |---|---:|---:|---:|
 | pm | 0.661777 | 50.2602 | 89.5997 |
 | gbw | 17826.4 | 2.73239e+06 | 5.10586e+06 |

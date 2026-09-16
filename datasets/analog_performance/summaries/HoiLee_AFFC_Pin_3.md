@@ -1,19 +1,23 @@
 # HoiLee_AFFC_Pin_3
 
-记录 21,409 条；未触发已定义核查规则 15,925 条；来源文件 4 个。
+**21,409 observations** from 4 source tables; 15,925 observations trigger none of the defined review flags.
 
-工艺目录标签：[22, 180]。其他条件见下表，均为目录标签。
+Technology directory labels: [22, 180]. All conditions below are directory labels, not verified per-record operating conditions.
 
-| source_id | tech | VDD | VCM | CL | run | rows | unflagged |
+## Source tables
+
+| Source ID | Technology | VDD | VCM | CL | Run | Observations | Unflagged |
 |---|---:|---:|---:|---:|---|---:|---:|
 | src_61be94e49335e5a0 | 180 | 1.8 | 0.4 | 100.0 | 0 | 5142 | 2835 |
 | src_17aabba587aa84cb | 22 | 0.9 | 0.3 | 120.0 | 1 | 4614 | 3258 |
 | src_18de2ec4db0a034b | 22 | 0.9 | 0.3 | 120.0 | 2 | 5648 | 4762 |
 | src_b1d379e3b1bcb282 | 22 | 0.9 | 0.3 | 120.0 | 3 | 6005 | 5070 |
 
-以下仅是本拓扑全部记录的分布摘要，混合多组条件，不作为跨条件排名。指标是原始数值，单位状态见 FIELD_GUIDE.md。
+## Metric distributions
 
-| field | min | median | max |
+These summaries pool all observations for this topology across its condition groups. Use them for navigation, not comparisons across operating conditions. Values retain the source scale; see the [field guide](../FIELD_GUIDE.md) for unit status.
+
+| Field | Minimum | Median | Maximum |
 |---|---:|---:|---:|
 | pm | 0.966925 | 49.0986 | 107.958 |
 | gbw | 27253.7 | 5.75561e+06 | 3.97069e+07 |

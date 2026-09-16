@@ -1,16 +1,20 @@
 # Ramos_PFC_Pin_3
 
-记录 6,426 条；未触发已定义核查规则 4,970 条；来源文件 1 个。
+**6,426 observations** from 1 source tables; 4,970 observations trigger none of the defined review flags.
 
-工艺目录标签：[180]。其他条件见下表，均为目录标签。
+Technology directory labels: [180]. All conditions below are directory labels, not verified per-record operating conditions.
 
-| source_id | tech | VDD | VCM | CL | run | rows | unflagged |
+## Source tables
+
+| Source ID | Technology | VDD | VCM | CL | Run | Observations | Unflagged |
 |---|---:|---:|---:|---:|---|---:|---:|
 | src_5cb3eefcf17abc6b | 180 | 1.8 | 0.4 | 100.0 | 4 | 6426 | 4970 |
 
-以下仅是本拓扑全部记录的分布摘要，混合多组条件，不作为跨条件排名。指标是原始数值，单位状态见 FIELD_GUIDE.md。
+## Metric distributions
 
-| field | min | median | max |
+These summaries pool all observations for this topology across its condition groups. Use them for navigation, not comparisons across operating conditions. Values retain the source scale; see the [field guide](../FIELD_GUIDE.md) for unit status.
+
+| Field | Minimum | Median | Maximum |
 |---|---:|---:|---:|
 | pm | 9.19178 | 56.9766 | 147.118 |
 | gbw | 662008 | 2.45273e+06 | 5.91124e+06 |

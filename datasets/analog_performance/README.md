@@ -1,6 +1,6 @@
 # Historical analog circuit performance dataset
 
-[中文说明](README_zh.md) · [Single-file LLM guide (Chinese)](给大模型的数据库说明.md)
+[LLM guide](LLM_GUIDE.md) | [Field guide](FIELD_GUIDE.md) | [Data quality report](audit/QUALITY_REPORT.md)
 
 This collection contains **358,234 observations from 73 MATLAB performance tables,
 covering 18 amplifier topologies**. It provides a documented, queryable copy of
@@ -11,11 +11,13 @@ historical results with their original measurement conventions, rather than outp
 of the repository's current ngspice/sky130 simulations. The directory labels alone
 do not establish the actual PVT conditions of each measurement.
 
-## Read or query the data
+## Requirements
 
 The data are stored in gzip files to keep individual Git objects small. All formats
 contain the full collection. Python's standard library is sufficient to unpack and
 query them; MATLAB is only needed to reproduce extraction from the original tables.
+
+## Quick start
 
 From the repository root:
 
@@ -64,13 +66,19 @@ collection in a prompt. SQL queries are read-only and return at most 1,000 rows.
 | `topology_index.json`, `summaries/` | Topology counts, condition labels, and distributions |
 | `examples/sample_records.jsonl` | First/middle/last rows of each source, 219 examples |
 | `audit/` | Cleaning rules, reconciliation, and full-value verification |
-| `evidence/` | Original extraction/selection code used to interpret fields |
+| `evidence/` | Reference extraction/selection code with English annotations |
 | `scripts/` | Unpacking, bounded queries, and extraction/rebuild utilities |
 
 The original MAT tables and paired TD/TBM parameter tables are not bundled.
 Their relative paths and source keys are retained for tracing results in an
 original copy of the collection. Machine-specific absolute source paths have
 been removed from the published manifest.
+
+All documentation and annotations are in English. The field dictionary uses
+schema version `1.1`, with `description` replacing `description_zh`. Record fields
+and the JSONL record schema are unchanged. Comments and the completion message
+in the reference MATLAB snippets are translated; their calculations and
+selection logic are preserved.
 
 ## Data quality and interpretation
 
@@ -119,8 +127,9 @@ appropriate. A random row split may leak repeated designs or optimization histor
 
 ## Reproduce extraction
 
-With the original `Topo-Tech_nodes-VDD-VCM-CL-RUN` collection and adjacent
-`used_code/` directory available, use MATLAB plus Python with `numpy` and `scipy`.
+With the original `Topo-Tech_nodes-VDD-VCM-CL-RUN` collection available, use MATLAB
+plus Python with `numpy` and `scipy`. The rebuild includes the reference MATLAB
+snippets from this dataset's `evidence/` directory.
 The published record IDs derive from relative source paths and MATLAB row numbers.
 
 On Windows:
@@ -132,5 +141,6 @@ On Windows:
 On other platforms, set `ANALOG_SOURCE` and `ANALOG_OUTPUT`, create the output
 `_work/` directory, run `scripts/export_mat_tables.m` in MATLAB, and invoke
 `scripts/build_dataset.py --source ... --output ...`, followed by
-`scripts/verify_dataset.py --output ...`. Those verification scripts require the
+`scripts/verify_dataset.py --output ...` and `scripts/finalize_package.py --output ...`.
+Those verification scripts require the
 original MAT collection; ordinary use of the published data does not.

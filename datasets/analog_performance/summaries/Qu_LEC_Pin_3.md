@@ -1,19 +1,23 @@
 # Qu_LEC_Pin_3
 
-记录 17,891 条；未触发已定义核查规则 10,408 条；来源文件 4 个。
+**17,891 observations** from 4 source tables; 10,408 observations trigger none of the defined review flags.
 
-工艺目录标签：[180]。其他条件见下表，均为目录标签。
+Technology directory labels: [180]. All conditions below are directory labels, not verified per-record operating conditions.
 
-| source_id | tech | VDD | VCM | CL | run | rows | unflagged |
+## Source tables
+
+| Source ID | Technology | VDD | VCM | CL | Run | Observations | Unflagged |
 |---|---:|---:|---:|---:|---|---:|---:|
 | src_cc6ab99abfc0cb11 | 180 | 1.8 | 0.4 | 500.0 | 0 | 3422 | 1645 |
 | src_25aaff80f17ce9de | 180 | 1.8 | 0.9 | 800.0 | 1 | 6014 | 3507 |
 | src_978682bb83b9ca04 | 180 | 1.8 | 0.9 | 800.0 | 6 | 5916 | 3607 |
 | src_74304d56094329de | 180 | 1.8 | 0.9 | 800.0 | 7 | 2539 | 1649 |
 
-以下仅是本拓扑全部记录的分布摘要，混合多组条件，不作为跨条件排名。指标是原始数值，单位状态见 FIELD_GUIDE.md。
+## Metric distributions
 
-| field | min | median | max |
+These summaries pool all observations for this topology across its condition groups. Use them for navigation, not comparisons across operating conditions. Values retain the source scale; see the [field guide](../FIELD_GUIDE.md) for unit status.
+
+| Field | Minimum | Median | Maximum |
 |---|---:|---:|---:|
 | pm | 0.325443 | 58.0969 | 170.586 |
 | gbw | 3354.92 | 1.03245e+06 | 1.1718e+07 |

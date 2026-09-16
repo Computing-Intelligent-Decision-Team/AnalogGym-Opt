@@ -1,10 +1,12 @@
 # Song_DACFC_Pin_3
 
-记录 42,698 条；未触发已定义核查规则 19,756 条；来源文件 9 个。
+**42,698 observations** from 9 source tables; 19,756 observations trigger none of the defined review flags.
 
-工艺目录标签：[180]。其他条件见下表，均为目录标签。
+Technology directory labels: [180]. All conditions below are directory labels, not verified per-record operating conditions.
 
-| source_id | tech | VDD | VCM | CL | run | rows | unflagged |
+## Source tables
+
+| Source ID | Technology | VDD | VCM | CL | Run | Observations | Unflagged |
 |---|---:|---:|---:|---:|---|---:|---:|
 | src_2e4e3178bbefd188 | 180 | 1.8 | 0.4 | 500.0 | 0 | 6388 | 2650 |
 | src_f92201d6f06df3cd | 180 | 1.8 | 0.4 | 500.0 | 1 | 948 | 19 |
@@ -16,9 +18,11 @@
 | src_6173971d8e85887f | 180 | 1.8 | 0.9 | 800.0 | 3 | 5495 | 3507 |
 | src_5a535de5117b9a88 | 180 | 1.8 | 0.9 | 800.0 | 4 | 2762 | 739 |
 
-以下仅是本拓扑全部记录的分布摘要，混合多组条件，不作为跨条件排名。指标是原始数值，单位状态见 FIELD_GUIDE.md。
+## Metric distributions
 
-| field | min | median | max |
+These summaries pool all observations for this topology across its condition groups. Use them for navigation, not comparisons across operating conditions. Values retain the source scale; see the [field guide](../FIELD_GUIDE.md) for unit status.
+
+| Field | Minimum | Median | Maximum |
 |---|---:|---:|---:|
 | pm | 1.06593 | 53.0789 | 171.737 |
 | gbw | 8164.23 | 993268 | 1.37256e+07 |

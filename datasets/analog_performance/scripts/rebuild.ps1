@@ -9,6 +9,7 @@ if (Test-Path -LiteralPath $Destination) { throw 'Destination must be a new dire
 $datasetDir = New-Item -ItemType Directory -Path $Destination
 New-Item -ItemType Directory -Path (Join-Path $datasetDir.FullName '_work') | Out-Null
 Copy-Item -LiteralPath $PSScriptRoot -Destination (Join-Path $datasetDir.FullName 'scripts') -Recurse
+Copy-Item -LiteralPath (Join-Path (Split-Path -Parent $PSScriptRoot) 'evidence') -Destination (Join-Path $datasetDir.FullName 'evidence') -Recurse
 $env:ANALOG_SOURCE = (Resolve-Path -LiteralPath $Source).Path
 $env:ANALOG_OUTPUT = $datasetDir.FullName
 & $Matlab -batch "run(fullfile(getenv('ANALOG_OUTPUT'),'scripts','export_mat_tables.m'))"

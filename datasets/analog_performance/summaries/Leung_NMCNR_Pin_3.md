@@ -1,18 +1,22 @@
 # Leung_NMCNR_Pin_3
 
-记录 33,701 条；未触发已定义核查规则 24,670 条；来源文件 3 个。
+**33,701 observations** from 3 source tables; 24,670 observations trigger none of the defined review flags.
 
-工艺目录标签：[180]。其他条件见下表，均为目录标签。
+Technology directory labels: [180]. All conditions below are directory labels, not verified per-record operating conditions.
 
-| source_id | tech | VDD | VCM | CL | run | rows | unflagged |
+## Source tables
+
+| Source ID | Technology | VDD | VCM | CL | Run | Observations | Unflagged |
 |---|---:|---:|---:|---:|---|---:|---:|
 | src_3d354af2dddb41de | 180 | 1.2 | 0.4 | 100.0 | 7 | 8097 | 4585 |
 | src_8530ef090ec6d984 | 180 | 1.8 | 0.4 | 100.0 | 6 | 12824 | 10890 |
 | src_e4856e5c922002d3 | 180 | 1.0 | 0.4 | 200.0 | 8 | 12780 | 9195 |
 
-以下仅是本拓扑全部记录的分布摘要，混合多组条件，不作为跨条件排名。指标是原始数值，单位状态见 FIELD_GUIDE.md。
+## Metric distributions
 
-| field | min | median | max |
+These summaries pool all observations for this topology across its condition groups. Use them for navigation, not comparisons across operating conditions. Values retain the source scale; see the [field guide](../FIELD_GUIDE.md) for unit status.
+
+| Field | Minimum | Median | Maximum |
 |---|---:|---:|---:|
 | pm | 4.60506 | 47.9524 | 85.5387 |
 | gbw | 21170.4 | 608014 | 1.80981e+06 |

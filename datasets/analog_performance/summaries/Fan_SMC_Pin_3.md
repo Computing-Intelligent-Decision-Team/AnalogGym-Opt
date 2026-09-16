@@ -1,10 +1,12 @@
 # Fan_SMC_Pin_3
 
-记录 27,066 条；未触发已定义核查规则 15,308 条；来源文件 6 个。
+**27,066 observations** from 6 source tables; 15,308 observations trigger none of the defined review flags.
 
-工艺目录标签：[22, 180]。其他条件见下表，均为目录标签。
+Technology directory labels: [22, 180]. All conditions below are directory labels, not verified per-record operating conditions.
 
-| source_id | tech | VDD | VCM | CL | run | rows | unflagged |
+## Source tables
+
+| Source ID | Technology | VDD | VCM | CL | Run | Observations | Unflagged |
 |---|---:|---:|---:|---:|---|---:|---:|
 | src_55f3df625770930c | 180 | 1.8 | 0.4 | 100.0 | 0 | 4782 | 2729 |
 | src_8f2baf4e6f06b227 | 22 | 0.9 | 0.3 | 120.0 | 0 | 2085 | 17 |
@@ -13,9 +15,11 @@
 | src_de5bde89d47874b6 | 22 | 0.9 | 0.3 | 120.0 | 3 | 6211 | 4615 |
 | src_520a7d87dab47873 | 22 | 0.9 | 0.3 | 120.0 | 99 | 6429 | 4150 |
 
-以下仅是本拓扑全部记录的分布摘要，混合多组条件，不作为跨条件排名。指标是原始数值，单位状态见 FIELD_GUIDE.md。
+## Metric distributions
 
-| field | min | median | max |
+These summaries pool all observations for this topology across its condition groups. Use them for navigation, not comparisons across operating conditions. Values retain the source scale; see the [field guide](../FIELD_GUIDE.md) for unit status.
+
+| Field | Minimum | Median | Maximum |
 |---|---:|---:|---:|
 | pm | 0.965519 | 60.0602 | 178.347 |
 | gbw | 15217.5 | 2.04205e+06 | 4.71342e+07 |

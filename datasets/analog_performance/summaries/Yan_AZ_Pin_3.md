@@ -1,10 +1,12 @@
 # Yan_AZ_Pin_3
 
-记录 38,090 条；未触发已定义核查规则 23,331 条；来源文件 10 个。
+**38,090 observations** from 10 source tables; 23,331 observations trigger none of the defined review flags.
 
-工艺目录标签：[22, 180]。其他条件见下表，均为目录标签。
+Technology directory labels: [22, 180]. All conditions below are directory labels, not verified per-record operating conditions.
 
-| source_id | tech | VDD | VCM | CL | run | rows | unflagged |
+## Source tables
+
+| Source ID | Technology | VDD | VCM | CL | Run | Observations | Unflagged |
 |---|---:|---:|---:|---:|---|---:|---:|
 | src_8a433aa6ea33258e | 180 | 1.8 | 0.4 | 15000.0 | 1 | 5797 | 1230 |
 | src_77acec5e3acee767 | 180 | 1.8 | 0.9 | 800.0 | 0 | 4667 | 2673 |
@@ -17,9 +19,11 @@
 | src_333a4561dfa223b2 | 22 | 0.9 | 0.3 | 15000.0 | 5 | 5412 | 5055 |
 | src_9ea927eb51089bca | 22 | 0.9 | 0.3 | 15000.0 | 6 | 942 | 6 |
 
-以下仅是本拓扑全部记录的分布摘要，混合多组条件，不作为跨条件排名。指标是原始数值，单位状态见 FIELD_GUIDE.md。
+## Metric distributions
 
-| field | min | median | max |
+These summaries pool all observations for this topology across its condition groups. Use them for navigation, not comparisons across operating conditions. Values retain the source scale; see the [field guide](../FIELD_GUIDE.md) for unit status.
+
+| Field | Minimum | Median | Maximum |
 |---|---:|---:|---:|
 | pm | 0.135569 | 47.5577 | 174.649 |
 | gbw | 0.231984 | 561955 | 1.35855e+07 |

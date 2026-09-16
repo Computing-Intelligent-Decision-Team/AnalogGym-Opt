@@ -1,10 +1,12 @@
 # Sau_CFCC_Pin_3
 
-记录 25,939 条；未触发已定义核查规则 12,003 条；来源文件 7 个。
+**25,939 observations** from 7 source tables; 12,003 observations trigger none of the defined review flags.
 
-工艺目录标签：[22, 180]。其他条件见下表，均为目录标签。
+Technology directory labels: [22, 180]. All conditions below are directory labels, not verified per-record operating conditions.
 
-| source_id | tech | VDD | VCM | CL | run | rows | unflagged |
+## Source tables
+
+| Source ID | Technology | VDD | VCM | CL | Run | Observations | Unflagged |
 |---|---:|---:|---:|---:|---|---:|---:|
 | src_0546307969cd350a | 180 | 1.8 | 0.4 | 500.0 | 0 | 6080 | 1455 |
 | src_ae20e4b355635096 | 180 | 1.8 | 0.4 | 500.0 | 1 | 6032 | 1160 |
@@ -14,9 +16,11 @@
 | src_5e756c846d4951d4 | 22 | 0.9 | 0.3 | 500.0 | 1 | 533 | 215 |
 | src_e9ca64b31fcb7e66 | 22 | 0.9 | 0.3 | 800.0 | 2 | 4567 | 3320 |
 
-以下仅是本拓扑全部记录的分布摘要，混合多组条件，不作为跨条件排名。指标是原始数值，单位状态见 FIELD_GUIDE.md。
+## Metric distributions
 
-| field | min | median | max |
+These summaries pool all observations for this topology across its condition groups. Use them for navigation, not comparisons across operating conditions. Values retain the source scale; see the [field guide](../FIELD_GUIDE.md) for unit status.
+
+| Field | Minimum | Median | Maximum |
 |---|---:|---:|---:|
 | pm | 0.27868 | 50.8682 | 171.988 |
 | gbw | 0.0575421 | 2.14656e+06 | 3.44885e+07 |

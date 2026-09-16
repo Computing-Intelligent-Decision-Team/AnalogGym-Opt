@@ -1,19 +1,23 @@
 # Grasso_RAFFC_Pin_3
 
-记录 19,686 条；未触发已定义核查规则 16,432 条；来源文件 4 个。
+**19,686 observations** from 4 source tables; 16,432 observations trigger none of the defined review flags.
 
-工艺目录标签：[22]。其他条件见下表，均为目录标签。
+Technology directory labels: [22]. All conditions below are directory labels, not verified per-record operating conditions.
 
-| source_id | tech | VDD | VCM | CL | run | rows | unflagged |
+## Source tables
+
+| Source ID | Technology | VDD | VCM | CL | Run | Observations | Unflagged |
 |---|---:|---:|---:|---:|---|---:|---:|
 | src_cba014366403a3dc | 22 | 0.9 | 0.3 | 500.0 | 0 | 2119 | 1151 |
 | src_71adafd44bb9d83a | 22 | 0.9 | 0.3 | 500.0 | 1 | 6248 | 5400 |
 | src_738068d35a712976 | 22 | 0.9 | 0.3 | 500.0 | 2 | 4921 | 4180 |
 | src_70fc225d8ae25c33 | 22 | 0.9 | 0.3 | 500.0 | 3 | 6398 | 5701 |
 
-以下仅是本拓扑全部记录的分布摘要，混合多组条件，不作为跨条件排名。指标是原始数值，单位状态见 FIELD_GUIDE.md。
+## Metric distributions
 
-| field | min | median | max |
+These summaries pool all observations for this topology across its condition groups. Use them for navigation, not comparisons across operating conditions. Values retain the source scale; see the [field guide](../FIELD_GUIDE.md) for unit status.
+
+| Field | Minimum | Median | Maximum |
 |---|---:|---:|---:|
 | pm | 0.396808 | 50.8391 | 95.9821 |
 | gbw | 290.088 | 2.48072e+06 | 1.42524e+07 |

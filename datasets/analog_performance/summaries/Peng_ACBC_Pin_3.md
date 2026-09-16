@@ -1,16 +1,20 @@
 # Peng_ACBC_Pin_3
 
-记录 5,852 条；未触发已定义核查规则 1,377 条；来源文件 1 个。
+**5,852 observations** from 1 source tables; 1,377 observations trigger none of the defined review flags.
 
-工艺目录标签：[180]。其他条件见下表，均为目录标签。
+Technology directory labels: [180]. All conditions below are directory labels, not verified per-record operating conditions.
 
-| source_id | tech | VDD | VCM | CL | run | rows | unflagged |
+## Source tables
+
+| Source ID | Technology | VDD | VCM | CL | Run | Observations | Unflagged |
 |---|---:|---:|---:|---:|---|---:|---:|
 | src_e117e1f46e8478f7 | 180 | 1.8 | 0.4 | 100.0 | 0 | 5852 | 1377 |
 
-以下仅是本拓扑全部记录的分布摘要，混合多组条件，不作为跨条件排名。指标是原始数值，单位状态见 FIELD_GUIDE.md。
+## Metric distributions
 
-| field | min | median | max |
+These summaries pool all observations for this topology across its condition groups. Use them for navigation, not comparisons across operating conditions. Values retain the source scale; see the [field guide](../FIELD_GUIDE.md) for unit status.
+
+| Field | Minimum | Median | Maximum |
 |---|---:|---:|---:|
 | pm | 10.5657 | 61.4627 | 111.08 |
 | gbw | 26094.6 | 2.76281e+06 | 9.67591e+06 |

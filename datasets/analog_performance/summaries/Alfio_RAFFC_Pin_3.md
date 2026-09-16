@@ -1,17 +1,21 @@
 # Alfio_RAFFC_Pin_3
 
-记录 12,310 条；未触发已定义核查规则 8,619 条；来源文件 2 个。
+**12,310 observations** from 2 source tables; 8,619 observations trigger none of the defined review flags.
 
-工艺目录标签：[180]。其他条件见下表，均为目录标签。
+Technology directory labels: [180]. All conditions below are directory labels, not verified per-record operating conditions.
 
-| source_id | tech | VDD | VCM | CL | run | rows | unflagged |
+## Source tables
+
+| Source ID | Technology | VDD | VCM | CL | Run | Observations | Unflagged |
 |---|---:|---:|---:|---:|---|---:|---:|
 | src_aaf7ee153b930965 | 180 | 1.8 | 0.4 | 500.0 | 0 | 6116 | 2849 |
 | src_12b3fbe6c0b8d015 | 180 | 1.8 | 0.9 | 800.0 | 3 | 6194 | 5770 |
 
-以下仅是本拓扑全部记录的分布摘要，混合多组条件，不作为跨条件排名。指标是原始数值，单位状态见 FIELD_GUIDE.md。
+## Metric distributions
 
-| field | min | median | max |
+These summaries pool all observations for this topology across its condition groups. Use them for navigation, not comparisons across operating conditions. Values retain the source scale; see the [field guide](../FIELD_GUIDE.md) for unit status.
+
+| Field | Minimum | Median | Maximum |
 |---|---:|---:|---:|
 | pm | 3.48679 | 50.1973 | 168.578 |
 | gbw | 1531.5 | 514612 | 6.49147e+06 |

@@ -1,10 +1,12 @@
 # Qu2017_AZC_Pin_3
 
-记录 30,807 条；未触发已定义核查规则 21,012 条；来源文件 7 个。
+**30,807 observations** from 7 source tables; 21,012 observations trigger none of the defined review flags.
 
-工艺目录标签：[22, 180]。其他条件见下表，均为目录标签。
+Technology directory labels: [22, 180]. All conditions below are directory labels, not verified per-record operating conditions.
 
-| source_id | tech | VDD | VCM | CL | run | rows | unflagged |
+## Source tables
+
+| Source ID | Technology | VDD | VCM | CL | Run | Observations | Unflagged |
 |---|---:|---:|---:|---:|---|---:|---:|
 | src_6f3886d43077b463 | 180 | 1.8 | 0.4 | 15000.0 | 1 | 2391 | 324 |
 | src_c0d5ed0fdab0b668 | 180 | 1.8 | 0.4 | 15000.0 | 2 | 6426 | 4472 |
@@ -14,9 +16,11 @@
 | src_8e4cdd352fa58c7b | 22 | 0.9 | 0.3 | 18000.0 | 3 | 6323 | 5464 |
 | src_3e64dd4bc30c4c30 | 22 | 0.9 | 0.3 | 18000.0 | 4 | 1840 | 692 |
 
-以下仅是本拓扑全部记录的分布摘要，混合多组条件，不作为跨条件排名。指标是原始数值，单位状态见 FIELD_GUIDE.md。
+## Metric distributions
 
-| field | min | median | max |
+These summaries pool all observations for this topology across its condition groups. Use them for navigation, not comparisons across operating conditions. Values retain the source scale; see the [field guide](../FIELD_GUIDE.md) for unit status.
+
+| Field | Minimum | Median | Maximum |
 |---|---:|---:|---:|
 | pm | 0.064994 | 52.7333 | 172.631 |
 | gbw | 0.135504 | 916668 | 4.53431e+07 |

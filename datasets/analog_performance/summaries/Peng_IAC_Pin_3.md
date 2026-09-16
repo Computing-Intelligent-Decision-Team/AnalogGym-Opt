@@ -1,18 +1,22 @@
 # Peng_IAC_Pin_3
 
-记录 7,593 条；未触发已定义核查规则 2,466 条；来源文件 3 个。
+**7,593 observations** from 3 source tables; 2,466 observations trigger none of the defined review flags.
 
-工艺目录标签：[180]。其他条件见下表，均为目录标签。
+Technology directory labels: [180]. All conditions below are directory labels, not verified per-record operating conditions.
 
-| source_id | tech | VDD | VCM | CL | run | rows | unflagged |
+## Source tables
+
+| Source ID | Technology | VDD | VCM | CL | Run | Observations | Unflagged |
 |---|---:|---:|---:|---:|---|---:|---:|
 | src_7e60cdeed89a22f5 | 180 | 1.8 | 0.4 | 100.0 | 0 | 5321 | 1308 |
 | src_3c56f955f6522db5 | 180 | 1.8 | 0.9 | 800.0 | 3 | 1652 | 1041 |
 | src_71f0a01820fcd4bf | 180 | 1.8 | 0.9 | 800.0 | 4 | 620 | 117 |
 
-以下仅是本拓扑全部记录的分布摘要，混合多组条件，不作为跨条件排名。指标是原始数值，单位状态见 FIELD_GUIDE.md。
+## Metric distributions
 
-| field | min | median | max |
+These summaries pool all observations for this topology across its condition groups. Use them for navigation, not comparisons across operating conditions. Values retain the source scale; see the [field guide](../FIELD_GUIDE.md) for unit status.
+
+| Field | Minimum | Median | Maximum |
 |---|---:|---:|---:|
 | pm | 5.24746 | 76.885 | 176.025 |
 | gbw | 5387.14 | 3.26684e+06 | 2.74648e+07 |

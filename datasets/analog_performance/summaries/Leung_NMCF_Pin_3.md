@@ -1,10 +1,12 @@
 # Leung_NMCF_Pin_3
 
-记录 23,773 条；未触发已定义核查规则 20,740 条；来源文件 5 个。
+**23,773 observations** from 5 source tables; 20,740 observations trigger none of the defined review flags.
 
-工艺目录标签：[180]。其他条件见下表，均为目录标签。
+Technology directory labels: [180]. All conditions below are directory labels, not verified per-record operating conditions.
 
-| source_id | tech | VDD | VCM | CL | run | rows | unflagged |
+## Source tables
+
+| Source ID | Technology | VDD | VCM | CL | Run | Observations | Unflagged |
 |---|---:|---:|---:|---:|---|---:|---:|
 | src_2017253dfc964e2e | 180 | 1.8 | 0.4 | 100.0 | 0 | 6333 | 5762 |
 | src_9719c64a4e645b15 | 180 | 1.8 | 0.4 | 100.0 | 1 | 6350 | 5707 |
@@ -12,9 +14,11 @@
 | src_1c483b94eb85dfdb | 180 | 1.8 | 0.9 | 100.0 | 1 | 2537 | 1935 |
 | src_9ac90919c2939496 | 180 | 1.0 | 0.4 | 100.0 | 2 | 6376 | 5753 |
 
-以下仅是本拓扑全部记录的分布摘要，混合多组条件，不作为跨条件排名。指标是原始数值，单位状态见 FIELD_GUIDE.md。
+## Metric distributions
 
-| field | min | median | max |
+These summaries pool all observations for this topology across its condition groups. Use them for navigation, not comparisons across operating conditions. Values retain the source scale; see the [field guide](../FIELD_GUIDE.md) for unit status.
+
+| Field | Minimum | Median | Maximum |
 |---|---:|---:|---:|
 | pm | 9.75917 | 49.8804 | 179.15 |
 | gbw | 37736.7 | 1.53098e+06 | 7.44505e+06 |
